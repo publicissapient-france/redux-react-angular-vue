@@ -2,6 +2,8 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import Router from 'koa-router';
 
+import cors from '@koa/cors';
+
 import { add, getAll } from './todos';
 
 const app = new Koa();
@@ -12,13 +14,15 @@ router.get('/todos/all', (ctx, next) => {
 });
 
 router.get('/todos/add', (ctx, next) => {
-  ctx.body = add({ id: null, text: 'Coucou', done: false })
+  ctx.body = add({ id: null, text: Math.random().toString().substr(2), done: false })
 });
 
 app
+  .use(cors())
   .use(router.routes())
   .use(router.allowedMethods())
-  .use(bodyParser);
+  //.use(bodyParser)
+  ;
 
 /*// response
 app.use(ctx => {

@@ -1,0 +1,7 @@
+<h1>Todos list</h1>
+
+<ul *ngIf="todosService.todos$ | async; let todos">
+  <li *ngFor="let todo of todos; trackBy: trackByTodoId">
+    {{ todo.text }}
+  </li>
+</ul>
