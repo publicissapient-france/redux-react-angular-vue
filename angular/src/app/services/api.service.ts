@@ -15,12 +15,16 @@ export class ApiService {
     return environment.apiBaseUrl + url;
   }
 
+  addTodo(todo: Todo) {
+    return this.httpClient.put<boolean>(this.getUrl('todos'), todo);
+  }
+
   getTodos() {
     return this.httpClient.get<Todo[]>(this.getUrl('todos'));
   }
 
-  addTodo(todo: Todo) {
-    return this.httpClient.put<boolean>(this.getUrl('todos'), todo);
+  getTodo(todo: Todo) {
+    return this.httpClient.get<Todo>(this.getUrl(`todos/${todo.id}`));
   }
 
   updateTodo(todo: Todo) {
