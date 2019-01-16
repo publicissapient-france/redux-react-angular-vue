@@ -26,8 +26,8 @@ export const update = (todo: Todo) => {
   return true;
 };
 
-export const remove = (todo: Todo) => {
-  const index = todos.findIndex(t => t.id === todo.id);
+export const remove = (todoId: number) => {
+  const index = todos.findIndex(t => t.id === todoId);
   if (index === -1) {
     return false;
   }
@@ -35,18 +35,3 @@ export const remove = (todo: Todo) => {
   todos.splice(index, 1);
   return true;
 };
-
-/*export const remove = (data: Todo | number) => {
-  let id: number;
-  if (typeof data === 'number') {
-    id = data;
-  } else {
-    id = data.id
-  }
-  const index = todos.findIndex(t => t.id === id);
-  if (index === -1) {
-    return false;
-  }
-  todos = [...todos];
-  todos.splice(index, 1);
-};*/

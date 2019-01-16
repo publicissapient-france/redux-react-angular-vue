@@ -19,7 +19,6 @@ export class TodosService {
     this.apiService.getTodos().subscribe(todos => {
       this.todos = todos;
       this.todos$.next(this.todos);
-      console.log(todos);
     });
   }
 }

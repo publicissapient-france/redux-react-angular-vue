@@ -4,30 +4,43 @@ import Router from 'koa-router';
 
 import cors from '@koa/cors';
 
-import { add, getAll } from './todos';
+import { Todo } from './model';
+import { add, get, getAll, remove, update } from './todos';
 
 const app = new Koa();
 const router = new Router();
 
-router.get('/todos/all', (ctx, next) => {
+router.put('/todos', (ctx, next) => {
+  const todo: Todo = ctx.request.body;
+  ctx.body = add(todo);
+});
+
+router.get('/todos', (ctx, next) => {
   ctx.body = getAll();
 });
 
-router.get('/todos/add', (ctx, next) => {
-  ctx.body = add({ id: null, text: Math.random().toString().substr(2), done: false })
+router.get('/todos/:id', (ctx, next) => {
+  const todoId: number = +ctx.params.id;
+  ctx.body = get(todoId);
+});
+
+router.post('/todos/:id', (ctx, next) => {
+  const todoId: number = +ctx.params.id;
+  const todo: Todo = ctx.request.body;
+  ctx.body = update({ ...todo, id: todoId });
+});
+
+router.delete('/todos/:id', (ctx, next) => {
+  const todoId: number = +ctx.params.id;
+  ctx.body = remove(todoId);
 });
 
 app
   .use(cors())
+  .use(bodyParser())
   .use(router.routes())
   .use(router.allowedMethods())
-  //.use(bodyParser)
   ;
-
-/*// response
-app.use(ctx => {
-  ctx.body = '<pre>' + JSON.stringify(ctx.request, undefined, 2) + '</pre>';
-});*/
 
 const port = 3100;
 

@@ -1,7 +1,13 @@
 <h1>Todos list</h1>
 
+<app-todos-add></app-todos-add>
+
+<hr>
+
 <ul *ngIf="todosService.todos$ | async; let todos">
   <li *ngFor="let todo of todos; trackBy: trackByTodoId">
     {{ todo.text }}
+    <button (click)="toggleDone(todo)">{{ todo.done }}</button>
+    <button (click)="remove(todo)">Remove</button>
   </li>
 </ul>

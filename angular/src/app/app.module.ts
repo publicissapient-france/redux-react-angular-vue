@@ -5,11 +5,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodosListComponent } from './components/todos-list/todos-list.component';
+import { TodosAddComponent } from './components/todos-add/todos-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodosListComponent
+    TodosListComponent,
+    TodosAddComponent
   ],
   imports: [
     BrowserModule,

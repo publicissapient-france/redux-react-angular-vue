@@ -16,10 +16,18 @@ export class ApiService {
   }
 
   getTodos() {
-    return this.httpClient.get<Todo[]>(this.getUrl('todos/all'));
+    return this.httpClient.get<Todo[]>(this.getUrl('todos'));
   }
 
   addTodo(todo: Todo) {
-    return this.httpClient.post<boolean>(this.getUrl('todos/add'), todo);
+    return this.httpClient.put<boolean>(this.getUrl('todos'), todo);
+  }
+
+  updateTodo(todo: Todo) {
+    return this.httpClient.post<boolean>(this.getUrl(`todos/${todo.id}`), todo);
+  }
+
+  removeTodo(todo: Todo) {
+    return this.httpClient.delete<boolean>(this.getUrl(`todos/${todo.id}`));
   }
 }
