@@ -6,9 +6,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     <input
       type="text"
       [value]="text"
-      (input)="emitText($event.target.value)">
+      (input)="emitText($event.target.value)"
+      (keydown.enter)="emitAdd()">
 
-    <button (click)="emitAdd()">Add</button>
+    <button (click)="emitAdd()" [disabled]="disabled">Add</button>
   `,
   styleUrls: ['./ui-todo-add.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -16,6 +17,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 export class UiTodoAddComponent {
   @Input() text: string;
   @Output() textChange = new EventEmitter<string>();
+
+  @Input() disabled = false;
 
   @Output() add = new EventEmitter<string>();
 
@@ -25,6 +28,9 @@ export class UiTodoAddComponent {
   }
 
   emitAdd() {
+    if (this.disabled) {
+      return;
+    }
     this.add.emit(this.text);
     this.emitText('');
   }

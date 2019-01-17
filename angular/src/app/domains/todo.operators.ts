@@ -16,3 +16,7 @@ export const getStatus = (todos: Todo[]): TodoStatus => ({
   doneCount: todos.filter(todo => todo.done).length,
   totalCount: todos.length
 });
+
+export const isTextValid = (todos: Todo[], text: string) => {
+  return text ? !todos.find(todo => todo.text === text) : false;
+};

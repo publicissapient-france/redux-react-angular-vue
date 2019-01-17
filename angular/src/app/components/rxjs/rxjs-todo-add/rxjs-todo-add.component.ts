@@ -7,6 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   selector: 'app-rxjs-todo-add',
   template: `
     <app-ui-todo-add
+      [disabled]="disabled"
       [text]="text"
       (textChange)="emitText($event)"
       (add)="add($event)">
@@ -17,6 +18,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class RxjsTodoAddComponent {
   @Input() text = '';
   @Output() textChange = new EventEmitter<string>();
+
+  @Input() disabled: boolean;
 
   constructor(
     private apiService: ApiService,
