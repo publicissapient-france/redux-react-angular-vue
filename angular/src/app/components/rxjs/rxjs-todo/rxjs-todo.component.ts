@@ -1,8 +1,8 @@
+import { Todo } from 'App/domains/todo.model';
+import { isTextValid } from 'App/domains/todo.operators';
+import { TodosService } from 'App/services/todos.service';
 import { BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
-import { Todo } from 'src/app/domains/todo.model';
-import { isTextValid } from 'src/app/domains/todo.operators';
-import { TodosService } from 'src/app/services/todos.service';
 
 import { Component } from '@angular/core';
 

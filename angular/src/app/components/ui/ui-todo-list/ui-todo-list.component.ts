@@ -1,5 +1,5 @@
-import { Todo } from 'src/app/domains/todo.model';
-import { filter } from 'src/app/domains/todo.operators';
+import { Todo } from 'App/domains/todo.model';
+import { filter } from 'App/domains/todo.operators';
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 

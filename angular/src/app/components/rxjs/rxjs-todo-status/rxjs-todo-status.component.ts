@@ -1,5 +1,5 @@
-import { getStatus } from 'src/app/domains/todo.operators';
-import { TodosService } from 'src/app/services/todos.service';
+import { getStatus } from 'App/domains/todo.operators';
+import { TodosService } from 'App/services/todos.service';
 
 import { Component } from '@angular/core';
 

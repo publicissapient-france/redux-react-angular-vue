@@ -1,7 +1,7 @@
-import { ApiService } from 'src/app/services/api.service';
-import { TodosService } from 'src/app/services/todos.service';
+import { ApiService } from 'App/services/api.service';
+import { TodosService } from 'App/services/todos.service';
 
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-rxjs-todo-add',

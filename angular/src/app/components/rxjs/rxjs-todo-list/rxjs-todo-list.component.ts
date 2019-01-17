@@ -1,7 +1,7 @@
-import { Todo } from 'src/app/domains/todo.model';
-import { toggleDone } from 'src/app/domains/todo.operators';
-import { ApiService } from 'src/app/services/api.service';
-import { TodosService } from 'src/app/services/todos.service';
+import { Todo } from 'App/domains/todo.model';
+import { toggleDone } from 'App/domains/todo.operators';
+import { ApiService } from 'App/services/api.service';
+import { TodosService } from 'App/services/todos.service';
 
 import { Component, Input, OnInit } from '@angular/core';
 

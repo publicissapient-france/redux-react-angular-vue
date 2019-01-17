@@ -2,7 +2,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { Injectable } from '@angular/core';
 
-import { Todo } from '../domains/todo.model';
+import { Todo } from 'App/domains/todo.model';
 import { ApiService } from './api.service';
 
 @Injectable({
