@@ -5,7 +5,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-rxjs-todo-add',
-  templateUrl: './rxjs-todo-add.component.html',
+  template: `
+    <app-ui-todo-add
+      [text]="text"
+      (textChange)="emitText($event)"
+      (add)="add($event)">
+    </app-ui-todo-add>
+  `,
   styleUrls: ['./rxjs-todo-add.component.css']
 })
 export class RxjsTodoAddComponent {

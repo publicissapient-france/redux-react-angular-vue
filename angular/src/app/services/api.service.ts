@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Todo } from '../models/todo.model';
+import { Todo } from '../domains/todo.model';
 
 @Injectable({
   providedIn: 'root'

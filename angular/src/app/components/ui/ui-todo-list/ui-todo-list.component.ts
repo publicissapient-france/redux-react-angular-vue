@@ -1,24 +1,33 @@
-import { Todo } from 'src/app/models/todo.model';
+import { Todo } from 'src/app/domains/todo.model';
+import { filter } from 'src/app/domains/todo.operators';
 
-import {
-    ChangeDetectionStrategy, Component, EventEmitter, Input, Output
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-ui-todo-list',
-  templateUrl: './ui-todo-list.component.html',
+  template: `
+    <ul *ngIf="todosFiltered!.length">
+      <li *ngFor="let todo of todosFiltered; trackBy: trackByTodoId">
+        {{ todo.text }}
+        <button (click)="emitToggleDone(todo)">{{ todo.done }}</button>
+        <button (click)="emitRemove(todo)">Remove</button>
+      </li>
+    </ul>
+  `,
   styleUrls: ['./ui-todo-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiTodoListComponent {
   @Input() todos: Todo[];
 
+  @Input() filter: string;
+
+  get todosFiltered() {
+    return filter(this.todos, this.filter);
+  }
+
   @Output() toggleDone = new EventEmitter<Todo>();
   @Output() remove = new EventEmitter<Todo>();
-
-  trackByTodoId(index: number, todo: Todo) {
-    return todo.id;
-  }
 
   emitToggleDone(todo: Todo) {
     this.toggleDone.emit(todo);
@@ -26,5 +35,9 @@ export class UiTodoListComponent {
 
   emitRemove(todo: Todo) {
     this.remove.emit(todo);
+  }
+
+  trackByTodoId(index: number, todo: Todo) {
+    return todo.id;
   }
 }

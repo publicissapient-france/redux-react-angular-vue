@@ -2,7 +2,14 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
 @Component({
   selector: 'app-ui-todo-add',
-  templateUrl: './ui-todo-add.component.html',
+  template: `
+    <input
+      type="text"
+      [value]="text"
+      (input)="emitText($event.target.value)">
+
+    <button (click)="emitAdd()">Add</button>
+  `,
   styleUrls: ['./ui-todo-add.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })

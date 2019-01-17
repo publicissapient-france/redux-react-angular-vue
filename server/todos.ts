@@ -11,9 +11,10 @@ export const get = (id: number) => {
   return todos.find(t => t.id === id);
 };
 
-export const add = (todo: Todo) => {
-  todos = [{ ...todo, id: getId() }, ...todos];
-  return true;
+export const add = (todo: Todo): Todo => {
+  const added = { ...todo, id: getId() };
+  todos = [added, ...todos];
+  return added;
 };
 
 export const update = (todo: Todo) => {
