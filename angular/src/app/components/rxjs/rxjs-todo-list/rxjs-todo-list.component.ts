@@ -14,8 +14,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class RxjsTodoListComponent implements OnInit, OnDestroy {
   text = '';
 
-  todos: Todo[] = [];
-  filteredTodos: Todo[] = [];
+  todos: Todo[];
+  filteredTodos: Todo[];
 
   subscription: Subscription;
 
