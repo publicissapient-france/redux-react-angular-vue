@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { TodosListComponent } from './components/todos-list/todos-list.component';
+import { RxjsTodoListComponent } from './components/rxjs/rxjs-todo-list/rxjs-todo-list.component';
 
 const routes: Routes = [
-  { path: 'list', component: TodosListComponent },
+  { path: 'list', component: RxjsTodoListComponent },
   { path: '**', redirectTo: 'list' }
 ];
 

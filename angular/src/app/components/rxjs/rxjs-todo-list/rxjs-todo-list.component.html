@@ -1,0 +1,20 @@
+<h1>Todos list RxJS</h1>
+
+<app-rxjs-todo-add
+  [(text)]="text"
+  (textChange)="filterTodos()">
+</app-rxjs-todo-add>
+
+<hr>
+
+<app-ui-todo-list
+  [todos]="filteredTodos"
+  (toggleDone)="toggleDone($event)"
+  (remove)="remove($event)">
+</app-ui-todo-list>
+
+<hr>
+
+<app-rxjs-todo-add
+  [(text)]="text">
+</app-rxjs-todo-add>

@@ -1,0 +1,7 @@
+<ul *ngIf="todos!.length">
+  <li *ngFor="let todo of todos; trackBy: trackByTodoId">
+    {{ todo.text }}
+    <button (click)="emitToggleDone(todo)">{{ todo.done }}</button>
+    <button (click)="emitRemove(todo)">Remove</button>
+  </li>
+</ul>

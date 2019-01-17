@@ -1,0 +1,9 @@
+<input
+  type="text"
+  [value]="text"
+  (input)="emitText($event.target.value)">
+
+<button
+  (click)="emitAdd()">
+  Add
+</button>
