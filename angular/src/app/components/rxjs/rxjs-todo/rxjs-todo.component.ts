@@ -9,6 +9,14 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-rxjs-todo',
   template: `
+    <button (click)="filterEnabled = !filterEnabled">
+      <fa-icon
+        icon="filter"
+        style="position:absolute"
+        [class.disabled]="!filterEnabled">
+      </fa-icon>
+    </button>
+
     <app-rxjs-todo-add
       [(text)]="text"
       (textChange)="textChange()"
@@ -16,33 +24,39 @@ import { Component } from '@angular/core';
     </app-rxjs-todo-add>
 
     <hr>
-    <app-rxjs-todo-list [filter]="text"></app-rxjs-todo-list>
+    <app-rxjs-todo-list [filter]="getFilter()"></app-rxjs-todo-list>
 
     <app-rxjs-todo-status></app-rxjs-todo-status>
-    <hr>
+    <!--<hr>
 
     <app-rxjs-todo-add
       [(text)]="text"
       (textChange)="textChange()"
       [disabled]="preventAdd$ | async">
-    </app-rxjs-todo-add>
+    </app-rxjs-todo-add>-->
   `,
   styleUrls: ['./rxjs-todo.component.css']
 })
 export class RxjsTodoComponent {
+  todos: Todo[];
+
   text = '';
   text$ = new BehaviorSubject<string>(this.text);
-
-  todos: Todo[];
 
   preventAdd$ = this.text$.pipe(
     switchMap(() => this.todosService.todos$),
     map(todos => !isTextValid(todos, this.text))
   );
 
+  filterEnabled = true;
+
   constructor(private todosService: TodosService) { }
 
   textChange() {
     this.text$.next(this.text);
+  }
+
+  getFilter() {
+    return this.filterEnabled ? this.text : '';
   }
 }
