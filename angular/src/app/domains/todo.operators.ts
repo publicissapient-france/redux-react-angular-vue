@@ -13,7 +13,7 @@ export const filter = (todos: Todo[], text: string) => {
 };
 
 export const getStatus = (todos: Todo[]): TodoStatus => ({
-  doneCount: todos.filter(todo => todo.done).length,
+  remainCount: todos.filter(todo => !todo.done).length,
   totalCount: todos.length
 });
 

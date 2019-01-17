@@ -7,10 +7,16 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   selector: 'app-ui-todo-list',
   template: `
     <ul *ngIf="todosFiltered!.length">
-      <li *ngFor="let todo of todosFiltered; trackBy: trackByTodoId">
-        {{ todo.text }}
-        <button (click)="emitToggleDone(todo)">{{ todo.done }}</button>
-        <button (click)="emitRemove(todo)">Remove</button>
+      <li *ngFor="let todo of todosFiltered; trackBy: trackByTodoId" class="list">
+        <button (click)="emitToggleDone(todo)">
+          <fa-icon [icon]="getToggleIcon(todo)"></fa-icon>
+        </button>
+
+        <span class="text" [class.done]="todo.done">{{ todo.text }}</span>
+
+        <button (click)="emitRemove(todo)">
+          <fa-icon icon="trash"></fa-icon>
+        </button>
       </li>
     </ul>
   `,
@@ -39,5 +45,9 @@ export class UiTodoListComponent {
 
   trackByTodoId(index: number, todo: Todo) {
     return todo.id;
+  }
+
+  getToggleIcon(todo: Todo) {
+    return todo.done ? 'toggle-off' : 'toggle-on';
   }
 }

@@ -17,6 +17,8 @@ import { Component } from '@angular/core';
 
     <hr>
     <app-rxjs-todo-list [filter]="text"></app-rxjs-todo-list>
+
+    <app-rxjs-todo-status></app-rxjs-todo-status>
     <hr>
 
     <app-rxjs-todo-add
@@ -24,8 +26,6 @@ import { Component } from '@angular/core';
       (textChange)="textChange()"
       [disabled]="preventAdd$ | async">
     </app-rxjs-todo-add>
-
-    <app-rxjs-todo-status></app-rxjs-todo-status>
   `,
   styleUrls: ['./rxjs-todo.component.css']
 })

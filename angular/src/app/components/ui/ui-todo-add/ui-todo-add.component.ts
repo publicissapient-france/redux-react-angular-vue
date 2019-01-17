@@ -9,7 +9,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       (input)="emitText($event.target.value)"
       (keydown.enter)="emitAdd()">
 
-    <button (click)="emitAdd()" [disabled]="disabled">Add</button>
+    <button (click)="emitAdd()" [disabled]="disabled">
+      <fa-icon icon="plus"></fa-icon>
+    </button>
   `,
   styleUrls: ['./ui-todo-add.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

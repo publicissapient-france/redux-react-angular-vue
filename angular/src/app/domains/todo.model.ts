@@ -5,6 +5,6 @@ export interface Todo {
 }
 
 export interface TodoStatus {
-  doneCount: number;
+  remainCount: number;
   totalCount: number;
 }

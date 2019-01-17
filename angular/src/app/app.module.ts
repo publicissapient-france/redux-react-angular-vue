@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RxjsTodoAddComponent } from './components/rxjs/rxjs-todo-add/rxjs-todo-add.component';
 import { RxjsTodoListComponent } from './components/rxjs/rxjs-todo-list/rxjs-todo-list.component';
+import { RxjsTodoStatusComponent } from './components/rxjs/rxjs-todo-status/rxjs-todo-status.component';
 import { RxjsTodoComponent } from './components/rxjs/rxjs-todo/rxjs-todo.component';
 import { UiTodoAddComponent } from './components/ui/ui-todo-add/ui-todo-add.component';
 import { UiTodoListComponent } from './components/ui/ui-todo-list/ui-todo-list.component';
 import { UiTodoStatusComponent } from './components/ui/ui-todo-status/ui-todo-status.component';
-import { RxjsTodoStatusComponent } from './components/rxjs/rxjs-todo-status/rxjs-todo-status.component';
+import { AppFontAwesomeModule } from './shared/app-font-awesome.module';
 
 @NgModule({
   declarations: [
@@ -25,8 +26,9 @@ import { RxjsTodoStatusComponent } from './components/rxjs/rxjs-todo-status/rxjs
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
-    HttpClientModule
+    AppFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -5,8 +5,8 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 @Component({
   selector: 'app-ui-todo-status',
   template: `
-    <div *ngIf="status">
-      <span>{{ status.doneCount }}</span> / <span>{{ status.totalCount }}</span>
+    <div *ngIf="status" class="status">
+      <span>{{ status.remainCount }}</span> / <span>{{ status.totalCount }}</span>
     </div>
   `,
   styleUrls: ['./ui-todo-status.component.css'],
