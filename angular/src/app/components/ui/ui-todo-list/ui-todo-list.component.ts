@@ -14,9 +14,9 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
         <span
           class="text"
-          [class.done]="todo.done"
+          [class.text--done]="todo.done"
           [appContentEditable]="!todo.done"
-          appContentEditableClass="edit"
+          appContentEditableClass="text--edit"
           (appContentEditableChange)="emitUpdate(todo, $event)">
           {{ todo.text }}
         </span>
@@ -26,6 +26,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
         </button>
       </li>
     </ul>
+
+    <div *ngIf="!todos.length" class="hello">
+      <fa-icon icon="clipboard-list" size="3x"></fa-icon>
+    </div>
   `,
   styleUrls: ['./ui-todo-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush

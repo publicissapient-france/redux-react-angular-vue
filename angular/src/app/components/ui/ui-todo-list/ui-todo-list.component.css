@@ -11,12 +11,18 @@
   border-radius: 3px;
 }
 
-.edit {
-  background-color: rgba(0,0,0,0.1);
-}
-
-.done {
+.text--done {
   text-decoration: line-through;
   font-style: italic;
   opacity: 0.3;
+}
+
+.text--edit {
+  background-color: rgba(0,0,0,0.1);
+}
+
+.hello {
+  margin: 2rem 0;
+  text-align: center;
+  opacity: 0.15;
 }

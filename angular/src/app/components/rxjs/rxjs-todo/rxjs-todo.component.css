@@ -2,6 +2,6 @@
   position: absolute;
 }
 
-.disabled {
+.filter--disabled {
   opacity: 0.3;
 }

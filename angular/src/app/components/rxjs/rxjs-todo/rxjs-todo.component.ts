@@ -11,7 +11,7 @@ import { Component } from '@angular/core';
   template: `
     <button
       class="filter"
-      [class.disabled]="!filterEnabled"
+      [class.filter--disabled]="!filterEnabled"
       (click)="filterEnabled = !filterEnabled">
       <fa-icon icon="filter"></fa-icon>
     </button>
@@ -37,8 +37,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./rxjs-todo.component.css']
 })
 export class RxjsTodoComponent {
-  todos: Todo[];
-
   text = '';
   text$ = new BehaviorSubject<string>(this.text);
 
