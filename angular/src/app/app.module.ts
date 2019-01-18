@@ -12,6 +12,7 @@ import { UiTodoAddComponent } from './components/ui/ui-todo-add/ui-todo-add.comp
 import { UiTodoListComponent } from './components/ui/ui-todo-list/ui-todo-list.component';
 import { UiTodoStatusComponent } from './components/ui/ui-todo-status/ui-todo-status.component';
 import { AppFontAwesomeModule } from './shared/app-font-awesome.module';
+import { ContentEditableDirective } from './directives/content-editable.directive';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AppFontAwesomeModule } from './shared/app-font-awesome.module';
     RxjsTodoAddComponent,
     RxjsTodoListComponent,
     RxjsTodoComponent,
-    RxjsTodoStatusComponent
+    RxjsTodoStatusComponent,
+    ContentEditableDirective
   ],
   imports: [
     BrowserModule,

@@ -9,12 +9,11 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-rxjs-todo',
   template: `
-    <button (click)="filterEnabled = !filterEnabled">
-      <fa-icon
-        icon="filter"
-        style="position:absolute"
-        [class.disabled]="!filterEnabled">
-      </fa-icon>
+    <button
+      class="filter"
+      [class.disabled]="!filterEnabled"
+      (click)="filterEnabled = !filterEnabled">
+      <fa-icon icon="filter"></fa-icon>
     </button>
 
     <app-rxjs-todo-add

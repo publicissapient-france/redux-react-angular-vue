@@ -12,7 +12,8 @@ import { Component, Input, OnInit } from '@angular/core';
       [todos]="todosService.todos$ | async"
       [filter]="filter"
       (toggleDone)="toggleDone($event)"
-      (remove)="remove($event)">
+      (remove)="remove($event)"
+      (update)="update($event)">
     </app-ui-todo-list>
   `,
   styleUrls: ['./rxjs-todo-list.component.css']
@@ -38,6 +39,12 @@ export class RxjsTodoListComponent implements OnInit {
   remove(todo: Todo) {
     this.apiService
       .removeTodo(todo)
+      .subscribe(() => this.todosService.sync());
+  }
+
+  update(todo: Todo) {
+    this.apiService
+      .updateTodo(todo)
       .subscribe(() => this.todosService.sync());
   }
 }

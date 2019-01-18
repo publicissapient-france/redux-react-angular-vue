@@ -12,7 +12,14 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
           <fa-icon [icon]="getToggleIcon(todo)"></fa-icon>
         </button>
 
-        <span class="text" [class.done]="todo.done">{{ todo.text }}</span>
+        <span
+          class="text"
+          [class.done]="todo.done"
+          [appContentEditable]="!todo.done"
+          appContentEditableClass="edit"
+          (appContentEditableChange)="emitUpdate(todo, $event)">
+          {{ todo.text }}
+        </span>
 
         <button (click)="emitRemove(todo)">
           <fa-icon icon="trash"></fa-icon>
@@ -34,6 +41,7 @@ export class UiTodoListComponent {
 
   @Output() toggleDone = new EventEmitter<Todo>();
   @Output() remove = new EventEmitter<Todo>();
+  @Output() update = new EventEmitter<Todo>();
 
   emitToggleDone(todo: Todo) {
     this.toggleDone.emit(todo);
@@ -41,6 +49,10 @@ export class UiTodoListComponent {
 
   emitRemove(todo: Todo) {
     this.remove.emit(todo);
+  }
+
+  emitUpdate(todo: Todo, text: string) {
+    this.update.emit({ ...todo, text });
   }
 
   trackByTodoId(index: number, todo: Todo) {
