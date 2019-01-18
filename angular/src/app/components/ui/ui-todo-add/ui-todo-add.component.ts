@@ -4,6 +4,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   selector: 'app-ui-todo-add',
   template: `
     <input
+      class="text"
+      placeholder="What needs to be done?"
       type="text"
       [value]="text"
       (input)="emitText($event.target.value)"

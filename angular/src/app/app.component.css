@@ -2,5 +2,12 @@
   position: relative;
   max-width: 640px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+}
+
+.title {
+  margin: 0 0 1rem 0;
+  text-align: center;
+  line-height: 1em;
+  font-weight: normal;
 }

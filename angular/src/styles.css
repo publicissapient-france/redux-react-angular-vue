@@ -3,9 +3,13 @@
 }
 
 html {
-  font-family: 'Indie Flower', cursive;
-  font-size: 20px;
+  font-family: 'Kalam', cursive;
+  font-size: 18px;
   color: #555;
+}
+
+body {
+  margin: 0;
 }
 
 input, button {

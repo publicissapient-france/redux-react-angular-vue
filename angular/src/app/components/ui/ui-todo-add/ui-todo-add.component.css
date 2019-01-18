@@ -2,3 +2,11 @@
   display: block;
   text-align: center;
 }
+
+.text {
+  width: 50%;
+}
+
+.text::placeholder {
+  color: #bbb;
+}
