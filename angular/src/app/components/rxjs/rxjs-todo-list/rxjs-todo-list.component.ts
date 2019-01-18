@@ -1,5 +1,5 @@
 import { Todo } from 'App/domains/todo.model';
-import { toggleDone } from 'App/domains/todo.operators';
+import { editText, toggleDone } from 'App/domains/todo.operators';
 import { ApiService } from 'App/services/api.service';
 import { TodosService } from 'App/services/todos.service';
 
@@ -13,7 +13,7 @@ import { Component, Input, OnInit } from '@angular/core';
       [filter]="filter"
       (toggleDone)="toggleDone($event)"
       (remove)="remove($event)"
-      (update)="update($event)">
+      (editText)="editText($event)">
     </app-ui-todo-list>
   `,
   styleUrls: ['./rxjs-todo-list.component.css']
@@ -42,9 +42,13 @@ export class RxjsTodoListComponent implements OnInit {
       .subscribe(() => this.todosService.sync());
   }
 
-  update(todo: Todo) {
-    this.apiService
-      .updateTodo(todo)
-      .subscribe(() => this.todosService.sync());
+  editText(event: { todo: Todo; text: string; }) {
+    if (event.text) {
+      this.apiService
+        .updateTodo(editText(event.todo, event.text))
+        .subscribe(() => this.todosService.sync());
+    } else {
+      this.remove(event.todo);
+    }
   }
 }

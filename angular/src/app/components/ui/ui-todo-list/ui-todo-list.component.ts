@@ -17,7 +17,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
           [class.text--done]="todo.done"
           [appContentEditable]="!todo.done"
           appContentEditableClass="text--edit"
-          (appContentEditableChange)="emitUpdate(todo, $event)">
+          (appContentEditableChange)="emiEditText(todo, $event)">
           {{ todo.text }}
         </span>
 
@@ -45,7 +45,7 @@ export class UiTodoListComponent {
 
   @Output() toggleDone = new EventEmitter<Todo>();
   @Output() remove = new EventEmitter<Todo>();
-  @Output() update = new EventEmitter<Todo>();
+  @Output() editText = new EventEmitter<{ todo: Todo; text: string; }>();
 
   emitToggleDone(todo: Todo) {
     this.toggleDone.emit(todo);
@@ -55,8 +55,8 @@ export class UiTodoListComponent {
     this.remove.emit(todo);
   }
 
-  emitUpdate(todo: Todo, text: string) {
-    this.update.emit({ ...todo, text });
+  emiEditText(todo: Todo, text: string) {
+    this.editText.emit({ todo, text });
   }
 
   trackByTodoId(index: number, todo: Todo) {

@@ -1,5 +1,4 @@
-import { Todo } from 'App/domains/todo.model';
-import { isTextValid } from 'App/domains/todo.operators';
+import { isTextFree } from 'App/domains/todo.operators';
 import { TodosService } from 'App/services/todos.service';
 import { BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
@@ -42,7 +41,7 @@ export class RxjsTodoComponent {
 
   preventAdd$ = this.text$.pipe(
     switchMap(() => this.todosService.todos$),
-    map(todos => !isTextValid(todos, this.text))
+    map(todos => !isTextFree(todos, this.text))
   );
 
   filterEnabled = true;
