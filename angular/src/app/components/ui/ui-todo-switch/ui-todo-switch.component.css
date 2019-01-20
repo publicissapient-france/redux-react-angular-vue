@@ -1,0 +1,7 @@
+.button {
+  text-transform: capitalize;
+}
+
+.button--active {
+  border: 1px solid #ddd;
+}

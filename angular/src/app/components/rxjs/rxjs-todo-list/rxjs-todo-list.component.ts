@@ -1,4 +1,4 @@
-import { Todo } from 'App/domains/todo.model';
+import { Todo, TodoCategory } from 'App/domains/todo.model';
 import { editText, toggleDone } from 'App/domains/todo.operators';
 import { ApiService } from 'App/services/api.service';
 import { TodosService } from 'App/services/todos.service';
@@ -11,6 +11,7 @@ import { Component, Input, OnInit } from '@angular/core';
     <app-ui-todo-list
       [todos]="todosService.todos$ | async"
       [filter]="filter"
+      [category]="category"
       (toggleDone)="toggleDone($event)"
       (remove)="remove($event)"
       (editText)="editText($event)">
@@ -20,6 +21,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class RxjsTodoListComponent implements OnInit {
   @Input() filter: string;
+
+  @Input() category: TodoCategory;
 
   constructor(
     private apiService: ApiService,

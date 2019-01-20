@@ -32,6 +32,11 @@ export class ContentEditableDirective {
     this.element.blur();
   }
 
+  @HostListener('keydown.esc') onKeydownEsc() {
+    this.element.textContent = this.textContent;
+    this.element.blur();
+  }
+
   private startEdit() {
     this.textContent = this.element.textContent;
 

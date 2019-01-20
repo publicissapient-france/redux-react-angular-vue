@@ -13,19 +13,19 @@ body {
 }
 
 input, button {
+  border-radius: 3px;
   font-family: inherit;
   font-size: inherit;
   color: inherit;
 }
 
 input[type="text"] {
-  border-radius: 3px;
   border: 1px solid #ccc;
   padding: 0 0.5rem;
 }
 
 button {
-  border: none;
+  border: 1px solid transparent;
   background: none;
 }
 

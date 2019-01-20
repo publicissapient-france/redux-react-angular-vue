@@ -1,5 +1,5 @@
-import { Todo } from 'App/domains/todo.model';
-import { filter } from 'App/domains/todo.operators';
+import { Todo, TodoCategory } from 'App/domains/todo.model';
+import { filterByCategory, filterByText, pipe } from 'App/domains/todo.operators';
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
@@ -39,24 +39,29 @@ export class UiTodoListComponent {
 
   @Input() filter: string;
 
+  @Input() category: TodoCategory;
+
   get todosFiltered() {
-    return filter(this.todos, this.filter);
+    return pipe<Todo[]>(this.todos)(
+      filterByCategory(this.category),
+      filterByText(this.filter)
+    );
   }
 
   @Output() toggleDone = new EventEmitter<Todo>();
-  @Output() remove = new EventEmitter<Todo>();
   @Output() editText = new EventEmitter<{ todo: Todo; text: string; }>();
+  @Output() remove = new EventEmitter<Todo>();
 
   emitToggleDone(todo: Todo) {
     this.toggleDone.emit(todo);
   }
 
-  emitRemove(todo: Todo) {
-    this.remove.emit(todo);
-  }
-
   emiEditText(todo: Todo, text: string) {
     this.editText.emit({ todo, text });
+  }
+
+  emitRemove(todo: Todo) {
+    this.remove.emit(todo);
   }
 
   trackByTodoId(index: number, todo: Todo) {

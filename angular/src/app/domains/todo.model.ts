@@ -8,3 +8,5 @@ export interface TodoStatus {
   remainCount: number;
   totalCount: number;
 }
+
+export type TodoCategory = 'all' | 'active' | 'completed';

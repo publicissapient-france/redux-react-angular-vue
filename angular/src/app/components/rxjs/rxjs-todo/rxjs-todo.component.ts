@@ -1,3 +1,5 @@
+import { TODO_DEF_CAT } from 'App/domains/todo.config';
+import { TodoCategory } from 'App/domains/todo.model';
 import { isTextFree } from 'App/domains/todo.operators';
 import { TodosService } from 'App/services/todos.service';
 import { BehaviorSubject } from 'rxjs';
@@ -22,7 +24,9 @@ import { Component } from '@angular/core';
     </app-rxjs-todo-add>
 
     <hr>
-    <app-rxjs-todo-list [filter]="getFilter()"></app-rxjs-todo-list>
+    <app-rxjs-todo-list [filter]="getFilter()" [category]="category"></app-rxjs-todo-list>
+
+    <app-ui-todo-switch (categoryChange)="categoryChange($event)"></app-ui-todo-switch>
 
     <app-rxjs-todo-status></app-rxjs-todo-status>
     <!--<hr>
@@ -39,17 +43,23 @@ export class RxjsTodoComponent {
   text = '';
   text$ = new BehaviorSubject<string>(this.text);
 
+  category: TodoCategory = TODO_DEF_CAT;
+
   preventAdd$ = this.text$.pipe(
     switchMap(() => this.todosService.todos$),
     map(todos => !isTextFree(todos, this.text))
   );
 
-  filterEnabled = true;
+  filterEnabled = false;
 
   constructor(private todosService: TodosService) { }
 
   textChange() {
     this.text$.next(this.text);
+  }
+
+  categoryChange(category: TodoCategory) {
+    this.category = category;
   }
 
   getFilter() {
