@@ -10,32 +10,28 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-rxjs-todo',
   template: `
-    <button
-      class="filter"
-      [class.filter--disabled]="!filterEnabled"
-      (click)="filterEnabled = !filterEnabled">
-      <fa-icon icon="filter"></fa-icon>
-    </button>
+    <div class="top">
+      <button
+        class="filter"
+        [class.filter--disabled]="!filterEnabled"
+        (click)="filterEnabled = !filterEnabled">
+        <fa-icon icon="filter"></fa-icon>
+      </button>
 
-    <app-rxjs-todo-add
-      [(text)]="text"
-      (textChange)="textChange()"
-      [disabled]="preventAdd$ | async">
-    </app-rxjs-todo-add>
+      <app-rxjs-todo-add
+        [(text)]="text"
+        (textChange)="textChange()"
+        [disabled]="preventAdd$ | async">
+      </app-rxjs-todo-add>
+    </div>
 
     <hr>
     <app-rxjs-todo-list [filter]="getFilter()" [category]="category"></app-rxjs-todo-list>
 
-    <app-ui-todo-switch (categoryChange)="categoryChange($event)"></app-ui-todo-switch>
-
-    <app-rxjs-todo-status></app-rxjs-todo-status>
-    <!--<hr>
-
-    <app-rxjs-todo-add
-      [(text)]="text"
-      (textChange)="textChange()"
-      [disabled]="preventAdd$ | async">
-    </app-rxjs-todo-add>-->
+    <div class="bottom">
+      <app-rxjs-todo-status></app-rxjs-todo-status>
+      <app-ui-todo-switch (categoryChange)="categoryChange($event)"></app-ui-todo-switch>
+    </div>
   `,
   styleUrls: ['./rxjs-todo.component.css']
 })

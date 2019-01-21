@@ -3,10 +3,7 @@
   text-align: center;
 }
 
-.text {
-  width: 50%;
-}
-
+/*.text { }*/
 .text::placeholder {
   color: #bbb;
 }
