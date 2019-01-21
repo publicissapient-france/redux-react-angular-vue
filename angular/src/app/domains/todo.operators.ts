@@ -2,6 +2,8 @@ import { escapeRegExp } from 'lodash';
 
 import { Todo, TodoStatus, TodoCategory } from './todo.model';
 
+export const todoBuilder = (text: string, done = false): Todo => ({ id: null, text, done });
+
 export const toggleDone = (todo: Todo): Todo => ({ ...todo, done: !todo.done });
 
 export const editText = (todo: Todo, text: string): Todo => ({ ...todo, text });

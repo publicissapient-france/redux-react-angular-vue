@@ -24,32 +24,23 @@ export class RxjsTodoListComponent implements OnInit {
 
   @Input() category: TodoCategory;
 
-  constructor(
-    private apiService: ApiService,
-    public todosService: TodosService
-  ) { }
+  constructor(public todosService: TodosService) { }
 
   ngOnInit() {
     this.todosService.sync();
   }
 
   toggleDone(todo: Todo) {
-    this.apiService
-      .updateTodo(toggleDone(todo))
-      .subscribe(() => this.todosService.sync());
+    this.todosService.update(toggleDone(todo));
   }
 
   remove(todo: Todo) {
-    this.apiService
-      .removeTodo(todo)
-      .subscribe(() => this.todosService.sync());
+    this.todosService.remove(todo);
   }
 
   editText(event: { todo: Todo; text: string; }) {
     if (event.text) {
-      this.apiService
-        .updateTodo(editText(event.todo, event.text))
-        .subscribe(() => this.todosService.sync());
+      this.todosService.update(editText(event.todo, event.text));
     } else {
       this.remove(event.todo);
     }

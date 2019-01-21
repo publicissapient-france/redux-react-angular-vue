@@ -1,4 +1,4 @@
-import { ApiService } from 'App/services/api.service';
+import { todoBuilder } from 'App/domains/todo.operators';
 import { TodosService } from 'App/services/todos.service';
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
@@ -21,10 +21,7 @@ export class RxjsTodoAddComponent {
 
   @Input() disabled: boolean;
 
-  constructor(
-    private apiService: ApiService,
-    private todosService: TodosService
-  ) { }
+  constructor(private todosService: TodosService) { }
 
   emitText(text: string) {
     this.text = text;
@@ -32,8 +29,6 @@ export class RxjsTodoAddComponent {
   }
 
   add(text: string) {
-    this.apiService
-      .addTodo({ id: null, text, done: false })
-      .subscribe(() => this.todosService.sync());
+    this.todosService.add(todoBuilder(text));
   }
 }
