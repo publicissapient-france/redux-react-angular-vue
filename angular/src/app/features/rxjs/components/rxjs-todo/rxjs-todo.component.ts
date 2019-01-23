@@ -27,7 +27,10 @@ import { TodosService } from '../../services/todos.service';
     </div>
 
     <hr>
-    <app-rxjs-todo-list [filter]="getFilter()" [category]="category"></app-rxjs-todo-list>
+    <app-rxjs-todo-list
+      [filter]="getFilter()"
+      [category]="category">
+    </app-rxjs-todo-list>
 
     <div class="bottom">
       <app-rxjs-todo-status></app-rxjs-todo-status>

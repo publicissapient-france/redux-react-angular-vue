@@ -1,4 +1,4 @@
-import { Todo } from 'App/domains/todo.model';
+import { Todo, TodoCategory } from 'App/domains/todo.model';
 
 import { Action } from '@ngrx/store';
 
@@ -13,7 +13,9 @@ export enum ActionTypes {
   UpdateSuccess = '[Redux:Todos] UpdateSuccess',
 
   Remove        = '[Redux:Todos] Remove',
-  RemoveSuccess = '[Redux:Todos] RemoveSuccess'
+  RemoveSuccess = '[Redux:Todos] RemoveSuccess',
+
+  Category        = '[Redux:Todos] Category'
 }
 
 export class Load implements Action {
@@ -51,6 +53,11 @@ export class RemoveSuccess implements Action {
   constructor(public payload: Todo) {}
 }
 
+export class Category implements Action {
+  readonly type = ActionTypes.Category;
+  constructor(public payload: TodoCategory) {}
+}
+
 export type ActionsUnion =
   | Load
   | LoadSuccess
@@ -63,4 +70,6 @@ export type ActionsUnion =
 
   | Remove
   | RemoveSuccess
+
+  | Category
 ;

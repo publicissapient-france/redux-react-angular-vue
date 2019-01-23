@@ -4,8 +4,10 @@ import { createEntityAdapter, EntityAdapter, EntityState, Update } from '@ngrx/e
 
 import { ActionsUnion, ActionTypes } from '../actions/todos.actions';
 
-export interface State extends EntityState<Todo> {
+import { TodoCategory } from 'App/domains/todo.model';
 
+export interface State extends EntityState<Todo> {
+  category: TodoCategory;
 }
 
 export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>({
@@ -13,8 +15,8 @@ export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>({
 });
 
 export const initialState: State = adapter.getInitialState({
-
-});
+  category: 'active'
+} as State);
 
 export const reducer = (state = initialState, action: ActionsUnion): State => {
   switch (action.type) {
@@ -30,6 +32,9 @@ export const reducer = (state = initialState, action: ActionsUnion): State => {
     case ActionTypes.RemoveSuccess:
       return adapter.removeOne(action.payload.id, state);
 
+    case ActionTypes.Category:
+      return { ...state, category: action.payload };
+
     default: {
       return state;
     }
@@ -37,3 +42,5 @@ export const reducer = (state = initialState, action: ActionsUnion): State => {
 };
 
 export const { selectAll } = adapter.getSelectors();
+
+export const getCategory = (state: State) => state.category;
