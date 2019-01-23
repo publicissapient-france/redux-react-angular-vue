@@ -4,12 +4,8 @@ import {
 
 import { environment } from '../../environments/environment';
 
-export interface State {
-  foo: number;
-}
+export interface AppState {} // tslint:disable-line:no-empty-interface
 
-export const reducers: ActionReducerMap<State> = {
-  foo: () => 0
-};
+export const reducers: ActionReducerMap<AppState> = {};
 
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
