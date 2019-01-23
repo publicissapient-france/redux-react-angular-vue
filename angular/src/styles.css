@@ -12,6 +12,10 @@ body {
   margin: 0;
 }
 
+a {
+  color: #777;
+}
+
 input, button {
   box-sizing: border-box;
   height: 2rem;

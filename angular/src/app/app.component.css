@@ -6,8 +6,23 @@
 }
 
 .title {
-  margin: 0 0 1rem 0;
+  margin: 0 0 1.5rem 0;
   text-align: center;
   line-height: 1em;
   font-weight: normal;
+}
+
+.nav {
+  position: absolute;
+}
+
+.nav-link {
+  margin-right: 0.25rem;
+  padding: 0 0.5rem;
+  border-bottom: 2px solid transparent;
+  text-decoration: none;
+}
+
+.nav-link--active {
+  border-color: #ddd;
 }

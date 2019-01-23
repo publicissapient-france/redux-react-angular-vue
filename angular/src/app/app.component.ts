@@ -4,7 +4,13 @@ import { Component } from '@angular/core';
   selector: 'app-root',
   template: `
     <div class="container">
+      <nav class="nav">
+        <a class="nav-link" routerLink="/rxjs" routerLinkActive="nav-link--active">RxJS</a>
+        <a class="nav-link" routerLink="/redux" routerLinkActive="nav-link--active">Redux</a>
+      </nav>
+
       <h1 class="title">{{ title }}</h1>
+
       <router-outlet></router-outlet>
     </div>
   `,
