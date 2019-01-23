@@ -3,36 +3,20 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+import { AppStoreModule } from './app-store.module';
 import { AppComponent } from './app.component';
-import { RxjsTodoAddComponent } from './components/rxjs/rxjs-todo-add/rxjs-todo-add.component';
-import { RxjsTodoListComponent } from './components/rxjs/rxjs-todo-list/rxjs-todo-list.component';
-import { RxjsTodoStatusComponent } from './components/rxjs/rxjs-todo-status/rxjs-todo-status.component';
-import { RxjsTodoComponent } from './components/rxjs/rxjs-todo/rxjs-todo.component';
-import { UiTodoAddComponent } from './components/ui/ui-todo-add/ui-todo-add.component';
-import { UiTodoListComponent } from './components/ui/ui-todo-list/ui-todo-list.component';
-import { UiTodoStatusComponent } from './components/ui/ui-todo-status/ui-todo-status.component';
-import { UiTodoSwitchComponent } from './components/ui/ui-todo-switch/ui-todo-switch.component';
-import { ContentEditableDirective } from './directives/content-editable.directive';
-import { AppFontAwesomeModule } from './shared/app-font-awesome.module';
+import { AppSharedModule } from './shared/app-shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    UiTodoAddComponent,
-    UiTodoListComponent,
-    UiTodoStatusComponent,
-    UiTodoSwitchComponent,
-    RxjsTodoComponent,
-    RxjsTodoAddComponent,
-    RxjsTodoListComponent,
-    RxjsTodoStatusComponent,
-    ContentEditableDirective,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AppFontAwesomeModule
+    AppStoreModule,
+    AppSharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
