@@ -15,7 +15,7 @@ export class TodosService {
 
   constructor(private apiService: ApiService) { }
 
-  sync() {
+  load() {
     this.apiService.getTodos().subscribe(todos => {
       this.todos = todos;
       this.todos$.next(this.todos);

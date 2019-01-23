@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-redux-todo',
   template: `
-    <p>redux-todo works...</p>
+    <app-redux-todo-add></app-redux-todo-add>
+    <app-redux-todo-list></app-redux-todo-list>
   `,
   styleUrls: ['./redux-todo.component.css']
 })

@@ -11,8 +11,7 @@ import { TodosService } from '../../services/todos.service';
       *ngIf="todosService.todos$ | async; let todos"
       [status]="getStatus(todos)">
     </app-ui-todo-status>
-  `,
-  styleUrls: ['./rxjs-todo-status.component.css']
+  `
 })
 export class RxjsTodoStatusComponent {
   getStatus = getStatus;

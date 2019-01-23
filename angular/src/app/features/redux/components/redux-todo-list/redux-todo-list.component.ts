@@ -1,15 +1,18 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
 import { editText, toggleDone } from 'App/domains/todo.operators';
+import { AppState } from 'App/reducers';
 
 import { Component, Input, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 
-import { TodosService } from '../../services/todos.service';
+import * as todosActions from '../../actions/todos.actions';
+import { getTodos } from '../../reducers';
 
 @Component({
-  selector: 'app-rxjs-todo-list',
+  selector: 'app-redux-todo-list',
   template: `
     <app-ui-todo-list
-      [todos]="todosService.todos$ | async"
+      [todos]="todos$ | async"
       [filter]="filter"
       [category]="category"
       (toggleDone)="toggleDone($event)"
@@ -18,28 +21,30 @@ import { TodosService } from '../../services/todos.service';
     </app-ui-todo-list>
   `
 })
-export class RxjsTodoListComponent implements OnInit {
+export class ReduxTodoListComponent implements OnInit {
   @Input() filter: string;
 
   @Input() category: TodoCategory = 'all';
 
-  constructor(public todosService: TodosService) { }
+  todos$ = this.store.pipe(select(getTodos));
+
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
-    this.todosService.load();
+    this.store.dispatch(new todosActions.Load());
   }
 
   toggleDone(todo: Todo) {
-    this.todosService.update(toggleDone(todo));
+    this.store.dispatch(new todosActions.Update(toggleDone(todo)));
   }
 
   remove(todo: Todo) {
-    this.todosService.remove(todo);
+    this.store.dispatch(new todosActions.Remove(todo));
   }
 
   editText(event: { todo: Todo; text: string; }) {
     if (event.text) {
-      this.todosService.update(editText(event.todo, event.text));
+      this.store.dispatch(new todosActions.Update(editText(event.todo, event.text)));
     } else {
       this.remove(event.todo);
     }

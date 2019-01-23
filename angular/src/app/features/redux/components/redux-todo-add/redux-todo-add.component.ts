@@ -1,11 +1,13 @@
 import { todoBuilder } from 'App/domains/todo.operators';
+import { AppState } from 'App/reducers';
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Store } from '@ngrx/store';
 
-import { TodosService } from '../../services/todos.service';
+import * as todosActions from '../../actions/todos.actions';
 
 @Component({
-  selector: 'app-rxjs-todo-add',
+  selector: 'app-redux-todo-add',
   template: `
     <app-ui-todo-add
       [disabled]="disabled"
@@ -15,13 +17,13 @@ import { TodosService } from '../../services/todos.service';
     </app-ui-todo-add>
   `
 })
-export class RxjsTodoAddComponent {
+export class ReduxTodoAddComponent {
   @Input() text = '';
   @Output() textChange = new EventEmitter<string>();
 
   @Input() disabled: boolean;
 
-  constructor(private todosService: TodosService) { }
+  constructor(private store: Store<AppState>) { }
 
   emitText(text: string) {
     this.text = text;
@@ -29,6 +31,6 @@ export class RxjsTodoAddComponent {
   }
 
   add(text: string) {
-    this.todosService.add(todoBuilder(text));
+    this.store.dispatch(new todosActions.Add(todoBuilder(text)));
   }
 }
