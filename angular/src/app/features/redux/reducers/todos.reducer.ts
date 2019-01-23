@@ -8,7 +8,9 @@ export interface State extends EntityState<Todo> {
 
 }
 
-export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>();
+export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>({
+  sortComparer: (a, b) => a.id < b.id ? 1 : -1
+});
 
 export const initialState: State = adapter.getInitialState({
 
