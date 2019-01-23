@@ -4,10 +4,11 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { RxjsTodoAddComponent } from './rxjs-todo-add/rxjs-todo-add.component';
-import { RxjsTodoListComponent } from './rxjs-todo-list/rxjs-todo-list.component';
-import { RxjsTodoStatusComponent } from './rxjs-todo-status/rxjs-todo-status.component';
-import { RxjsTodoComponent } from './rxjs-todo/rxjs-todo.component';
+import { RxjsTodoAddComponent } from './components/rxjs-todo-add/rxjs-todo-add.component';
+import { RxjsTodoListComponent } from './components/rxjs-todo-list/rxjs-todo-list.component';
+import { RxjsTodoStatusComponent } from './components/rxjs-todo-status/rxjs-todo-status.component';
+import { RxjsTodoComponent } from './components/rxjs-todo/rxjs-todo.component';
+import { TodosService } from './services/todos.service';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,9 @@ import { RxjsTodoComponent } from './rxjs-todo/rxjs-todo.component';
     RxjsTodoListComponent,
     RxjsTodoStatusComponent,
     RxjsTodoComponent
+  ],
+  providers: [
+    TodosService
   ],
   imports: [
     CommonModule,

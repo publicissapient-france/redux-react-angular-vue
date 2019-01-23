@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
-import { ReduxTodoComponent } from './redux-todo/redux-todo.component';
+import { ReduxTodoComponent } from './components/redux-todo/redux-todo.component';
 
 @NgModule({
   declarations: [

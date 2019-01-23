@@ -1,9 +1,9 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
 import { editText, toggleDone } from 'App/domains/todo.operators';
-import { ApiService } from 'App/services/api.service';
-import { TodosService } from 'App/services/todos.service';
 
 import { Component, Input, OnInit } from '@angular/core';
+
+import { TodosService } from '../../services/todos.service';
 
 @Component({
   selector: 'app-rxjs-todo-list',

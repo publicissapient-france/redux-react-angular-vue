@@ -1,15 +1,13 @@
 import { Todo } from 'App/domains/todo.model';
+import { ApiService } from 'App/services/api.service';
 import { BehaviorSubject } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-
-import { ApiService } from './api.service';
+import { RxjsTodoModule } from '../rxjs-todo.module';
 
 // TODO: handle errors in both `api.servive.ts` and `todo.service.ts`
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TodosService {
   private todos: Todo[];
 

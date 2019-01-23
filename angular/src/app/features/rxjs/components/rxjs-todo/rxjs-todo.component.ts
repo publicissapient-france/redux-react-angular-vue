@@ -1,11 +1,12 @@
 import { TODO_DEF_CAT } from 'App/domains/todo.config';
 import { TodoCategory } from 'App/domains/todo.model';
 import { isTextFree } from 'App/domains/todo.operators';
-import { TodosService } from 'App/services/todos.service';
 import { BehaviorSubject } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 import { Component } from '@angular/core';
+
+import { TodosService } from '../../services/todos.service';
 
 @Component({
   selector: 'app-rxjs-todo',

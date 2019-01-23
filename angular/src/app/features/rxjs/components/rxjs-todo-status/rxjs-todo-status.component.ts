@@ -1,7 +1,8 @@
 import { getStatus } from 'App/domains/todo.operators';
-import { TodosService } from 'App/services/todos.service';
 
 import { Component } from '@angular/core';
+
+import { TodosService } from '../../services/todos.service';
 
 @Component({
   selector: 'app-rxjs-todo-status',
