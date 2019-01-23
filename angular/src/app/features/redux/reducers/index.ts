@@ -23,3 +23,9 @@ export const getTodosState = createSelector(getReduxState, state => state.todos)
 export const getTodos = createSelector(getTodosState, fromTodos.selectAll);
 
 export const getCategory = createSelector(getTodosState, fromTodos.getCategory);
+
+export const getFilter = createSelector(getTodosState, fromTodos.getFilter);
+
+export const getFilterEnabled = createSelector(getTodosState, fromTodos.getFilterEnabled);
+
+export const getLiveFilter = createSelector(getTodosState, fromTodos.getLiveFilter);

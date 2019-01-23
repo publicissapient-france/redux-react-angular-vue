@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import * as todosActions from '../../actions/todos.actions';
-import { getCategory } from '../../reducers';
+import { getCategory, getFilter, getFilterEnabled, getLiveFilter } from '../../reducers';
 
 @Component({
   selector: 'app-redux-todo',
@@ -13,17 +13,20 @@ import { getCategory } from '../../reducers';
     <div class="top">
       <button
         class="filter"
-        [class.filter--disabled]="!filterEnabled"
-        (click)="filterEnabled = !filterEnabled">
+        [class.filter--disabled]="!(filterEnabled$ | async)"
+        (click)="switchFilterEnabled()">
         <fa-icon icon="filter"></fa-icon>
       </button>
 
-      <app-redux-todo-add></app-redux-todo-add>
+      <app-redux-todo-add
+        [text]="filter$ | async"
+        (textChange)="textChange($event)">
+      </app-redux-todo-add>
     </div>
 
     <hr>
     <app-redux-todo-list
-      [filter]="getFilter()"
+      [filter]="liveFilter$ | async"
       [category]="category$ | async">
     </app-redux-todo-list>
 
@@ -41,15 +44,23 @@ import { getCategory } from '../../reducers';
 export class ReduxTodoComponent {
   category$ = this.store.pipe(select(getCategory));
 
-  filterEnabled = false;
+  filter$ = this.store.pipe(select(getFilter));
+
+  filterEnabled$ = this.store.pipe(select(getFilterEnabled));
+
+  liveFilter$ = this.store.pipe(select(getLiveFilter));
 
   constructor(private store: Store<AppState>) { }
+
+  textChange(text: string) {
+    this.store.dispatch(new todosActions.Filter(text));
+  }
 
   categoryChange(category: TodoCategory) {
     this.store.dispatch(new todosActions.Category(category));
   }
 
-  getFilter() {
-    return ''; // TODO...
+  switchFilterEnabled() {
+    this.store.dispatch(new todosActions.SwitchFilterEnabled());
   }
 }
