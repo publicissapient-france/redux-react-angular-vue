@@ -1,6 +1,6 @@
 import * as fromRoot from 'App/reducers';
 
-import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
+import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
 import * as fromTodos from './todos.reducer';
 

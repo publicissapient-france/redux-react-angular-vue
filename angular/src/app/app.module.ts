@@ -5,11 +5,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppStoreModule } from './app-store.module';
 import { AppComponent } from './app.component';
+import { NavComponent } from './components/nav/nav.component';
 import { AppSharedModule } from './shared/app-shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +20,6 @@ import { AppSharedModule } from './shared/app-shared.module';
     AppStoreModule,
     AppSharedModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

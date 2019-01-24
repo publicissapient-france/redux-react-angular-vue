@@ -1,4 +1,3 @@
-import { TODO_DEF_CAT } from 'App/domains/todo.config';
 import { TodoCategory } from 'App/domains/todo.model';
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
@@ -18,7 +17,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiTodoSwitchComponent {
-  @Input() category: TodoCategory = TODO_DEF_CAT;
+  @Input() category: TodoCategory = 'all';
   @Output() categoryChange = new EventEmitter<TodoCategory>();
 
   list: TodoCategory[] = ['all', 'active', 'completed'];

@@ -6,8 +6,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 @Component({
   selector: 'app-ui-todo-list',
   template: `
-    <ul *ngIf="todosFiltered!.length">
-      <li *ngFor="let todo of todosFiltered; trackBy: trackByTodoId" class="list">
+    <ul *ngIf="todosFiltered!.length" class="list">
+      <li *ngFor="let todo of todosFiltered; trackBy: trackByTodoId" class="list-item">
         <button (click)="emitToggleDone(todo)">
           <fa-icon [icon]="getToggleIcon(todo)"></fa-icon>
         </button>

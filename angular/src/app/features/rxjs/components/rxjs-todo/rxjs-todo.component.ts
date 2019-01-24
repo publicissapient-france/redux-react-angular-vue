@@ -1,4 +1,3 @@
-import { TODO_DEF_CAT } from 'App/domains/todo.config';
 import { TodoCategory } from 'App/domains/todo.model';
 import { isTextFree } from 'App/domains/todo.operators';
 import { BehaviorSubject } from 'rxjs';
@@ -43,7 +42,7 @@ export class RxjsTodoComponent {
   text = '';
   text$ = new BehaviorSubject<string>(this.text);
 
-  category: TodoCategory = TODO_DEF_CAT;
+  category: TodoCategory = 'all';
 
   preventAdd$ = this.text$.pipe(
     switchMap(() => this.todosService.todos$),

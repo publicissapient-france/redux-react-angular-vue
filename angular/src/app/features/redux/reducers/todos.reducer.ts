@@ -1,6 +1,6 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
 
-import { createEntityAdapter, EntityAdapter, EntityState, Update } from '@ngrx/entity';
+import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createSelector } from '@ngrx/store';
 
 import { ActionsUnion, ActionTypes } from '../actions/todos.actions';
@@ -16,39 +16,39 @@ export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>({
 });
 
 export const initialState: State = adapter.getInitialState({
-  category: 'active',
+  category: 'all',
   filter: '',
   filterEnabled: false
 } as State);
 
-export const reducer = (state = initialState, action: ActionsUnion): State => {
+export function reducer(state = initialState, action: ActionsUnion): State {
   switch (action.type) {
-    case ActionTypes.LoadSuccess:
+    case ActionTypes.LoadSuccess: {
       return adapter.addAll(action.payload, state);
-
-    case ActionTypes.AddSuccess:
+    }
+    case ActionTypes.AddSuccess: {
       return adapter.addOne(action.payload, state);
-
-    case ActionTypes.UpdateSuccess:
+    }
+    case ActionTypes.UpdateSuccess: {
       return adapter.upsertOne(action.payload, state);
-
-    case ActionTypes.RemoveSuccess:
+    }
+    case ActionTypes.RemoveSuccess: {
       return adapter.removeOne(action.payload.id, state);
-
-    case ActionTypes.Category:
+    }
+    case ActionTypes.Category: {
       return { ...state, category: action.payload };
-
-    case ActionTypes.Filter:
+    }
+    case ActionTypes.Filter: {
       return { ...state, filter: action.payload };
-
-    case ActionTypes.SwitchFilterEnabled:
+    }
+    case ActionTypes.SwitchFilterEnabled: {
       return { ...state, filterEnabled: !state.filterEnabled };
-
+    }
     default: {
       return state;
     }
   }
-};
+}
 
 export const { selectAll } = adapter.getSelectors();
 
