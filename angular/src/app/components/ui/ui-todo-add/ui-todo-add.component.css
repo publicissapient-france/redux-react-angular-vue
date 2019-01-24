@@ -10,3 +10,7 @@
 .text::placeholder {
   color: #bbb;
 }
+
+.button[disabled] {
+  opacity: 0.3;
+}

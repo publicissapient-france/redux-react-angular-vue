@@ -1,7 +1,8 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
-import { editText, toggleDone } from 'App/domains/todo.operators';
+import { editText, filterByCategory, filterByText, pipe, toggleDone } from 'App/domains/todo.operators';
+import { Subscription } from 'rxjs';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
 import { TodosService } from '../../services/todos.service';
 
@@ -9,24 +10,39 @@ import { TodosService } from '../../services/todos.service';
   selector: 'app-rxjs-todo-list',
   template: `
     <app-ui-todo-list
-      [todos]="todosService.todos$ | async"
-      [filter]="filter"
-      [category]="category"
+      [todos]="todosFiltered"
       (toggleDone)="toggleDone($event)"
       (remove)="remove($event)"
       (editText)="editText($event)">
     </app-ui-todo-list>
   `
 })
-export class RxjsTodoListComponent implements OnInit {
+export class RxjsTodoListComponent implements OnInit, OnDestroy {
   @Input() filter: string;
 
   @Input() category: TodoCategory = 'all';
 
-  constructor(public todosService: TodosService) { }
+  todos: Todo[];
+
+  get todosFiltered() {
+    return pipe<Todo[]>(this.todos)(
+      filterByCategory(this.category),
+      filterByText(this.filter)
+    );
+  }
+
+  subscription: Subscription;
+
+  constructor(private todosService: TodosService) {
+    this.subscription = this.todosService.todos$.subscribe(todos => this.todos = todos);
+  }
 
   ngOnInit() {
     this.todosService.load();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   toggleDone(todo: Todo) {

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import * as todosActions from '../../actions/todos.actions';
-import { getCategory, getFilter, getFilterEnabled, getLiveFilter } from '../../reducers';
+import { getCategory, getFilter, getFilterEnabled, getIsTextFree, getLiveFilter } from '../../reducers';
 
 @Component({
   selector: 'app-redux-todo',
@@ -20,7 +20,8 @@ import { getCategory, getFilter, getFilterEnabled, getLiveFilter } from '../../r
 
       <app-redux-todo-add
         [text]="filter$ | async"
-        (textChange)="textChange($event)">
+        (textChange)="textChange($event)"
+        [disabled]="!(isTextFree$ | async)">
       </app-redux-todo-add>
     </div>
 
@@ -42,13 +43,11 @@ import { getCategory, getFilter, getFilterEnabled, getLiveFilter } from '../../r
   styleUrls: ['./redux-todo.component.css']
 })
 export class ReduxTodoComponent {
-  category$ = this.store.pipe(select(getCategory));
-
-  filter$ = this.store.pipe(select(getFilter));
-
-  filterEnabled$ = this.store.pipe(select(getFilterEnabled));
-
-  liveFilter$ = this.store.pipe(select(getLiveFilter));
+  category$       = this.store.pipe(select(getCategory));
+  filter$         = this.store.pipe(select(getFilter));
+  filterEnabled$  = this.store.pipe(select(getFilterEnabled));
+  liveFilter$     = this.store.pipe(select(getLiveFilter));
+  isTextFree$     = this.store.pipe(select(getIsTextFree));
 
   constructor(private store: Store<AppState>) { }
 

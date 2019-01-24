@@ -6,15 +6,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import * as todosActions from '../../actions/todos.actions';
-import { getTodos } from '../../reducers';
+import { getTodosFiltered } from '../../reducers';
 
 @Component({
   selector: 'app-redux-todo-list',
   template: `
     <app-ui-todo-list
-      [todos]="todos$ | async"
-      [filter]="filter"
-      [category]="category"
+      [todos]="todosFiltered$ | async"
       (toggleDone)="toggleDone($event)"
       (remove)="remove($event)"
       (editText)="editText($event)">
@@ -26,7 +24,7 @@ export class ReduxTodoListComponent implements OnInit {
 
   @Input() category: TodoCategory = 'all';
 
-  todos$ = this.store.pipe(select(getTodos));
+  todosFiltered$ = this.store.pipe(select(getTodosFiltered));
 
   constructor(private store: Store<AppState>) { }
 

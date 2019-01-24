@@ -11,7 +11,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       (input)="emitText($event.target.value)"
       (keydown.enter)="emitAdd()">
 
-    <button (click)="emitAdd()" [disabled]="disabled">
+    <button
+      class="button"
+      [disabled]="disabled"
+      (click)="emitAdd()">
       <fa-icon icon="plus"></fa-icon>
     </button>
   `,

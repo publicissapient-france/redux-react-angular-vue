@@ -1,4 +1,5 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
+import { filterByCategory, filterByText, isTextFree, pipe } from 'App/domains/todo.operators';
 
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createSelector } from '@ngrx/store';
@@ -50,7 +51,9 @@ export function reducer(state = initialState, action: ActionsUnion): State {
   }
 }
 
-export const { selectAll } = adapter.getSelectors();
+const { selectAll } = adapter.getSelectors();
+
+export const getTodos = selectAll;
 
 export const getCategory = (state: State) => state.category;
 
@@ -62,4 +65,22 @@ export const getLiveFilter = createSelector(
   getFilter,
   getFilterEnabled,
   (filter, filterEnabled) => filterEnabled ? filter : ''
+);
+
+export const getTodosFiltered = createSelector(
+  getTodos,
+  getCategory,
+  getLiveFilter,
+  (todos, category, liveFilter) => {
+    return pipe<Todo[]>(todos)(
+      filterByCategory(category),
+      filterByText(liveFilter)
+    );
+  }
+);
+
+export const getIsTextFree = createSelector(
+  getTodos,
+  getFilter,
+  (todos, filter) => isTextFree(todos, filter)
 );

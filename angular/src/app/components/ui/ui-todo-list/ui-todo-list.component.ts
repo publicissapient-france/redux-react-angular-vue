@@ -1,13 +1,12 @@
-import { Todo, TodoCategory } from 'App/domains/todo.model';
-import { filterByCategory, filterByText, pipe } from 'App/domains/todo.operators';
+import { Todo } from 'App/domains/todo.model';
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-ui-todo-list',
   template: `
-    <ul *ngIf="todosFiltered!.length" class="list">
-      <li *ngFor="let todo of todosFiltered; trackBy: trackByTodoId" class="list-item">
+    <ul *ngIf="todos!.length; else empty" class="list">
+      <li *ngFor="let todo of todos; trackBy: trackByTodoId" class="list-item">
         <button (click)="emitToggleDone(todo)">
           <fa-icon [icon]="getToggleIcon(todo)"></fa-icon>
         </button>
@@ -27,26 +26,17 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       </li>
     </ul>
 
-    <div *ngIf="!todos.length" class="hello">
-      <fa-icon icon="clipboard-list" size="3x"></fa-icon>
-    </div>
+    <ng-template #empty>
+      <div class="hello">
+        <fa-icon icon="clipboard-list" size="3x"></fa-icon>
+      </div>
+    </ng-template>
   `,
   styleUrls: ['./ui-todo-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiTodoListComponent {
   @Input() todos: Todo[];
-
-  @Input() filter: string;
-
-  @Input() category: TodoCategory;
-
-  get todosFiltered() {
-    return pipe<Todo[]>(this.todos)(
-      filterByCategory(this.category),
-      filterByText(this.filter)
-    );
-  }
 
   @Output() toggleDone = new EventEmitter<Todo>();
   @Output() editText = new EventEmitter<{ todo: Todo; text: string; }>();
