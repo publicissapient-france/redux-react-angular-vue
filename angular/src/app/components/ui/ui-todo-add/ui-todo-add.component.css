@@ -3,6 +3,12 @@
   text-align: center;
 }
 
+/*.filter { }*/
+
+.filter--disabled {
+  opacity: 0.3;
+}
+
 .text {
   width: 260px;
 }
@@ -11,6 +17,6 @@
   color: #bbb;
 }
 
-.button[disabled] {
+.add[disabled] {
   opacity: 0.3;
 }

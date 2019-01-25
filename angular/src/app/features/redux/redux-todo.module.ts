@@ -9,6 +9,7 @@ import { StoreModule } from '@ngrx/store';
 import { ReduxTodoAddComponent } from './components/redux-todo-add/redux-todo-add.component';
 import { ReduxTodoListComponent } from './components/redux-todo-list/redux-todo-list.component';
 import { ReduxTodoStatusComponent } from './components/redux-todo-status/redux-todo-status.component';
+import { ReduxTodoSwitchComponent } from './components/redux-todo-switch/redux-todo-switch.component';
 import { ReduxTodoComponent } from './components/redux-todo/redux-todo.component';
 import { TodosEffects } from './effects/todos.effects';
 import { reducers } from './reducers';
@@ -18,7 +19,8 @@ import { reducers } from './reducers';
     ReduxTodoComponent,
     ReduxTodoAddComponent,
     ReduxTodoListComponent,
-    ReduxTodoStatusComponent
+    ReduxTodoStatusComponent,
+    ReduxTodoSwitchComponent
   ],
   imports: [
     CommonModule,

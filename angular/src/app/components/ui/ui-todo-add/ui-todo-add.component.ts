@@ -3,6 +3,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 @Component({
   selector: 'app-ui-todo-add',
   template: `
+    <button
+      class="filter"
+      [class.filter--disabled]="!filterEnabled"
+      (click)="emitFilterEnabled()">
+      <fa-icon icon="filter"></fa-icon>
+    </button>
+
     <input
       class="text"
       placeholder="What needs to be done?"
@@ -12,8 +19,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       (keydown.enter)="emitAdd()">
 
     <button
-      class="button"
-      [disabled]="disabled"
+      class="add"
+      [disabled]="addDisabled"
       (click)="emitAdd()">
       <fa-icon icon="plus"></fa-icon>
     </button>
@@ -22,12 +29,20 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiTodoAddComponent {
-  @Input() text: string;
+  @Input() filterEnabled = false;
+  @Output() filterEnabledChange = new EventEmitter<boolean>();
+
+  @Input() text = '';
   @Output() textChange = new EventEmitter<string>();
 
-  @Input() disabled = false;
+  @Input() addDisabled = false;
 
   @Output() add = new EventEmitter<string>();
+
+  emitFilterEnabled() {
+    this.filterEnabled = !this.filterEnabled;
+    this.filterEnabledChange.emit(this.filterEnabled);
+  }
 
   emitText(text: string) {
     this.text = text;
@@ -35,10 +50,9 @@ export class UiTodoAddComponent {
   }
 
   emitAdd() {
-    if (this.disabled) {
-      return;
+    if (!this.addDisabled) {
+      this.add.emit(this.text);
+      this.emitText('');
     }
-    this.add.emit(this.text);
-    this.emitText('');
   }
 }

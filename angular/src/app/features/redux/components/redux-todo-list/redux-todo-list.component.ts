@@ -1,8 +1,8 @@
-import { Todo, TodoCategory } from 'App/domains/todo.model';
+import { Todo } from 'App/domains/todo.model';
 import { editText, toggleDone } from 'App/domains/todo.operators';
 import { AppState } from 'App/reducers';
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import * as todosActions from '../../actions/todos.actions';
@@ -20,10 +20,6 @@ import { getTodosFiltered } from '../../reducers';
   `
 })
 export class ReduxTodoListComponent implements OnInit {
-  @Input() filter: string;
-
-  @Input() category: TodoCategory = 'all';
-
   todosFiltered$ = this.store.pipe(select(getTodosFiltered));
 
   constructor(private store: Store<AppState>) { }

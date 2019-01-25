@@ -7,9 +7,3 @@
   display: flex;
   justify-content: space-between;
 }
-
-/*.filter { }*/
-
-.filter--disabled {
-  opacity: 0.3;
-}

@@ -11,14 +11,8 @@ import { TodosService } from '../../services/todos.service';
   selector: 'app-rxjs-todo',
   template: `
     <div class="top">
-      <button
-        class="filter"
-        [class.filter--disabled]="!filterEnabled"
-        (click)="filterEnabled = !filterEnabled">
-        <fa-icon icon="filter"></fa-icon>
-      </button>
-
       <app-rxjs-todo-add
+        [(filterEnabled)]="filterEnabled"
         [(text)]="text"
         (textChange)="textChange()"
         [disabled]="preventAdd$ | async">

@@ -1,33 +1,38 @@
 import { todoBuilder } from 'App/domains/todo.operators';
 import { AppState } from 'App/reducers';
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Store } from '@ngrx/store';
+import { Component } from '@angular/core';
+import { select, Store } from '@ngrx/store';
 
 import * as todosActions from '../../actions/todos.actions';
+import { getFilter, getFilterEnabled, getIsTextFree } from '../../reducers';
 
 @Component({
   selector: 'app-redux-todo-add',
   template: `
     <app-ui-todo-add
-      [disabled]="disabled"
-      [text]="text"
-      (textChange)="emitText($event)"
+      [filterEnabled]="filterEnabled$ | async"
+      [text]="filter$ | async"
+      [addDisabled]="!(isTextFree$ | async)"
+      (filterEnabledChange)="filterEnabledChange($event)"
+      (textChange)="textChange($event)"
       (add)="add($event)">
     </app-ui-todo-add>
   `
 })
 export class ReduxTodoAddComponent {
-  @Input() text = '';
-  @Output() textChange = new EventEmitter<string>();
-
-  @Input() disabled: boolean;
+  filterEnabled$  = this.store.pipe(select(getFilterEnabled));
+  filter$         = this.store.pipe(select(getFilter));
+  isTextFree$     = this.store.pipe(select(getIsTextFree));
 
   constructor(private store: Store<AppState>) { }
 
-  emitText(text: string) {
-    this.text = text;
-    this.textChange.emit(text);
+  filterEnabledChange(filterEnabled: boolean) { // TODO: Use the parameter...
+    this.store.dispatch(new todosActions.SwitchFilterEnabled());
+  }
+
+  textChange(text: string) {
+    this.store.dispatch(new todosActions.Filter(text));
   }
 
   add(text: string) {

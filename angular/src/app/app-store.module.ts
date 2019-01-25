@@ -10,7 +10,9 @@ import { metaReducers, reducers } from './reducers';
   imports: [
     StoreModule.forRoot(reducers, { metaReducers }),
     EffectsModule.forRoot([]),
-    !environment.production ? StoreDevtoolsModule.instrument({ name: 'Tout doux Store!' }) : [],
+    !environment.production
+      ? StoreDevtoolsModule.instrument({ name: 'Tout doux Store!' })
+      : [],
   ],
   exports: [
     StoreModule
