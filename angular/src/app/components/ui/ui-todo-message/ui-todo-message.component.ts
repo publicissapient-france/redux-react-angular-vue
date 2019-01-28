@@ -6,9 +6,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   selector: 'app-ui-todo-message',
   template: `
     <p class="message">
-      <ng-container *ngIf="category">
+      <ng-container *ngIf="hiddenCategory">
         <fa-icon icon="exclamation-triangle"></fa-icon>
-        This item is already {{ category }}!
+        This item is already {{ hiddenCategory }}!
       </ng-container>
       &nbsp;
     </p>
@@ -17,5 +17,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiTodoMessageComponent {
-  @Input() category: TodoCategory;
+  @Input() hiddenCategory: TodoCategory;
 }

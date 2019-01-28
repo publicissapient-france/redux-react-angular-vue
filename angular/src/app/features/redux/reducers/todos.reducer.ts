@@ -87,7 +87,7 @@ export const getIsTextFree = createSelector(
   (todos, text) => isTextFree(todos, text)
 );
 
-export const getCategoryOfHiddenTodo = createSelector(
+export const getHiddenTodoCategory = createSelector(
   getTodos,
   getText,
   getCategory,

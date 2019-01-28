@@ -36,7 +36,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiTodoListComponent {
-  @Input() todos: Todo[];
+  @Input() todos: Todo[] = [];
 
   @Output() toggleDone = new EventEmitter<Todo>();
   @Output() editText = new EventEmitter<{ todo: Todo; text: string; }>();

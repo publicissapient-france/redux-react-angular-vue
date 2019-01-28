@@ -27,4 +27,4 @@ export const getFilterEnabled = createSelector(getTodosState, fromTodos.getFilte
 export const getFilter        = createSelector(getTodosState, fromTodos.getFilter);
 export const getTodosFiltered = createSelector(getTodosState, fromTodos.getTodosFiltered);
 export const getIsTextFree    = createSelector(getTodosState, fromTodos.getIsTextFree);
-export const getCategoryOfHiddenTodo = createSelector(getTodosState, fromTodos.getCategoryOfHiddenTodo);
+export const getHiddenTodoCategory = createSelector(getTodosState, fromTodos.getHiddenTodoCategory);

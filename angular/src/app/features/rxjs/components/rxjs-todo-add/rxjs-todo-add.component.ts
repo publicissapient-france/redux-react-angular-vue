@@ -2,7 +2,7 @@ import { todoBuilder } from 'App/domains/todo.operators';
 
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { TodosService } from '../../services/todos.service';
+import { RxjsTodoService } from '../../services/rxjs-todo.service';
 
 @Component({
   selector: 'app-rxjs-todo-add',
@@ -26,7 +26,7 @@ export class RxjsTodoAddComponent {
 
   @Input() disabled: boolean;
 
-  constructor(private todosService: TodosService) { }
+  constructor(private todosService: RxjsTodoService) { }
 
   emitFilterEnabled(filterEnabled: boolean) {
     this.filterEnabled = filterEnabled;

@@ -3,12 +3,11 @@ import { ApiService } from 'App/services/api.service';
 import { BehaviorSubject } from 'rxjs';
 
 import { Injectable } from '@angular/core';
-import { RxjsTodoModule } from '../rxjs-todo.module';
 
 // TODO: handle errors in both `api.servive.ts` and `todo.service.ts`
 
 @Injectable()
-export class TodosService {
+export class VanillaTodoService {
   private todos: Todo[];
 
   todos$ = new BehaviorSubject<Todo[]>([]);

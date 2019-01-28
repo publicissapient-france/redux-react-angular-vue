@@ -8,7 +8,7 @@ import { RxjsTodoAddComponent } from './components/rxjs-todo-add/rxjs-todo-add.c
 import { RxjsTodoListComponent } from './components/rxjs-todo-list/rxjs-todo-list.component';
 import { RxjsTodoStatusComponent } from './components/rxjs-todo-status/rxjs-todo-status.component';
 import { RxjsTodoComponent } from './components/rxjs-todo/rxjs-todo.component';
-import { TodosService } from './services/todos.service';
+import { RxjsTodoService } from './services/rxjs-todo.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +18,7 @@ import { TodosService } from './services/todos.service';
     RxjsTodoComponent
   ],
   providers: [
-    TodosService
+    RxjsTodoService
   ],
   imports: [
     CommonModule,

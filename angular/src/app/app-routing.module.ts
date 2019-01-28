@@ -3,9 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', redirectTo: 'rxjs', pathMatch: 'full' },
-  { path: 'rxjs', loadChildren: './features/rxjs/rxjs-todo.module#RxjsTodoModule' },
   { path: 'redux', loadChildren: './features/redux/redux-todo.module#ReduxTodoModule' },
-  { path: '**', redirectTo: 'rxjs' }
+  { path: 'rxjs', loadChildren: './features/rxjs/rxjs-todo.module#RxjsTodoModule' },
+  { path: 'vanilla', loadChildren: './features/vanilla/vanilla-todo.module#VanillaTodoModule' },
+  { path: '**', redirectTo: 'redux' }
 ];
 
 @NgModule({

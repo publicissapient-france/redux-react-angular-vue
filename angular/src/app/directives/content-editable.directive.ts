@@ -14,6 +14,10 @@ export class ContentEditableDirective {
 
   private textContent: string = null;
 
+  private get domTextContent() {
+    return this.element.textContent.trim();
+  }
+
   constructor(elementRef: ElementRef) {
     this.element = elementRef.nativeElement;
   }
@@ -38,7 +42,7 @@ export class ContentEditableDirective {
   }
 
   private startEdit() {
-    this.textContent = this.element.textContent;
+    this.textContent = this.domTextContent;
 
     if (this.appContentEditableClass) {
       this.element.classList.add(this.appContentEditableClass);
@@ -48,8 +52,8 @@ export class ContentEditableDirective {
   }
 
   private stopEdit() {
-    if (this.element.textContent !== this.textContent) {
-      this.appContentEditableChange.emit(this.element.textContent);
+    if (this.domTextContent !== this.textContent) {
+      this.appContentEditableChange.emit(this.domTextContent);
     }
     this.textContent = null;
 

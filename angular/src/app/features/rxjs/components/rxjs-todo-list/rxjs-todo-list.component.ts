@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 
-import { TodosService } from '../../services/todos.service';
+import { RxjsTodoService } from '../../services/rxjs-todo.service';
 
 @Component({
   selector: 'app-rxjs-todo-list',
@@ -33,7 +33,7 @@ export class RxjsTodoListComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  constructor(private todosService: TodosService) {
+  constructor(private todosService: RxjsTodoService) {
     this.subscription = this.todosService.todos$.subscribe(todos => this.todos = todos);
   }
 

@@ -5,7 +5,7 @@ import { map, switchMap } from 'rxjs/operators';
 
 import { Component } from '@angular/core';
 
-import { TodosService } from '../../services/todos.service';
+import { RxjsTodoService } from '../../services/rxjs-todo.service';
 
 @Component({
   selector: 'app-rxjs-todo',
@@ -18,7 +18,7 @@ import { TodosService } from '../../services/todos.service';
         [disabled]="preventAdd$ | async">
       </app-rxjs-todo-add>
     </div>
-    <app-ui-todo-message [category]=" '' "></app-ui-todo-message>
+    <app-ui-todo-message [hiddenCategory]=" '' "></app-ui-todo-message>
 
     <hr>
     <app-rxjs-todo-list
@@ -46,7 +46,7 @@ export class RxjsTodoComponent {
 
   filterEnabled = false;
 
-  constructor(private todosService: TodosService) { }
+  constructor(private todosService: RxjsTodoService) { }
 
   textChange() {
     this.text$.next(this.text);

@@ -17,7 +17,8 @@ import { Component } from '@angular/core';
 })
 export class NavComponent {
   pages = [
+    { link: '/redux', label: 'Redux' },
     { link: '/rxjs', label: 'RxJS' },
-    { link: '/redux', label: 'Redux' }
+    { link: '/vanilla', label: 'Vanilla' }
   ];
 }

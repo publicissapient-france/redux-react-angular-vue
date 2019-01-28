@@ -2,7 +2,7 @@ import { getStatus } from 'App/domains/todo.operators';
 
 import { Component } from '@angular/core';
 
-import { TodosService } from '../../services/todos.service';
+import { RxjsTodoService } from '../../services/rxjs-todo.service';
 
 @Component({
   selector: 'app-rxjs-todo-status',
@@ -17,6 +17,6 @@ export class RxjsTodoStatusComponent {
   getStatus = getStatus;
 
   constructor(
-    public todosService: TodosService
+    public todosService: RxjsTodoService
   ) { }
 }
