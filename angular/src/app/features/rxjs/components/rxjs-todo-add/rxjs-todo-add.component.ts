@@ -1,6 +1,6 @@
 import { todoBuilder } from 'App/domains/todo.operators';
 
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { RxjsTodoService } from '../../services/rxjs-todo.service';
 
@@ -8,37 +8,27 @@ import { RxjsTodoService } from '../../services/rxjs-todo.service';
   selector: 'app-rxjs-todo-add',
   template: `
     <app-ui-todo-add
-      [filterEnabled]="filterEnabled"
-      [text]="text"
-      [addDisabled]="disabled"
-      (filterEnabledChange)="emitFilterEnabled($event)"
-      (textChange)="emitText($event)"
+      [filterEnabled]="todoService.filterEnabled$ | async"
+      [text]="todoService.text$ | async"
+      [addDisabled]="!(todoService.isTextFree$ | async)"
+      (filterEnabledChange)="filterEnabledChange($event)"
+      (textChange)="textChange($event)"
       (add)="add($event)">
     </app-ui-todo-add>
   `
 })
 export class RxjsTodoAddComponent {
-  @Input() filterEnabled = false;
-  @Output() filterEnabledChange = new EventEmitter<boolean>();
+  constructor(public todoService: RxjsTodoService) { }
 
-  @Input() text = '';
-  @Output() textChange = new EventEmitter<string>();
-
-  @Input() disabled: boolean;
-
-  constructor(private todosService: RxjsTodoService) { }
-
-  emitFilterEnabled(filterEnabled: boolean) {
-    this.filterEnabled = filterEnabled;
-    this.filterEnabledChange.emit(filterEnabled);
+  filterEnabledChange(filterEnabled: boolean) {
+    this.todoService.setFilterEnabled(filterEnabled);
   }
 
-  emitText(text: string) {
-    this.text = text;
-    this.textChange.emit(text);
+  textChange(text: string) {
+    this.todoService.setText(text);
   }
 
   add(text: string) {
-    this.todosService.add(todoBuilder(text));
+    this.todoService.add(todoBuilder(text));
   }
 }

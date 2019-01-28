@@ -1,8 +1,7 @@
-import { Todo, TodoCategory } from 'App/domains/todo.model';
-import { editText, filterByCategory, filterByText, pipe, toggleDone } from 'App/domains/todo.operators';
-import { Subscription } from 'rxjs';
+import { Todo } from 'App/domains/todo.model';
+import { editText, toggleDone } from 'App/domains/todo.operators';
 
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { RxjsTodoService } from '../../services/rxjs-todo.service';
 
@@ -10,52 +9,27 @@ import { RxjsTodoService } from '../../services/rxjs-todo.service';
   selector: 'app-rxjs-todo-list',
   template: `
     <app-ui-todo-list
-      [todos]="todosFiltered"
+      [todos]="todoService.todosFiltered$ | async"
       (toggleDone)="toggleDone($event)"
       (remove)="remove($event)"
       (editText)="editText($event)">
     </app-ui-todo-list>
   `
 })
-export class RxjsTodoListComponent implements OnInit, OnDestroy {
-  @Input() filter: string;
-
-  @Input() category: TodoCategory = 'all';
-
-  todos: Todo[];
-
-  get todosFiltered() {
-    return pipe<Todo[]>(this.todos)(
-      filterByCategory(this.category),
-      filterByText(this.filter)
-    );
-  }
-
-  subscription: Subscription;
-
-  constructor(private todosService: RxjsTodoService) {
-    this.subscription = this.todosService.todos$.subscribe(todos => this.todos = todos);
-  }
-
-  ngOnInit() {
-    this.todosService.load();
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+export class RxjsTodoListComponent {
+  constructor(public todoService: RxjsTodoService) {}
 
   toggleDone(todo: Todo) {
-    this.todosService.update(toggleDone(todo));
+    this.todoService.update(toggleDone(todo));
   }
 
   remove(todo: Todo) {
-    this.todosService.remove(todo);
+    this.todoService.remove(todo);
   }
 
   editText({ todo, text }: { todo: Todo; text: string; }) {
     if (text) {
-      this.todosService.update(editText(todo, text));
+      this.todoService.update(editText(todo, text));
     } else {
       this.remove(todo);
     }

@@ -1,6 +1,8 @@
-import { Todo } from 'App/domains/todo.model';
+import { Todo, TodoCategory } from 'App/domains/todo.model';
+import { filterByCategory, filterByText, isTextFree, pipe } from 'App/domains/todo.operators';
 import { ApiService } from 'App/services/api.service';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { Injectable } from '@angular/core';
 
@@ -8,9 +10,34 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class RxjsTodoService {
-  private todos: Todo[];
+  private todos: Todo[] = [];
+  todos$ = new BehaviorSubject<Todo[]>(this.todos);
 
-  todos$ = new BehaviorSubject<Todo[]>([]);
+  private text = '';
+  text$ = new BehaviorSubject<string>(this.text);
+
+  private category: TodoCategory = 'all';
+  category$ = new BehaviorSubject<TodoCategory>(this.category);
+
+  private filterEnabled = false;
+  filterEnabled$ = new BehaviorSubject<boolean>(this.filterEnabled);
+
+  filter$ = combineLatest(this.text$, this.filterEnabled$).pipe(
+    map(([text, filterEnabled]) => filterEnabled ? text : '')
+  );
+
+  todosFiltered$ = combineLatest(this.todos$, this.category$, this.filter$).pipe(
+    map(([todos, category, filter]) => {
+      return pipe<Todo[]>(todos)(
+        filterByCategory(category),
+        filterByText(filter)
+      );
+    })
+  );
+
+  isTextFree$ = combineLatest(this.todos$, this.text$).pipe(
+    map(([todos, text]) => isTextFree(todos, text))
+  );
 
   constructor(private apiService: ApiService) { }
 
@@ -59,5 +86,20 @@ export class RxjsTodoService {
       case 'remove': this.todos.splice(index, 1); break;
     }
     return true;
+  }
+
+  setText(text: string) {
+    this.text = text;
+    this.text$.next(text);
+  }
+
+  setCategory(category: TodoCategory) {
+    this.category = category;
+    this.category$.next(category);
+  }
+
+  setFilterEnabled(filterEnabled: boolean) {
+    this.filterEnabled = filterEnabled;
+    this.filterEnabled$.next(filterEnabled);
   }
 }

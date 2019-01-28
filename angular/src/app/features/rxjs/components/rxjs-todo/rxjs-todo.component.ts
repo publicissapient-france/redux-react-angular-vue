@@ -1,9 +1,4 @@
-import { TodoCategory } from 'App/domains/todo.model';
-import { isTextFree } from 'App/domains/todo.operators';
-import { BehaviorSubject } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
-
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { RxjsTodoService } from '../../services/rxjs-todo.service';
 
@@ -11,52 +6,25 @@ import { RxjsTodoService } from '../../services/rxjs-todo.service';
   selector: 'app-rxjs-todo',
   template: `
     <div class="top">
-      <app-rxjs-todo-add
-        [(filterEnabled)]="filterEnabled"
-        [(text)]="text"
-        (textChange)="textChange()"
-        [disabled]="preventAdd$ | async">
-      </app-rxjs-todo-add>
+      <app-rxjs-todo-add></app-rxjs-todo-add>
     </div>
-    <app-ui-todo-message [hiddenCategory]=" '' "></app-ui-todo-message>
+    <app-ui-todo-message></app-ui-todo-message>
 
     <hr>
-    <app-rxjs-todo-list
-      [filter]="getFilter()"
-      [category]="category">
-    </app-rxjs-todo-list>
+    <app-rxjs-todo-list></app-rxjs-todo-list>
 
     <div class="bottom">
       <app-rxjs-todo-status></app-rxjs-todo-status>
-      <app-ui-todo-switch (categoryChange)="categoryChange($event)"></app-ui-todo-switch>
+      <app-rxjs-todo-switch></app-rxjs-todo-switch>
     </div>
   `,
   styleUrls: ['./rxjs-todo.component.css']
 })
-export class RxjsTodoComponent {
-  text = '';
-  text$ = new BehaviorSubject<string>(this.text);
+export class RxjsTodoComponent implements OnInit {
 
-  category: TodoCategory = 'all';
+  constructor(private todoService: RxjsTodoService) { }
 
-  preventAdd$ = this.text$.pipe(
-    switchMap(() => this.todosService.todos$),
-    map(todos => !isTextFree(todos, this.text))
-  );
-
-  filterEnabled = false;
-
-  constructor(private todosService: RxjsTodoService) { }
-
-  textChange() {
-    this.text$.next(this.text);
-  }
-
-  categoryChange(category: TodoCategory) {
-    this.category = category;
-  }
-
-  getFilter() {
-    return this.filterEnabled ? this.text : '';
+  ngOnInit() {
+    this.todoService.load();
   }
 }

@@ -73,10 +73,10 @@ export const getTodosFiltered = createSelector(
   getTodos,
   getCategory,
   getFilter,
-  (todos, category, liveFilter) => {
+  (todos, category, filter) => {
     return pipe<Todo[]>(todos)(
       filterByCategory(category),
-      filterByText(liveFilter)
+      filterByText(filter)
     );
   }
 );
