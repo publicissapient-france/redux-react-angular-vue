@@ -53,11 +53,11 @@ export class RxjsTodoListComponent implements OnInit, OnDestroy {
     this.todosService.remove(todo);
   }
 
-  editText(event: { todo: Todo; text: string; }) {
-    if (event.text) {
-      this.todosService.update(editText(event.todo, event.text));
+  editText({ todo, text }: { todo: Todo; text: string; }) {
+    if (text) {
+      this.todosService.update(editText(todo, text));
     } else {
-      this.remove(event.todo);
+      this.remove(todo);
     }
   }
 }

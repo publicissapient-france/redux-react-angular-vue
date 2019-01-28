@@ -87,8 +87,12 @@ export class VanillaTodoComponent implements OnInit {
     this.apiService.updateTodo(toggleDone(todo)).subscribe(this.refresh);
   }
 
-  editText(event: { todo: Todo, text: string }) {
-    this.apiService.updateTodo(editText(event.todo, event.text)).subscribe(this.refresh);
+  editText({ todo, text }: { todo: Todo, text: string }) {
+    if (text) {
+      this.apiService.updateTodo(editText(todo, text)).subscribe(this.refresh);
+    } else {
+      this.remove(todo);
+    }
   }
 
   remove(todo: Todo) {
