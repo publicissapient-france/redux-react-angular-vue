@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 import { VanillaTodoComponent } from './components/vanilla-todo/vanilla-todo.component';
-import { VanillaTodoService } from './services/vanilla-todo.service';
 
 @NgModule({
   declarations: [
@@ -15,9 +14,6 @@ import { VanillaTodoService } from './services/vanilla-todo.service';
     CommonModule,
     RouterModule.forChild([{ path: '', component: VanillaTodoComponent }]),
     AppSharedModule
-  ],
-  providers: [
-    VanillaTodoService
   ],
   exports: [
     VanillaTodoComponent
