@@ -1,4 +1,9 @@
-import { Component } from '@angular/core';
+import { AppState } from 'App/reducers';
+
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+
+import * as todosActions from '../../actions/todos.actions';
 
 @Component({
   selector: 'app-redux-todo',
@@ -18,4 +23,11 @@ import { Component } from '@angular/core';
   `,
   styleUrls: ['./redux-todo.component.css']
 })
-export class ReduxTodoComponent { }
+export class ReduxTodoComponent implements OnInit {
+
+  constructor(private store: Store<AppState>) { }
+
+  ngOnInit() {
+    this.store.dispatch(new todosActions.Load());
+  }
+}
