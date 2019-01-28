@@ -3,21 +3,21 @@ import { Todo, TodoCategory } from 'App/domains/todo.model';
 import { Action } from '@ngrx/store';
 
 export enum ActionTypes {
-  Load                = '[Redux:Todos] Load',
-  LoadSuccess         = '[Redux:Todos] LoadSuccess',
+  Load           = '[Redux:Todos] Load',
+  LoadSuccess    = '[Redux:Todos] LoadSuccess',
 
-  Add                 = '[Redux:Todos] Add',
-  AddSuccess          = '[Redux:Todos] AddSuccess',
+  Add            = '[Redux:Todos] Add',
+  AddSuccess     = '[Redux:Todos] AddSuccess',
 
-  Update              = '[Redux:Todos] Update',
-  UpdateSuccess       = '[Redux:Todos] UpdateSuccess',
+  Update         = '[Redux:Todos] Update',
+  UpdateSuccess  = '[Redux:Todos] UpdateSuccess',
 
-  Remove              = '[Redux:Todos] Remove',
-  RemoveSuccess       = '[Redux:Todos] RemoveSuccess',
+  Remove         = '[Redux:Todos] Remove',
+  RemoveSuccess  = '[Redux:Todos] RemoveSuccess',
 
-  Text                = '[Redux:Todos] Text',
-  Category            = '[Redux:Todos] Category',
-  SwitchFilterEnabled = '[Redux:Todos] SwitchFilterEnabled',
+  Text           = '[Redux:Todos] Text',
+  Category       = '[Redux:Todos] Category',
+  FilterEnabled  = '[Redux:Todos] FilterEnabled',
 }
 
 export class Load implements Action {
@@ -65,8 +65,9 @@ export class Category implements Action {
   constructor(public payload: TodoCategory) {}
 }
 
-export class SwitchFilterEnabled implements Action {
-  readonly type = ActionTypes.SwitchFilterEnabled;
+export class FilterEnabled implements Action {
+  readonly type = ActionTypes.FilterEnabled;
+  constructor(public payload: boolean) {}
 }
 
 export type ActionsUnion =
@@ -84,5 +85,5 @@ export type ActionsUnion =
 
   | Text
   | Category
-  | SwitchFilterEnabled
+  | FilterEnabled
 ;

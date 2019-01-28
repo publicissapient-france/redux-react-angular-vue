@@ -27,8 +27,8 @@ export class ReduxTodoAddComponent {
 
   constructor(private store: Store<AppState>) { }
 
-  filterEnabledChange(filterEnabled: boolean) { // TODO: Use the parameter...
-    this.store.dispatch(new todosActions.SwitchFilterEnabled());
+  filterEnabledChange(filterEnabled: boolean) {
+    this.store.dispatch(new todosActions.FilterEnabled(filterEnabled));
   }
 
   textChange(text: string) {

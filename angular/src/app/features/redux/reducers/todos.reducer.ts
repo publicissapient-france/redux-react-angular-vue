@@ -42,8 +42,8 @@ export function reducer(state = initialState, action: ActionsUnion): State {
     case ActionTypes.Category: {
       return { ...state, category: action.payload };
     }
-    case ActionTypes.SwitchFilterEnabled: {
-      return { ...state, filterEnabled: !state.filterEnabled };
+    case ActionTypes.FilterEnabled: {
+      return { ...state, filterEnabled: action.payload };
     }
     default: {
       return state;
@@ -58,7 +58,6 @@ export const getTodos = selectAll;
 export const getText = (state: State) => state.text;
 
 export const getCategory = (state: State) => state.category;
-
 
 export const getFilterEnabled = (state: State) => state.filterEnabled;
 
