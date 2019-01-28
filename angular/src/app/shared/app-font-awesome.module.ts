@@ -2,9 +2,12 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faClipboardList, faFilter, faPlus, faSmileBeam, faToggleOff, faToggleOn, faTrash } from '@fortawesome/free-solid-svg-icons';
+import {
+    faClipboardList, faExclamationTriangle, faFilter, faPlus, faSmileBeam, faToggleOff, faToggleOn,
+    faTrash
+} from '@fortawesome/free-solid-svg-icons';
 
-library.add(faClipboardList, faFilter, faPlus, faSmileBeam, faToggleOff, faToggleOn, faTrash);
+library.add(faClipboardList, faExclamationTriangle, faFilter, faPlus, faSmileBeam, faToggleOff, faToggleOn, faTrash);
 
 @NgModule({
   declarations: [],

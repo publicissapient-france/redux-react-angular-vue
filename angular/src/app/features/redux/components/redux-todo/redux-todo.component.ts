@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
     <div class="top">
       <app-redux-todo-add></app-redux-todo-add>
     </div>
+    <app-redux-todo-message></app-redux-todo-message>
 
     <hr>
     <app-redux-todo-list></app-redux-todo-list>

@@ -18,6 +18,7 @@ import { TodosService } from '../../services/todos.service';
         [disabled]="preventAdd$ | async">
       </app-rxjs-todo-add>
     </div>
+    <app-ui-todo-message [category]=" '' "></app-ui-todo-message>
 
     <hr>
     <app-rxjs-todo-list

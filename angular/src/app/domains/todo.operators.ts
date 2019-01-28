@@ -12,6 +12,8 @@ export const isTextFree = (todos: Todo[], text: string) => {
   return text ? !todos.find(todo => todo.text === text) : false;
 };
 
+export const findTodoByText = (todos: Todo[], text: string) => todos.find(todo => todo.text === text);
+
 export const getStatus = (todos: Todo[]): TodoStatus => ({
   remainCount: todos.filter(todo => !todo.done).length,
   totalCount: todos.length

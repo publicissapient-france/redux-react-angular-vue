@@ -1,5 +1,7 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
-import { filterByCategory, filterByText, isTextFree, pipe } from 'App/domains/todo.operators';
+import {
+    filterByCategory, filterByText, findTodoByText, isTextFree, pipe
+} from 'App/domains/todo.operators';
 
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createSelector } from '@ngrx/store';
@@ -83,4 +85,22 @@ export const getIsTextFree = createSelector(
   getTodos,
   getText,
   (todos, text) => isTextFree(todos, text)
+);
+
+export const getCategoryOfHiddenTodo = createSelector(
+  getTodos,
+  getText,
+  getCategory,
+  (todos, text, category) => {
+    const todo = findTodoByText(todos, text);
+    if (!todo) {
+      return;
+    }
+    if (todo.done === false && category === 'completed') {
+      return 'active';
+    }
+    if (todo.done === true && category === 'active') {
+      return 'completed';
+    }
+  }
 );
