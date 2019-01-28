@@ -15,9 +15,8 @@ export enum ActionTypes {
   Remove              = '[Redux:Todos] Remove',
   RemoveSuccess       = '[Redux:Todos] RemoveSuccess',
 
+  Text                = '[Redux:Todos] Text',
   Category            = '[Redux:Todos] Category',
-
-  Filter              = '[Redux:Todos] Filter',
   SwitchFilterEnabled = '[Redux:Todos] SwitchFilterEnabled',
 }
 
@@ -56,14 +55,14 @@ export class RemoveSuccess implements Action {
   constructor(public payload: Todo) {}
 }
 
+export class Text implements Action {
+  readonly type = ActionTypes.Text;
+  constructor(public payload: string) {}
+}
+
 export class Category implements Action {
   readonly type = ActionTypes.Category;
   constructor(public payload: TodoCategory) {}
-}
-
-export class Filter implements Action {
-  readonly type = ActionTypes.Filter;
-  constructor(public payload: string) {}
 }
 
 export class SwitchFilterEnabled implements Action {
@@ -83,8 +82,7 @@ export type ActionsUnion =
   | Remove
   | RemoveSuccess
 
+  | Text
   | Category
-
-  | Filter
   | SwitchFilterEnabled
 ;

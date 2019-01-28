@@ -5,14 +5,14 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import * as todosActions from '../../actions/todos.actions';
-import { getFilter, getFilterEnabled, getIsTextFree } from '../../reducers';
+import { getFilterEnabled, getIsTextFree, getText } from '../../reducers';
 
 @Component({
   selector: 'app-redux-todo-add',
   template: `
     <app-ui-todo-add
       [filterEnabled]="filterEnabled$ | async"
-      [text]="filter$ | async"
+      [text]="text$ | async"
       [addDisabled]="!(isTextFree$ | async)"
       (filterEnabledChange)="filterEnabledChange($event)"
       (textChange)="textChange($event)"
@@ -22,7 +22,7 @@ import { getFilter, getFilterEnabled, getIsTextFree } from '../../reducers';
 })
 export class ReduxTodoAddComponent {
   filterEnabled$  = this.store.pipe(select(getFilterEnabled));
-  filter$         = this.store.pipe(select(getFilter));
+  text$           = this.store.pipe(select(getText));
   isTextFree$     = this.store.pipe(select(getIsTextFree));
 
   constructor(private store: Store<AppState>) { }
@@ -32,7 +32,7 @@ export class ReduxTodoAddComponent {
   }
 
   textChange(text: string) {
-    this.store.dispatch(new todosActions.Filter(text));
+    this.store.dispatch(new todosActions.Text(text));
   }
 
   add(text: string) {

@@ -7,8 +7,8 @@ import { createSelector } from '@ngrx/store';
 import { ActionsUnion, ActionTypes } from '../actions/todos.actions';
 
 export interface State extends EntityState<Todo> {
+  text: string;
   category: TodoCategory;
-  filter: string;
   filterEnabled: boolean;
 }
 
@@ -17,8 +17,8 @@ export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>({
 });
 
 export const initialState: State = adapter.getInitialState({
+  text: '',
   category: 'all',
-  filter: '',
   filterEnabled: false
 } as State);
 
@@ -36,11 +36,11 @@ export function reducer(state = initialState, action: ActionsUnion): State {
     case ActionTypes.RemoveSuccess: {
       return adapter.removeOne(action.payload.id, state);
     }
+    case ActionTypes.Text: {
+      return { ...state, text: action.payload };
+    }
     case ActionTypes.Category: {
       return { ...state, category: action.payload };
-    }
-    case ActionTypes.Filter: {
-      return { ...state, filter: action.payload };
     }
     case ActionTypes.SwitchFilterEnabled: {
       return { ...state, filterEnabled: !state.filterEnabled };
@@ -55,22 +55,23 @@ const { selectAll } = adapter.getSelectors();
 
 export const getTodos = selectAll;
 
+export const getText = (state: State) => state.text;
+
 export const getCategory = (state: State) => state.category;
 
-export const getFilter = (state: State) => state.filter;
 
 export const getFilterEnabled = (state: State) => state.filterEnabled;
 
-export const getLiveFilter = createSelector(
-  getFilter,
+export const getFilter = createSelector(
+  getText,
   getFilterEnabled,
-  (filter, filterEnabled) => filterEnabled ? filter : ''
+  (text, filterEnabled) => filterEnabled ? text : ''
 );
 
 export const getTodosFiltered = createSelector(
   getTodos,
   getCategory,
-  getLiveFilter,
+  getFilter,
   (todos, category, liveFilter) => {
     return pipe<Todo[]>(todos)(
       filterByCategory(category),
@@ -81,6 +82,6 @@ export const getTodosFiltered = createSelector(
 
 export const getIsTextFree = createSelector(
   getTodos,
-  getFilter,
-  (todos, filter) => isTextFree(todos, filter)
+  getText,
+  (todos, text) => isTextFree(todos, text)
 );
