@@ -32,11 +32,11 @@ export class ReduxTodoListComponent {
     this.store.dispatch(new todosActions.Remove(todo));
   }
 
-  editText(event: { todo: Todo; text: string; }) {
-    if (event.text) {
-      this.store.dispatch(new todosActions.Update(editText(event.todo, event.text)));
+  editText({ todo, text }: { todo: Todo; text: string; }) {
+    if (text) {
+      this.store.dispatch(new todosActions.Update(editText(todo, text)));
     } else {
-      this.remove(event.todo);
+      this.remove(todo);
     }
   }
 }

@@ -8,7 +8,7 @@ import { RxjsTodoService } from '../../services/rxjs-todo.service';
     <div class="top">
       <app-rxjs-todo-add></app-rxjs-todo-add>
     </div>
-    <app-ui-todo-message></app-ui-todo-message>
+    <app-rxjs-todo-message></app-rxjs-todo-message>
 
     <hr>
     <app-rxjs-todo-list></app-rxjs-todo-list>

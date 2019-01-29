@@ -17,7 +17,7 @@ import { RxjsTodoService } from '../../services/rxjs-todo.service';
   `
 })
 export class RxjsTodoListComponent {
-  constructor(public todoService: RxjsTodoService) {}
+  constructor(public todoService: RxjsTodoService) { }
 
   toggleDone(todo: Todo) {
     this.todoService.update(toggleDone(todo));

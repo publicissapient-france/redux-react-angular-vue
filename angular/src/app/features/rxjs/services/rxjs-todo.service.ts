@@ -1,5 +1,5 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
-import { filterByCategory, filterByText, isTextFree, pipe } from 'App/domains/todo.operators';
+import { filterByCategory, filterByText, findTodoByText, isTextFree, pipe } from 'App/domains/todo.operators';
 import { ApiService } from 'App/services/api.service';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -37,6 +37,21 @@ export class RxjsTodoService {
 
   isTextFree$ = combineLatest(this.todos$, this.text$).pipe(
     map(([todos, text]) => isTextFree(todos, text))
+  );
+
+  hiddenTodoCategory$ = combineLatest(this.todos$, this.text$, this.category$).pipe(
+    map(([todos, text, category]) => {
+      const todo = findTodoByText(todos, text);
+      if (!todo) {
+        return;
+      }
+      if (todo.done === false && category === 'completed') {
+        return 'active';
+      }
+      if (todo.done === true && category === 'active') {
+        return 'completed';
+      }
+    })
   );
 
   constructor(private apiService: ApiService) { }
