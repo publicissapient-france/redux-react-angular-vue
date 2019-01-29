@@ -32,25 +32,15 @@ export const getStatus = (todos: Todo[]): TodoStatus => ({
   totalCount: todos.length
 });
 
-// ==== Pipable operators ====
-
-export type Pipable<T> = (...args: any[]) => (todos: T) => any;
-
-export const filterByCategory: Pipable<Todo[]> = (category: TodoCategory) => (todos) => {
-  if (category === 'all') {
-    return todos;
+export const filterByCategoryAndText = (todos: Todo[], category: TodoCategory, text: string) => {
+  let filtered = todos;
+  if (category !== 'all') {
+    const done = category === 'completed';
+    filtered = filtered.filter(todo => todo.done === done);
   }
-  const done = category === 'completed';
-  return todos.filter(todo => todo.done === done);
-};
-
-export const filterByText: Pipable<Todo[]> = (text: string) => (todos) => {
-  if (!text) {
-    return todos;
+  if (text) {
+    const exp = new RegExp(escapeRegExp(text));
+    filtered = filtered.filter(todo => !!todo.text.match(exp));
   }
-  const exp = new RegExp(escapeRegExp(text));
-  return todos.filter(todo => !!todo.text.match(exp));
+  return filtered;
 };
-
-export const pipe = <T>(input: any) => (...operators: CallableFunction[]): T =>
-  operators.reduce((result: any, operator) => operator(result), input);

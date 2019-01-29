@@ -1,7 +1,6 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
 import {
-    editText, filterByCategory, filterByText, getStatus, hiddenCategory, isTextFree, pipe,
-    todoBuilder, toggleDone
+    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, todoBuilder, toggleDone
 } from 'App/domains/todo.operators';
 import { ApiService } from 'App/services/api.service';
 
@@ -52,11 +51,12 @@ export class VanillaTodoComponent implements OnInit {
     return hiddenCategory(this.todos, this.text, this.category);
   }
 
+  get filter() {
+    return this.filterEnabled ? this.text : '';
+  }
+
   get todosFiltered() {
-    return pipe<Todo[]>(this.todos)(
-      filterByCategory(this.category),
-      filterByText(this.filterEnabled ? this.text : '')
-    );
+    return filterByCategoryAndText(this.todos, this.category, this.filter);
   }
 
   get status() {

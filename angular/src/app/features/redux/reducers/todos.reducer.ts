@@ -1,7 +1,5 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
-import {
-    filterByCategory, filterByText, hiddenCategory, isTextFree, pipe
-} from 'App/domains/todo.operators';
+import { filterByCategoryAndText, hiddenCategory, isTextFree } from 'App/domains/todo.operators';
 
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createSelector } from '@ngrx/store';
@@ -64,34 +62,21 @@ export const getCategory = (state: State) => state.category;
 export const getFilterEnabled = (state: State) => state.filterEnabled;
 
 export const getFilter = createSelector(
-  getText,
-  getFilterEnabled,
+  getText, getFilterEnabled,
   (text, filterEnabled) => filterEnabled ? text : ''
 );
 
 export const getTodosFiltered = createSelector(
-  getTodos,
-  getCategory,
-  getFilter,
-  (todos, category, filter) => {
-    return pipe<Todo[]>(todos)(
-      filterByCategory(category),
-      filterByText(filter)
-    );
-  }
+  getTodos, getCategory, getFilter,
+  (todos, category, filter) => filterByCategoryAndText(todos, category, filter)
 );
 
 export const getIsTextFree = createSelector(
-  getTodos,
-  getText,
+  getTodos, getText,
   (todos, text) => isTextFree(todos, text)
 );
 
 export const getHiddenCategory = createSelector(
-  getTodos,
-  getText,
-  getCategory,
-  (todos, text, category) => {
-    return hiddenCategory(todos, text, category);
-  }
+  getTodos, getText, getCategory,
+  (todos, text, category) => hiddenCategory(todos, text, category)
 );
