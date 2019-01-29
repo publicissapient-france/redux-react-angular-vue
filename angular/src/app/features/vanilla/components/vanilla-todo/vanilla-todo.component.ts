@@ -1,6 +1,7 @@
 import { Todo, TodoCategory } from 'App/domains/todo.model';
 import {
-    editText, filterByCategory, filterByText, findTodoByText, getStatus, isTextFree, pipe, todoBuilder, toggleDone
+    editText, filterByCategory, filterByText, getStatus, hiddenCategory, isTextFree, pipe,
+    todoBuilder, toggleDone
 } from 'App/domains/todo.operators';
 import { ApiService } from 'App/services/api.service';
 
@@ -17,7 +18,7 @@ import { Component, OnInit } from '@angular/core';
         (add)="add($event)">
       </app-ui-todo-add>
     </div>
-    <app-ui-todo-message [hiddenCategory]="hiddenTodoCategory"></app-ui-todo-message>
+    <app-ui-todo-message [hiddenCategory]="hiddenCategory"></app-ui-todo-message>
 
     <hr>
     <app-ui-todo-list
@@ -47,17 +48,8 @@ export class VanillaTodoComponent implements OnInit {
     return !isTextFree(this.todos, this.text);
   }
 
-  get hiddenTodoCategory() {
-    const todo = findTodoByText(this.todos, this.text);
-    if (!todo) {
-      return;
-    }
-    if (todo.done === false && this.category === 'completed') {
-      return 'active';
-    }
-    if (todo.done === true && this.category === 'active') {
-      return 'completed';
-    }
+  get hiddenCategory() {
+    return hiddenCategory(this.todos, this.text, this.category);
   }
 
   get todosFiltered() {

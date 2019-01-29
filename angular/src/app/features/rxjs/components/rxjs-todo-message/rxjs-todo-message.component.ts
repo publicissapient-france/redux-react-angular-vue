@@ -6,7 +6,7 @@ import { RxjsTodoService } from '../../services/rxjs-todo.service';
   selector: 'app-rxjs-todo-message',
   template: `
     <app-ui-todo-message
-      [hiddenCategory]="todoService.hiddenTodoCategory$ | async">
+      [hiddenCategory]="todoService.hiddenCategory$ | async">
     </app-ui-todo-message>
   `
 })

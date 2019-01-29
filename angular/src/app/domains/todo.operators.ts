@@ -12,7 +12,20 @@ export const isTextFree = (todos: Todo[], text: string) => {
   return text ? !todos.find(todo => todo.text === text) : false;
 };
 
-export const findTodoByText = (todos: Todo[], text: string) => todos.find(todo => todo.text === text);
+export const findByText = (todos: Todo[], text: string) => todos.find(todo => todo.text === text);
+
+export const hiddenCategory = (todos: Todo[], text: string, category: TodoCategory) => {
+  const todo = findByText(todos, text);
+  if (!todo) {
+    return;
+  }
+  if (todo.done === false && category === 'completed') {
+    return 'active';
+  }
+  if (todo.done === true && category === 'active') {
+    return 'completed';
+  }
+};
 
 export const getStatus = (todos: Todo[]): TodoStatus => ({
   remainCount: todos.filter(todo => !todo.done).length,
