@@ -8,7 +8,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
     <p class="message">
       <ng-container *ngIf="hiddenCategory">
         <fa-icon icon="exclamation-triangle"></fa-icon>
-        This item is already {{ hiddenCategory }}!
+        This task appears in the
+        "<span class="category">{{ hiddenCategory }}</span>"
+        tab!
       </ng-container>
       &nbsp;
     </p>

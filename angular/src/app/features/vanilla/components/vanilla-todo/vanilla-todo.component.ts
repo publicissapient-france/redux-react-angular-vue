@@ -28,7 +28,7 @@ import { Component, OnInit } from '@angular/core';
 
     <div class="bottom">
       <app-ui-todo-status [status]="status"></app-ui-todo-status>
-      <app-ui-todo-switch (categoryChange)="categoryChange($event)"></app-ui-todo-switch>
+      <app-ui-todo-switch [(category)]="category"></app-ui-todo-switch>
     </div>
   `,
   styleUrls: ['./vanilla-todo.component.css']
@@ -88,9 +88,5 @@ export class VanillaTodoComponent implements OnInit {
 
   remove(todo: Todo) {
     this.apiService.removeTodo(todo).subscribe(this.refresh);
-  }
-
-  categoryChange(category: TodoCategory) {
-    this.category = category;
   }
 }
