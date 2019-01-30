@@ -10,7 +10,8 @@
 }
 
 .text {
-  width: 260px;
+  width: 60%;
+  min-width: 240px;
 }
 
 .text::placeholder {

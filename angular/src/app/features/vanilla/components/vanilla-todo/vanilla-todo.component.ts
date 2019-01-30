@@ -16,10 +16,9 @@ import { Component, OnInit } from '@angular/core';
         [addDisabled]="addDisabled"
         (add)="add($event)">
       </app-ui-todo-add>
+      <app-ui-todo-message [hiddenCategory]="hiddenCategory"></app-ui-todo-message>
     </div>
-    <app-ui-todo-message [hiddenCategory]="hiddenCategory"></app-ui-todo-message>
 
-    <hr>
     <app-ui-todo-list
       [todos]="todosFiltered"
       (toggleDone)="toggleDone($event)"

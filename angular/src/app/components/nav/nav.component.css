@@ -1,9 +1,9 @@
 .nav {
-  position: absolute;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-link {
-  margin-right: 0.25rem;
   padding: 0 0.5rem;
   border-bottom: 2px solid transparent;
   text-decoration: none;
