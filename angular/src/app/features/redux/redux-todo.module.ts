@@ -13,7 +13,7 @@ import { ReduxTodoStatusComponent } from './components/redux-todo-status/redux-t
 import { ReduxTodoSwitchComponent } from './components/redux-todo-switch/redux-todo-switch.component';
 import { ReduxTodoComponent } from './components/redux-todo/redux-todo.component';
 import { TodosEffects } from './effects/todos.effects';
-import { reducers } from './reducers';
+import { FEATURE_NAME, reducers } from './reducers';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { reducers } from './reducers';
   imports: [
     CommonModule,
     RouterModule.forChild([{ path: '', component: ReduxTodoComponent }]),
-    StoreModule.forFeature('redux', reducers),
+    StoreModule.forFeature(FEATURE_NAME, reducers),
     EffectsModule.forFeature([TodosEffects]),
     AppSharedModule
   ],

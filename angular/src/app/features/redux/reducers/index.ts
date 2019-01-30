@@ -4,8 +4,10 @@ import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/s
 
 import * as fromTodos from './todos.reducer';
 
+export const FEATURE_NAME = 'redux';
+
 export interface AppState extends fromRoot.AppState {
-  redux: ReduxState;
+  [FEATURE_NAME]: ReduxState;
 }
 
 export interface ReduxState {
@@ -16,7 +18,7 @@ export const reducers: ActionReducerMap<ReduxState> = {
   todos: fromTodos.reducer
 };
 
-export const getReduxState = createFeatureSelector<AppState, ReduxState>('redux');
+export const getReduxState = createFeatureSelector<AppState, ReduxState>(FEATURE_NAME);
 
 export const getTodosState = createSelector(getReduxState, state => state.todos);
 
