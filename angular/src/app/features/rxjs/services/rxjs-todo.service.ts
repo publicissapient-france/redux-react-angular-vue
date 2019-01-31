@@ -49,7 +49,7 @@ export class RxjsTodoService {
     });
   }
 
-  add(todo: Todo) {
+  add(todo: Partial<Todo>) {
     this.apiService
       .addTodo(todo)
       .subscribe(t => {

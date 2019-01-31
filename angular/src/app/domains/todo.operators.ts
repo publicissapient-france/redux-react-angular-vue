@@ -2,7 +2,7 @@ import { escapeRegExp } from 'lodash';
 
 import { Todo, TodoStatus, TodoCategory } from './todo.model';
 
-export const todoBuilder = (text: string, done = false): Todo => ({ id: null, text, done });
+export const todoBuilder = (text: string, done = false): Partial<Todo> => ({ text, done });
 
 export const toggleDone = (todo: Todo): Todo => ({ ...todo, done: !todo.done });
 
@@ -14,7 +14,7 @@ export const isTextFree = (todos: Todo[], text: string) => {
 
 export const findByText = (todos: Todo[], text: string) => todos.find(todo => todo.text === text);
 
-export const hiddenCategory = (todos: Todo[], text: string, category: TodoCategory) => {
+export const hiddenCategory = (todos: Todo[], text: string, category: TodoCategory): TodoCategory | void => {
   const todo = findByText(todos, text);
   if (!todo) {
     return;

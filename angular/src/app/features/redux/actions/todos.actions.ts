@@ -30,7 +30,7 @@ export class LoadSuccess implements Action {
 
 export class Add implements Action {
   readonly type = ActionTypes.Add;
-  constructor(public payload: Todo) {}
+  constructor(public payload: Partial<Todo>) {}
 }
 export class AddSuccess implements Action {
   readonly type = ActionTypes.AddSuccess;

@@ -19,5 +19,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UiTodoMessageComponent {
-  @Input() hiddenCategory: TodoCategory;
+  @Input() hiddenCategory: TodoCategory | null = null;
 }

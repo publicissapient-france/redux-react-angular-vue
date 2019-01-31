@@ -11,8 +11,10 @@ export const get = (id: number) => {
   return todos.find(t => t.id === id);
 };
 
-export const add = (todo: Todo): Todo => {
-  const added = { ...todo, id: getId() };
+export const add = (todo: Partial<Todo>): Todo => {
+  const id = getId();
+  const { text = '', done = false } = todo;
+  const added = { id, text, done };
   todos = [added, ...todos];
   return added;
 };

@@ -4,18 +4,18 @@ import { Directive, ElementRef, HostListener, Input, Output, EventEmitter } from
   selector: '[appContentEditable]'
 })
 export class ContentEditableDirective {
-  @Input() appContentEditable: boolean;
+  @Input() appContentEditable = false;
 
-  @Input() appContentEditableClass: string;
+  @Input() appContentEditableClass = '';
 
   @Output() appContentEditableChange = new EventEmitter<string>();
 
   private element: HTMLElement;
 
-  private textContent: string = null;
+  private textContent = '';
 
   private get domTextContent() {
-    return this.element.textContent.trim();
+    return (this.element.textContent || '').trim();
   }
 
   constructor(elementRef: ElementRef) {
@@ -55,7 +55,7 @@ export class ContentEditableDirective {
     if (this.domTextContent !== this.textContent) {
       this.appContentEditableChange.emit(this.domTextContent);
     }
-    this.textContent = null;
+    this.textContent = '';
 
     if (this.appContentEditableClass) {
       this.element.classList.remove(this.appContentEditableClass);

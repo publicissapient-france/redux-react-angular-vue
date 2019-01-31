@@ -10,8 +10,8 @@ import { add, get, getAll, remove, update } from './todos';
 const app = new Koa();
 const router = new Router();
 
-router.put('/todos', (ctx, next) => {
-  const todo: Todo = ctx.request.body;
+router.post('/todos', (ctx, next) => {
+  const todo: Partial<Todo> = ctx.request.body;
   ctx.body = add(todo);
 });
 
@@ -24,7 +24,7 @@ router.get('/todos/:id', (ctx, next) => {
   ctx.body = get(todoId);
 });
 
-router.post('/todos/:id', (ctx, next) => {
+router.put('/todos/:id', (ctx, next) => {
   const todoId: number = +ctx.params.id;
   const todo: Todo = ctx.request.body;
   ctx.body = update({ ...todo, id: todoId });

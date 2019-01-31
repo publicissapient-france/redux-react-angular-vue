@@ -24,12 +24,12 @@ export class ApiService {
     return this.httpClient.get<Todo>(this.getUrl(`todos/${todo.id}`));
   }
 
-  addTodo(todo: Todo) {
-    return this.httpClient.put<Todo>(this.getUrl('todos'), todo);
+  addTodo(todo: Partial<Todo>) {
+    return this.httpClient.post<Todo>(this.getUrl('todos'), todo);
   }
 
   updateTodo(todo: Todo) {
-    return this.httpClient.post<boolean>(this.getUrl(`todos/${todo.id}`), todo);
+    return this.httpClient.put<boolean>(this.getUrl(`todos/${todo.id}`), todo);
   }
 
   removeTodo(todo: Todo) {
