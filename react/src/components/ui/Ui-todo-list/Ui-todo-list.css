@@ -9,24 +9,6 @@
   padding: 0.5rem 0;
 }
 
-.text {
-  flex-grow: 1;
-  margin: 0 0.25rem;
-  padding: 0 0.5rem;
-  border-radius: 3px;
-  line-height: 2rem;
-}
-
-.text--done {
-  text-decoration: line-through;
-  font-style: italic;
-  opacity: 0.3;
-}
-
-.text--edit {
-  background-color: rgba(0,0,0,0.1);
-}
-
 .hello {
   margin: 2rem 0;
   text-align: center;

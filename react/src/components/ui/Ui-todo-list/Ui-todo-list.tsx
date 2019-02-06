@@ -5,6 +5,7 @@ import React, { Component, Fragment } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Todo } from '../../../domains/todo.model';
+import UiTodoTextEditable from '../Ui-todo-text-editable/Ui-todo-text-editable';
 
 export interface IUiTodoListProps {
   todos: Todo[];
@@ -22,23 +23,20 @@ export class UiTodoList extends Component<IUiTodoListProps> {
             { this.props.todos.map(todo => (
               <li key={todo.id} className="list-item">
                 <button onClick={() => this.props.toggleDone(todo)}>
-                  <FontAwesomeIcon icon={todo.done ? 'toggle-off' : 'toggle-on'}></FontAwesomeIcon>
+                  <FontAwesomeIcon icon={todo.done ? 'toggle-off' : 'toggle-on'} />
                 </button>
 
-                <span
-                  className="text">
-                  { todo.text }
-                </span>
+                <UiTodoTextEditable todo={todo} change={this.props.editText} />
 
                 <button onClick={() => this.props.remove(todo)}>
-                  <FontAwesomeIcon icon="trash"></FontAwesomeIcon>
+                  <FontAwesomeIcon icon="trash" />
                 </button>
               </li>
             )) }
           </ul>
          : 
           <div className="hello">
-            <FontAwesomeIcon icon="clipboard-list" size="3x"></FontAwesomeIcon>
+            <FontAwesomeIcon icon="clipboard-list" size="3x" />
           </div>
         }
       </Fragment>
