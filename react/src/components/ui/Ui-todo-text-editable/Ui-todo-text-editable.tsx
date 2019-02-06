@@ -45,7 +45,9 @@ export class UiTodoTextEditable extends Component<ITodoTextEditableProps, ITodoT
   }
 
   stopEdit = () => {
-    this.props.change(this.props.todo, this.domTextContent);
+    if (this.domTextContent !== this.state.textContent) {
+      this.props.change(this.props.todo, this.domTextContent);
+    }
     this.setState({ edit: false, textContent: '' });
   }
 
@@ -54,7 +56,6 @@ export class UiTodoTextEditable extends Component<ITodoTextEditableProps, ITodoT
       if (this.state.edit && this.ref.current) {
         this.ref.current.blur();
       }
-      this.stopEdit();
     }
     if (event.key === 'Escape') {
       if (this.state.edit && this.ref.current) {
