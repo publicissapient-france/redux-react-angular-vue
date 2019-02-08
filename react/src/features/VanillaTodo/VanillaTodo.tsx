@@ -3,8 +3,9 @@ import './VanillaTodo.css';
 import React, { Component, Fragment } from 'react';
 
 import UiTodoList from '../../components/ui/UiTodoList/UiTodoList';
+import UiTodoStatus from '../../components/ui/UiTodoStatus/UiTodoStatus';
 import { Todo } from '../../domains/todo.model';
-import { editText, todoBuilder, toggleDone } from '../../domains/todo.operators';
+import { editText, getStatus, todoBuilder, toggleDone } from '../../domains/todo.operators';
 import { ApiService } from '../../services/api.service';
 
 export interface IVanillaTodoProps {
@@ -44,6 +45,10 @@ export class VanillaTodo extends Component<IVanillaTodoProps> {
     ApiService.removeTodo(todo).then(this.refresh);
   }
 
+  get status() {
+    return getStatus(this.state.todos);
+  }
+
   render() {
     return (
       <Fragment>
@@ -51,8 +56,9 @@ export class VanillaTodo extends Component<IVanillaTodoProps> {
           toggleDone={this.toggleDone}
           remove={this.remove}
           editText={this.editText}
-          todos={this.state.todos}>
-        </UiTodoList>
+          todos={this.state.todos} />
+
+        <UiTodoStatus status={this.status} />
       </Fragment>
     )
   }
