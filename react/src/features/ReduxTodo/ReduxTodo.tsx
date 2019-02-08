@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import './Redux-todo.css';
+import './ReduxTodo.css';
 
 export interface IReduxTodoProps {}
 

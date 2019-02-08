@@ -1,4 +1,4 @@
-import './Ui-todo-text-editable.css';
+import './UiTodoTextEditable.css';
 
 import classNames from 'classnames';
 import React, { Component, Fragment } from 'react';

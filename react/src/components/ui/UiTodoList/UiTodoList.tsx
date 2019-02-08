@@ -1,11 +1,11 @@
-import './Ui-todo-list.css';
+import './UiTodoList.css';
 
 import React, { Component, Fragment } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Todo } from '../../../domains/todo.model';
-import UiTodoTextEditable from '../Ui-todo-text-editable/Ui-todo-text-editable';
+import UiTodoTextEditable from '../UiTodoTextEditable/UiTodoTextEditable';
 
 export interface IUiTodoListProps {
   todos: Todo[];

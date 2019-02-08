@@ -1,8 +1,8 @@
-import './Vanilla-todo.css';
+import './VanillaTodo.css';
 
 import React, { Component, Fragment } from 'react';
 
-import UiTodoList from '../../components/ui/Ui-todo-list/Ui-todo-list';
+import UiTodoList from '../../components/ui/UiTodoList/UiTodoList';
 import { Todo } from '../../domains/todo.model';
 import { editText, todoBuilder, toggleDone } from '../../domains/todo.operators';
 import { ApiService } from '../../services/api.service';
