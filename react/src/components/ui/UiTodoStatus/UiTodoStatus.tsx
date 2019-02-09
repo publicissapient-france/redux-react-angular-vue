@@ -11,15 +11,22 @@ export interface IUiTodoStatusProps {
 }
 
 export class UiTodoStatus extends Component<IUiTodoStatusProps> {
+  get status() {
+    return (
+      <Fragment>
+        <span>{this.props.status.remainCount}</span> /
+        <span>{this.props.status.totalCount}</span>
+      </Fragment>
+    );
+  }
+
+  empty = <FontAwesomeIcon icon="smile-beam" className="happy" />;
+
   render() {
     return (
       this.props.status && this.props.status.totalCount ?
         <div className="status">
-          <span>{ this.props.status.remainCount }</span>
-          /
-          <span>{ this.props.status.totalCount }</span>
-          { !this.props.status.remainCount ?
-            <FontAwesomeIcon icon="smile-beam" className="happy" /> : null }
+          {this.props.status.remainCount ? this.status : this.empty}
         </div> : null
     );
   }

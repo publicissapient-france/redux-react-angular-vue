@@ -18,9 +18,9 @@ export class UiTodoList extends Component<IUiTodoListProps> {
   render() {
     return (
       <Fragment>
-        { this.props.todos!.length ? 
+        {this.props.todos!.length ? 
           <ul className="list">
-            { this.props.todos.map(todo => (
+            {this.props.todos.map(todo => (
               <li key={todo.id} className="list-item">
                 <button onClick={() => this.props.toggleDone(todo)}>
                   <FontAwesomeIcon icon={todo.done ? 'toggle-off' : 'toggle-on'} />
@@ -32,7 +32,7 @@ export class UiTodoList extends Component<IUiTodoListProps> {
                   <FontAwesomeIcon icon="trash" />
                 </button>
               </li>
-            )) }
+            ))}
           </ul>
          : 
           <div className="hello">

@@ -14,15 +14,15 @@ export class Nav extends Component<INavProps> {
   render() {
     return (
       <nav className="nav">
-        { this.pages.map(page => (
+        {this.pages.map(page => (
           <NavLink
             className="nav-link"
             activeClassName="nav-link--active"
             key={page.link}
             to={page.link}>
-            { page.label }
+            {page.label}
           </NavLink>
-        )) }
+        ))}
       </nav>
     );
   }

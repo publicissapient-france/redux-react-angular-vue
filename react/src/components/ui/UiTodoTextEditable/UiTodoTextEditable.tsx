@@ -51,7 +51,7 @@ export class UiTodoTextEditable extends Component<ITodoTextEditableProps, ITodoT
     this.setState({ edit: false, textContent: '' });
   }
 
-  KeyDown = (event: any) => {
+  keyDown = (event: any) => {
     if (event.key === 'Enter') {
       if (this.state.edit && this.ref.current) {
         this.ref.current.blur();
@@ -79,8 +79,8 @@ export class UiTodoTextEditable extends Component<ITodoTextEditableProps, ITodoT
         contentEditable={this.state.edit}
         onClick={this.startEdit}
         onBlur={this.stopEdit}
-        onKeyDown={this.KeyDown}>
-        { this.props.todo.text }
+        onKeyDown={this.keyDown}>
+        {this.props.todo.text}
       </span>
     );
   }

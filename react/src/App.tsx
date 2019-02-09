@@ -1,5 +1,5 @@
 import './App.css';
-import './addons/fontAwesome';
+import './shared/fontAwesome';
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
@@ -15,7 +15,7 @@ class App extends Component {
     return (
       <Router>
         <div className="container">
-          <h1 className="title">{ this.title }</h1>
+          <h1 className="title">{this.title}</h1>
 
           <div className="navbar">
             <Nav></Nav>

@@ -6,7 +6,7 @@ import UiTodoList from '../../components/ui/UiTodoList/UiTodoList';
 import UiTodoStatus from '../../components/ui/UiTodoStatus/UiTodoStatus';
 import { Todo } from '../../domains/todo.model';
 import { editText, getStatus, todoBuilder, toggleDone } from '../../domains/todo.operators';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../shared/ApiService';
 
 export interface IVanillaTodoProps {
   todos: Todo[];
