@@ -1,27 +1,27 @@
 import './UiTodoTextEditable.css';
 
 import classNames from 'classnames';
-import React, { Component, Fragment } from 'react';
+import React, { Component, createRef } from 'react';
 
 import { Todo } from '../../../domains/todo.model';
 
-export interface ITodoTextEditableProps {
+export interface IUiTodoTextEditableProps {
   todo: Todo;
   change: (todo: Todo, text: string) => void;
 }
 
-export interface ITodoTextEditableState {
+export interface IUiTodoTextEditableState {
   edit: boolean;
   textContent: string;
 }
 
-export class UiTodoTextEditable extends Component<ITodoTextEditableProps, ITodoTextEditableState> {
-  state = {
+export class UiTodoTextEditable extends Component<IUiTodoTextEditableProps, IUiTodoTextEditableState> {
+  state: IUiTodoTextEditableState = {
     edit: false,
     textContent: '',
   };
 
-  ref = React.createRef<HTMLSpanElement>();
+  ref = createRef<HTMLSpanElement>();
 
   get domTextContent() {
     if (this.ref && this.ref.current) {
@@ -65,6 +65,12 @@ export class UiTodoTextEditable extends Component<ITodoTextEditableProps, ITodoT
     }
   }
 
+  componentDidMount() {
+    if (this.ref.current) {
+      this.ref.current.textContent = this.props.todo.text;
+    }
+  }
+
   componentDidUpdate() {
     if (this.state.edit && this.ref.current) {
       this.ref.current.focus(); // FIXME: called multiple times...
@@ -80,7 +86,6 @@ export class UiTodoTextEditable extends Component<ITodoTextEditableProps, ITodoT
         onClick={this.startEdit}
         onBlur={this.stopEdit}
         onKeyDown={this.keyDown}>
-        {this.props.todo.text}
       </span>
     );
   }

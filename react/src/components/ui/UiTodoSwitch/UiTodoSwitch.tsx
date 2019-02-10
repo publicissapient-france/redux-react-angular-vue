@@ -20,6 +20,7 @@ export class UiTodoSwitch extends Component<IUiTodoSwitchProps> {
   render() {
     return <div>{this.list.map(item =>
       <button
+        key={item}
         className={this.className(item)}
         onClick={() => this.props.select(item)}>
         {item}
