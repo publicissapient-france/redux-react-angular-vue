@@ -4,17 +4,20 @@ import React, { Component, Fragment } from 'react';
 
 import UiTodoList from '../../components/ui/UiTodoList/UiTodoList';
 import UiTodoStatus from '../../components/ui/UiTodoStatus/UiTodoStatus';
-import { Todo } from '../../domains/todo.model';
-import { editText, getStatus, todoBuilder, toggleDone } from '../../domains/todo.operators';
+import UiTodoSwitch from '../../components/ui/UiTodoSwitch/UiTodoSwitch';
+import { Todo, TodoCategory } from '../../domains/todo.model';
+import { editText, getStatus, todoBuilder, toggleDone, filterByCategoryAndText } from '../../domains/todo.operators';
 import { ApiService } from '../../shared/ApiService';
 
-export interface IVanillaTodoProps {
+export interface IVanillaTodoState {
   todos: Todo[];
+  category: TodoCategory;
 }
 
-export class VanillaTodo extends Component<IVanillaTodoProps> {
-  state: IVanillaTodoProps = {
-    todos: []
+export class VanillaTodo extends Component<{}, IVanillaTodoState> {
+  state: IVanillaTodoState = {
+    todos: [],
+    category: 'all'
   };
 
   componentDidMount() {
@@ -49,6 +52,12 @@ export class VanillaTodo extends Component<IVanillaTodoProps> {
     return getStatus(this.state.todos);
   }
 
+  selectCategory = (category: TodoCategory) => this.setState({ category });
+
+  get todosFiltered() {
+    return filterByCategoryAndText(this.state.todos, this.state.category, '');
+  }
+
   render() {
     return (
       <Fragment>
@@ -56,9 +65,12 @@ export class VanillaTodo extends Component<IVanillaTodoProps> {
           toggleDone={this.toggleDone}
           remove={this.remove}
           editText={this.editText}
-          todos={this.state.todos} />
+          todos={this.todosFiltered} />
 
-        <UiTodoStatus status={this.status} />
+        <div className="bottom">
+          <UiTodoStatus status={this.status} />
+          <UiTodoSwitch category={this.state.category} select={this.selectCategory} />
+        </div>
       </Fragment>
     )
   }

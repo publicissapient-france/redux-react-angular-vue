@@ -20,13 +20,17 @@ export class UiTodoStatus extends Component<IUiTodoStatusProps> {
     );
   }
 
-  empty = <FontAwesomeIcon icon="smile-beam" className="happy" />;
+  get empty() {
+    return this.props.status.remainCount ? null :
+      <FontAwesomeIcon icon="smile-beam" className="happy" />;
+  } 
 
   render() {
     return (
       this.props.status && this.props.status.totalCount ?
         <div className="status">
-          {this.props.status.remainCount ? this.status : this.empty}
+          {this.status}
+          {this.empty}
         </div> : null
     );
   }

@@ -2,10 +2,10 @@ import React, { Component, Fragment } from 'react';
 
 import './ReduxTodo.css';
 
-export interface IReduxTodoProps {}
+export interface IReduxTodoState {}
 
-export class ReduxTodo extends Component<IReduxTodoProps> {
-  state: IReduxTodoProps = {};
+export class ReduxTodo extends Component<{}, IReduxTodoState> {
+  state: IReduxTodoState = {};
 
   render() {
     return <Fragment>

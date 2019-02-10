@@ -1,0 +1,9 @@
+.top {
+  padding-top: 1rem;
+}
+
+.bottom {
+  margin-top: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
