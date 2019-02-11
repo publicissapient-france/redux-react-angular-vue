@@ -14,8 +14,11 @@ export class UiTodoStatus extends Component<IUiTodoStatusProps> {
   get status() {
     return (
       <Fragment>
-        <span>{this.props.status.remainCount}</span> /
-        <span>{this.props.status.totalCount}</span>
+        <span>
+          {this.props.status.remainCount}
+        </span> / <span>
+          {this.props.status.totalCount}
+        </span>
       </Fragment>
     );
   }

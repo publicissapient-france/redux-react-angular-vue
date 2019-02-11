@@ -43,7 +43,7 @@ export class UiTodoAdd extends Component<IUiTodoAddProps> {
         </button>
 
         <input
-          className="text"
+          className="text-add"
           placeholder="What needs to be done?"
           type="text"
           value={this.props.text}

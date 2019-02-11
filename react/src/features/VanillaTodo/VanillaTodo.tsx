@@ -2,13 +2,13 @@ import './VanillaTodo.css';
 
 import React, { Component, Fragment } from 'react';
 
-import UiTodoAdd from '../../components/ui/UiTodoAdd/UiTodoAdd';
-import UiTodoList from '../../components/ui/UiTodoList/UiTodoList';
-import UiTodoStatus from '../../components/ui/UiTodoStatus/UiTodoStatus';
-import UiTodoSwitch from '../../components/ui/UiTodoSwitch/UiTodoSwitch';
+import {
+    UiTodoAdd, UiTodoList, UiTodoMessage, UiTodoStatus, UiTodoSwitch
+} from '../../components/ui';
 import { Todo, TodoCategory } from '../../domains/todo.model';
 import {
-    editText, filterByCategoryAndText, getStatus, isTextFree, todoBuilder, toggleDone
+    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, todoBuilder,
+    toggleDone
 } from '../../domains/todo.operators';
 import { ApiService } from '../../shared/ApiService';
 
@@ -27,6 +27,26 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
     category: 'all'
   };
 
+  get addDisabled() {
+    return !isTextFree(this.state.todos, this.state.text);
+  }
+
+  get hiddenCategory() {
+    return hiddenCategory(this.state.todos, this.state.text, this.state.category);
+  }
+
+  get filter() {
+    return this.state.filterEnabled ? this.state.text : '';
+  }
+
+  get todosFiltered() {
+    return filterByCategoryAndText(this.state.todos, this.state.category, this.filter);
+  }
+
+  get status() {
+    return getStatus(this.state.todos);
+  }
+
   componentDidMount() {
     this.refresh();
   }
@@ -35,16 +55,8 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
     ApiService.getTodos().then(({ data }) => this.setState({ todos: data }));
   }
 
-  get filter() {
-    return this.state.filterEnabled ? this.state.text : '';
-  }
-
   add = (text: string) => {
     ApiService.addTodo(todoBuilder(text)).then(this.refresh);
-  }
-
-  get addDisabled() {
-    return !isTextFree(this.state.todos, this.state.text);
   }
 
   toggleDone = (todo: Todo) => {
@@ -62,20 +74,12 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
   remove = (todo: Todo) => {
     ApiService.removeTodo(todo).then(this.refresh);
   }
-
-  get status() {
-    return getStatus(this.state.todos);
-  }
-
-  selectCategory = (category: TodoCategory) => this.setState({ category });
-
-  get todosFiltered() {
-    return filterByCategoryAndText(this.state.todos, this.state.category, this.filter);
-  }
-
+  
   filterEnabledChange = (filterEnabled: boolean) => this.setState({ filterEnabled });
 
   textChange = (text: string) => this.setState({ text });
+
+  selectCategory = (category: TodoCategory) => this.setState({ category });
 
   render() {
     return (
@@ -88,6 +92,8 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
             textChange={this.textChange}
             addDisabled={this.addDisabled}
             add={this.add} />
+
+          <UiTodoMessage hiddenCategory={this.hiddenCategory} />
         </div>
 
         <UiTodoList
@@ -101,7 +107,7 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
           <UiTodoSwitch category={this.state.category} select={this.selectCategory} />
         </div>
       </Fragment>
-    )
+    );
   }
 }
 
