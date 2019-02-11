@@ -1,0 +1,18 @@
+/*.filter { }*/
+
+.filter--disabled {
+  opacity: 0.3;
+}
+
+.text {
+  width: 60%;
+  min-width: 240px;
+}
+
+.text::placeholder {
+  color: #bbb;
+}
+
+.add[disabled] {
+  opacity: 0.3;
+}
