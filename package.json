@@ -5,9 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "cd ./server && npm start && cd ..",
-    "angular": "cd ./angular && npm start && cd ..",
-    "react": "cd ./react && npm start && cd .."
+
+    "install-server": "cd ./server && npm i && cd ..",
+    "install-angular": "cd ./angular && npm i && cd ..",
+    "install-react": "cd ./react && npm i && cd ..",
+
+    "install-all": "npm run install-server && npm run install-angular && npm run install-react",
+
+    "server": "npm start --prefix ./server",
+    "angular": "npm start --prefix ./angular",
+    "react": "npm start --prefix ./react"
   },
   "repository": {
     "type": "git",
