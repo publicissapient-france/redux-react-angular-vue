@@ -1,10 +1,9 @@
-import './UiTodoStatus.css';
-
 import React, { Component, Fragment } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { TodoStatus } from '../../../domains/todo.model';
+import styles from './UiTodoStatus.module.css';
 
 export interface IUiTodoStatusProps {
   status: TodoStatus;
@@ -25,13 +24,13 @@ export class UiTodoStatus extends Component<IUiTodoStatusProps> {
 
   get empty() {
     return this.props.status.remainCount ? null :
-      <FontAwesomeIcon icon="smile-beam" className="happy" />;
-  } 
+      <FontAwesomeIcon icon="smile-beam" className={styles['happy']} />;
+  }
 
   render() {
     return (
       this.props.status && this.props.status.totalCount ?
-        <div className="status">
+        <div className={styles['status']}>
           {this.status}
           {this.empty}
         </div> : null

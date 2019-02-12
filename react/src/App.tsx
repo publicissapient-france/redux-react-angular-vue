@@ -1,9 +1,9 @@
-import './App.css';
 import './shared/fontAwesome';
 
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 
+import styles from './App.module.css';
 import Nav from './components/Nav/Nav';
 import ReduxTodo from './features/ReduxTodo/ReduxTodo';
 import VanillaTodo from './features/VanillaTodo/VanillaTodo';
@@ -14,10 +14,10 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div className="container">
-          <h1 className="title">{this.title}</h1>
+        <div className={styles['container']}>
+          <h1 className={styles['title']}>{this.title}</h1>
 
-          <div className="navbar">
+          <div className={styles['navbar']}>
             <Nav></Nav>
           </div>
 

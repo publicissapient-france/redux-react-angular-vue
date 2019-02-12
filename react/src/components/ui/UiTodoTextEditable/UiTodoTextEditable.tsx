@@ -1,4 +1,4 @@
-import './UiTodoTextEditable.css';
+import styles from './UiTodoTextEditable.module.css';
 
 import classNames from 'classnames';
 import React, { Component, createRef } from 'react';
@@ -32,9 +32,9 @@ export class UiTodoTextEditable extends Component<IUiTodoTextEditableProps, IUiT
   }
 
   get className() {
-    return classNames('text', {
-      'text--done': this.props.todo.done,
-      'text--edit': this.state.edit,
+    return classNames(styles['text'], {
+      [styles['text--done']]: this.props.todo.done,
+      [styles['text--edit']]: this.state.edit,
     });
   }
 

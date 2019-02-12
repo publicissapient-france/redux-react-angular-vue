@@ -1,9 +1,8 @@
-import './UiTodoSwitch.css';
-
 import classNames from 'classnames';
 import React, { Component } from 'react';
 
 import { TodoCategory } from '../../../domains/todo.model';
+import styles from './UiTodoSwitch.module.css';
 
 export interface IUiTodoSwitchProps {
   category: TodoCategory;
@@ -14,7 +13,9 @@ export class UiTodoSwitch extends Component<IUiTodoSwitchProps> {
   list: TodoCategory[] = ['all', 'active', 'completed'];
 
   className(item: TodoCategory) {
-    return classNames('button', { 'button--active': this.props.category === item });
+    return classNames(styles['button'], {
+      [styles['button--active']]: this.props.category === item
+    });
   }
 
   render() {

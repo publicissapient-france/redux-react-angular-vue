@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import './Nav.css';
+import styles from './Nav.module.css';
 
 export interface INavProps {}
 
@@ -13,11 +13,11 @@ export class Nav extends Component<INavProps> {
 
   render() {
     return (
-      <nav className="nav">
+      <nav className={styles['nav']}>
         {this.pages.map(page => (
           <NavLink
-            className="nav-link"
-            activeClassName="nav-link--active"
+            className={styles['nav-link']}
+            activeClassName={styles['nav-link--active']}
             key={page.link}
             to={page.link}>
             {page.label}

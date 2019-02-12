@@ -1,9 +1,9 @@
-import './UiTodoAdd.css';
-
 import classNames from 'classnames';
 import React, { ChangeEvent, Component, KeyboardEvent } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import styles from './UiTodoAdd.module.css';
 
 export interface IUiTodoAddProps {
   filterEnabled: boolean;
@@ -30,7 +30,9 @@ export class UiTodoAdd extends Component<IUiTodoAddProps> {
   emitAdd = () => this.props.add(this.props.text);
 
   get filterClassName() {
-    return classNames('filter', { 'filter--disabled': !this.props.filterEnabled });
+    return classNames(styles['filter'], {
+      [styles['filter--disabled']]: !this.props.filterEnabled
+    });
   }
 
   render() {
@@ -43,7 +45,7 @@ export class UiTodoAdd extends Component<IUiTodoAddProps> {
         </button>
 
         <input
-          className="text-add"
+          className={styles['text']}
           placeholder="What needs to be done?"
           type="text"
           value={this.props.text}
@@ -51,7 +53,7 @@ export class UiTodoAdd extends Component<IUiTodoAddProps> {
           onKeyDown={this.keyDown} />
 
         <button
-          className="add"
+          className={styles['add']}
           disabled={this.props.addDisabled}
           onClick={this.emitAdd}>
           <FontAwesomeIcon icon="plus" />

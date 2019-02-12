@@ -4,12 +4,12 @@
   opacity: 0.3;
 }
 
-.text-add {
+.text {
   width: 60%;
   min-width: 240px;
 }
 
-.text-add::placeholder {
+.text::placeholder {
   color: #bbb;
 }
 

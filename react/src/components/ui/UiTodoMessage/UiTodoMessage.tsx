@@ -1,10 +1,9 @@
-import './UiTodoMessage.css';
-
 import React, { Component, Fragment } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { TodoCategory } from '../../../domains/todo.model';
+import styles from './UiTodoMessage.module.css';
 
 export interface IUiTodoMessageProps {
   hiddenCategory: TodoCategory | void;
@@ -13,13 +12,11 @@ export interface IUiTodoMessageProps {
 export class UiTodoMessage extends Component<IUiTodoMessageProps> {
   render() {
     return (
-      <p className="message">
+      <p className={styles['message']}>
         {this.props.hiddenCategory ?
           <Fragment>
-            <FontAwesomeIcon icon="exclamation-triangle" />
-            This task appears in the
-            "<span className="category">{this.props.hiddenCategory}</span>"
-            tab!
+            <FontAwesomeIcon icon="exclamation-triangle" /> This task appears in the
+            "<span className={styles['category']}>{this.props.hiddenCategory}</span>" tab!
           </Fragment>  : null}
         &nbsp;
       </p>

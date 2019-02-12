@@ -1,11 +1,10 @@
-import './UiTodoList.css';
-
 import React, { Component, Fragment } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Todo } from '../../../domains/todo.model';
 import UiTodoTextEditable from '../UiTodoTextEditable/UiTodoTextEditable';
+import styles from './UiTodoList.module.css';
 
 export interface IUiTodoListProps {
   todos: Todo[];
@@ -18,10 +17,10 @@ export class UiTodoList extends Component<IUiTodoListProps> {
   render() {
     return (
       <Fragment>
-        {this.props.todos!.length ? 
-          <ul className="list">
+        {this.props.todos!.length ?
+          <ul className={styles['list']}>
             {this.props.todos.map(todo => (
-              <li key={todo.id} className="list-item">
+              <li key={todo.id} className={styles['list-item']}>
                 <button onClick={() => this.props.toggleDone(todo)}>
                   <FontAwesomeIcon icon={todo.done ? 'toggle-off' : 'toggle-on'} />
                 </button>
@@ -34,8 +33,8 @@ export class UiTodoList extends Component<IUiTodoListProps> {
               </li>
             ))}
           </ul>
-         : 
-          <div className="hello">
+         :
+          <div className={styles['hello']}>
             <FontAwesomeIcon icon="clipboard-list" size="3x" />
           </div>
         }
