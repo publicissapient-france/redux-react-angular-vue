@@ -88,7 +88,6 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
             textChange={this.textChange}
             addDisabled={this.addDisabled}
             add={this.add} />
-
           <UiTodoMessage hiddenCategory={this.hiddenCategory} />
         </div>
 

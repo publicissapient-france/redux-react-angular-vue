@@ -15,10 +15,18 @@ export interface IUiTodoAddProps {
 }
 
 export class UiTodoAdd extends Component<IUiTodoAddProps> {
-  emitFilterEnabled = () => this.props.filterEnabledChange(!this.props.filterEnabled);
+  emitFilterEnabled = () => {
+    this.props.filterEnabledChange(!this.props.filterEnabled);
+  };
 
   emitText = (event: ChangeEvent<HTMLInputElement>) => {
     this.props.textChange(event.target.value);
+  };
+
+  emitAdd = () => {
+    if (!this.props.addDisabled) {
+      this.props.add(this.props.text);
+    }
   };
 
   keyDown = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -26,8 +34,6 @@ export class UiTodoAdd extends Component<IUiTodoAddProps> {
       this.emitAdd();
     }
   }
-
-  emitAdd = () => this.props.add(this.props.text);
 
   get filterClassName() {
     return classNames(styles['filter'], {
