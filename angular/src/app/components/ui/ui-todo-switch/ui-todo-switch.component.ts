@@ -23,7 +23,6 @@ export class UiTodoSwitchComponent {
   list: TodoCategory[] = ['all', 'active', 'completed'];
 
   select(category: TodoCategory) {
-    this.category = category;
     this.categoryChange.emit(category);
   }
 }

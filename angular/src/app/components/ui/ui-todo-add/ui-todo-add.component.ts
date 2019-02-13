@@ -42,13 +42,11 @@ export class UiTodoAddComponent {
   @Output() add = new EventEmitter<string>();
 
   emitFilterEnabled() {
-    this.filterEnabled = !this.filterEnabled;
-    this.filterEnabledChange.emit(this.filterEnabled);
+    this.filterEnabledChange.emit(!this.filterEnabled);
   }
 
   emitText(text: string) {
-    this.text = text;
-    this.textChange.emit(this.text);
+    this.textChange.emit(text);
   }
 
   emitAdd() {
