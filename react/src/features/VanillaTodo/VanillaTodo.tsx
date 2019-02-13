@@ -53,6 +53,7 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
 
   add = (text: string) => {
     ApiService.addTodo(todoBuilder(text)).then(this.refresh);
+    this.setState({ text: '' });
   }
 
   toggleDone = (todo: Todo) => {

@@ -10,6 +10,14 @@ export interface IUiTodoStatusProps {
 }
 
 export class UiTodoStatus extends Component<IUiTodoStatusProps> {
+  get hasTotal() {
+    return !!this.props.status!.totalCount;
+  }
+
+  get hasRemain() {
+    return !!this.props.status!.remainCount;
+  }
+
   get status() {
     return (
       <Fragment>
@@ -23,17 +31,16 @@ export class UiTodoStatus extends Component<IUiTodoStatusProps> {
   }
 
   get empty() {
-    return this.props.status.remainCount ? null :
-      <FontAwesomeIcon icon="smile-beam" className={styles['happy']} />;
+    return (
+      <FontAwesomeIcon icon="smile-beam" className={styles['happy']} />
+    );
   }
 
   render() {
     return (
-      this.props.status && this.props.status.totalCount ?
-        <div className={styles['status']}>
-          {this.status}
-          {this.empty}
-        </div> : null
+      <div className={styles['status']}>
+        {this.hasTotal ? (this.hasRemain ? this.status : this.empty) : null}
+      </div>
     );
   }
 }
