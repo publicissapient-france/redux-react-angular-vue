@@ -1,11 +1,11 @@
-# redux-angular-react
+# redux-react-angular-vue
 
-Comparing the implementations of a "Todo List" with and without Redux, in Angular and React
+Comparing the implementations of a "Todo List" with and without Redux, in React, Angular and Vue.
 
 ## Try
 
 ```bash
-git clone https://github.com/avine/redux-angular-react.git
+git clone https://github.com/xebia-france/redux-react-angular-vue.git
 
 # First, install all dependencies
 npm run install-all

@@ -1,5 +1,5 @@
 {
-  "name": "redux-angular-react",
+  "name": "redux-react-angular-vue",
   "version": "1.0.0",
   "description": "Comparing the implementations of a \"Todo List\" with and without Redux, in Angular and React",
   "main": "index.js",
@@ -20,7 +20,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/avine/redux-angular-react.git"
+    "url": "git+https://github.com/xebia-france/redux-react-angular-vue.git"
   },
   "keywords": [
     "redux",
@@ -30,7 +30,7 @@
   "author": "Stéphane Francel <contact@avine.io>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/avine/redux-angular-react/issues"
+    "url": "https://github.com/avine/redux-react-angular-vue/issues"
   },
-  "homepage": "https://github.com/avine/redux-angular-react#readme"
+  "homepage": "https://github.com/avine/redux-react-angular-vue#readme"
 }
