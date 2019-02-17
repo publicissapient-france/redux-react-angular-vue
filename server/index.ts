@@ -4,8 +4,7 @@ import Router from 'koa-router';
 
 import cors from '@koa/cors';
 
-import { Todo } from './model';
-import { add, get, getAll, remove, update } from './todos';
+import { add, get, getAll, remove, Todo, update } from './domains';
 
 const app = new Koa();
 const router = new Router();

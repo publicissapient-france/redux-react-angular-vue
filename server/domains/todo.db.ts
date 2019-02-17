@@ -1,4 +1,4 @@
-import { Todo } from "./model";
+import { Todo } from './todo.model';
 
 let id = 0;
 const getId = () => ++id;
