@@ -14,7 +14,9 @@
 
     "server": "npm start --prefix ./server",
     "angular": "npm start --prefix ./angular",
-    "react": "npm start --prefix ./react"
+    "react": "npm start --prefix ./react",
+
+    "start": "npm run server & npm run angular & npm run react"
   },
   "repository": {
     "type": "git",

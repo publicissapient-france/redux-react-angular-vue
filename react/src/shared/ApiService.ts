@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { Todo } from '../domains/todo.model';
+import { Todo } from '../domains';
 
 const apiBaseUrl = 'http://127.0.0.1:3100/';
 

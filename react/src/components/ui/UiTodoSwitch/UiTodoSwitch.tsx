@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import React, { Component } from 'react';
 
-import { TodoCategory } from '../../../domains/todo.model';
+import { TodoCategory } from '../../../domains';
 import styles from './UiTodoSwitch.module.css';
 
 export interface IUiTodoSwitchProps {

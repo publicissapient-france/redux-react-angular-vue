@@ -3,7 +3,7 @@ import styles from './UiTodoTextEditable.module.css';
 import classNames from 'classnames';
 import React, { Component, createRef } from 'react';
 
-import { Todo } from '../../../domains/todo.model';
+import { Todo } from '../../../domains';
 
 export interface IUiTodoTextEditableProps {
   todo: Todo;

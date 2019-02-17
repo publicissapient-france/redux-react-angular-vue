@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { TodoCategory } from '../../../domains/todo.model';
+import { TodoCategory } from '../../../domains';
 import styles from './UiTodoMessage.module.css';
 
 export interface IUiTodoMessageProps {

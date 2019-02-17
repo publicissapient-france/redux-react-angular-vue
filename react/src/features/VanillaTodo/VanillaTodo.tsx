@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 
-import { UiTodoAdd, UiTodoList, UiTodoMessage, UiTodoStatus, UiTodoSwitch } from '../../components/ui';
-import { Todo, TodoCategory } from '../../domains/todo.model';
 import {
-    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, todoBuilder, toggleDone
-} from '../../domains/todo.operators';
+    UiTodoAdd, UiTodoList, UiTodoMessage, UiTodoStatus, UiTodoSwitch
+} from '../../components/ui';
+import {
+    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, Todo, todoBuilder,
+    TodoCategory, toggleDone
+} from '../../domains';
 import { ApiService } from '../../shared/ApiService';
 import styles from './VanillaTodo.module.css';
 

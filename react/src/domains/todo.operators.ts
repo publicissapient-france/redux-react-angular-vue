@@ -1,6 +1,6 @@
 import { escapeRegExp } from 'lodash';
 
-import { Todo, TodoStatus, TodoCategory } from './todo.model';
+import { Todo, TodoStatus, TodoCategory } from './todo.models';
 
 export const todoBuilder = (text: string, done = false): Partial<Todo> => ({ text, done });
 

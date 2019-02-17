@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { TodoStatus } from '../../../domains/todo.model';
+import { TodoStatus } from '../../../domains';
 import styles from './UiTodoStatus.module.css';
 
 export interface IUiTodoStatusProps {
