@@ -4,7 +4,7 @@ import { AppState } from 'App/reducers';
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
-import * as todosActions from '../../actions/todos.actions';
+import * as todosActions from '../../actions/todo.actions';
 import { getCategory } from '../../reducers';
 
 @Component({

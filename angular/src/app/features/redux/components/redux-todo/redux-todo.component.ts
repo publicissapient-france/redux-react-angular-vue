@@ -3,7 +3,7 @@ import { AppState } from 'App/reducers';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as todosActions from '../../actions/todos.actions';
+import * as todosActions from '../../actions/todo.actions';
 
 @Component({
   selector: 'app-redux-todo',

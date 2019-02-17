@@ -4,7 +4,7 @@ import { map, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import * as todosActions from '../actions/todos.actions';
+import * as todosActions from '../actions/todo.actions';
 
 @Injectable()
 export class TodosEffects {

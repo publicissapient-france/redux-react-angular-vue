@@ -4,7 +4,7 @@ import { filterByCategoryAndText, hiddenCategory, isTextFree } from 'App/domains
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createSelector } from '@ngrx/store';
 
-import { ActionsUnion, ActionTypes } from '../actions/todos.actions';
+import { ActionsUnion, ActionTypes } from '../actions/todo.actions';
 
 export interface State extends EntityState<Todo> {
   text: string;
@@ -53,30 +53,30 @@ export function reducer(state = initialState, action: ActionsUnion): State {
 
 const { selectAll } = adapter.getSelectors();
 
-export const getTodos = selectAll;
+export const _getTodos = selectAll;
 
-export const getText = (state: State) => state.text;
+export const _getText = (state: State) => state.text;
 
-export const getCategory = (state: State) => state.category;
+export const _getCategory = (state: State) => state.category;
 
-export const getFilterEnabled = (state: State) => state.filterEnabled;
+export const _getFilterEnabled = (state: State) => state.filterEnabled;
 
-export const getFilter = createSelector(
-  getText, getFilterEnabled,
+export const _getFilter = createSelector(
+  _getText, _getFilterEnabled,
   (text, filterEnabled) => filterEnabled ? text : ''
 );
 
-export const getTodosFiltered = createSelector(
-  getTodos, getCategory, getFilter,
+export const _getTodosFiltered = createSelector(
+  _getTodos, _getCategory, _getFilter,
   (todos, category, filter) => filterByCategoryAndText(todos, category, filter)
 );
 
-export const getIsTextFree = createSelector(
-  getTodos, getText,
+export const _getIsTextFree = createSelector(
+  _getTodos, _getText,
   (todos, text) => isTextFree(todos, text)
 );
 
-export const getHiddenCategory = createSelector(
-  getTodos, getText, getCategory,
+export const _getHiddenCategory = createSelector(
+  _getTodos, _getText, _getCategory,
   (todos, text, category) => hiddenCategory(todos, text, category)
 );
