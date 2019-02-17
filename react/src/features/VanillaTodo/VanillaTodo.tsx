@@ -1,18 +1,14 @@
 import React, { Component, Fragment } from 'react';
 
+import { UiTodoAdd, UiTodoList, UiTodoStatus, UiTodoSwitch } from '../../components/ui';
 import {
-    UiTodoAdd, UiTodoList, UiTodoMessage, UiTodoStatus, UiTodoSwitch
-} from '../../components/ui';
-import {
-    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, Todo, todoBuilder,
-    TodoCategory, toggleDone
+    filterByCategory, getStatus, Todo, todoBuilder, TodoCategory, toggleDone
 } from '../../domains';
 import { ApiService } from '../../shared/ApiService';
 import styles from './VanillaTodo.module.css';
 
 export interface IVanillaTodoState {
   todos: Todo[];
-  filterEnabled: boolean;
   text: string;
   category: TodoCategory;
 }
@@ -20,25 +16,12 @@ export interface IVanillaTodoState {
 export class VanillaTodo extends Component<{}, IVanillaTodoState> {
   state: IVanillaTodoState = {
     todos: [],
-    filterEnabled: false,
     text: '',
     category: 'all'
   };
 
-  get addDisabled() {
-    return !isTextFree(this.state.todos, this.state.text);
-  }
-
-  get hiddenCategory() {
-    return hiddenCategory(this.state.todos, this.state.text, this.state.category);
-  }
-
-  get filter() {
-    return this.state.filterEnabled ? this.state.text : '';
-  }
-
   get todosFiltered() {
-    return filterByCategoryAndText(this.state.todos, this.state.category, this.filter);
+    return filterByCategory(this.state.todos, this.state.category);
   }
 
   get status() {
@@ -62,19 +45,9 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
     ApiService.updateTodo(toggleDone(todo)).then(this.refresh);
   }
 
-  editText = (todo: Todo, text: string) => {
-    if (text) {
-      ApiService.updateTodo(editText(todo, text)).then(this.refresh);
-    } else {
-      this.remove(todo);
-    }
-  }
-
   remove = (todo: Todo) => {
     ApiService.removeTodo(todo).then(this.refresh);
   }
-
-  filterEnabledChange = (filterEnabled: boolean) => this.setState({ filterEnabled });
 
   textChange = (text: string) => this.setState({ text });
 
@@ -85,19 +58,14 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
       <Fragment>
         <div className={styles['top']}>
           <UiTodoAdd
-            filterEnabled={this.state.filterEnabled}
-            filterEnabledChange={this.filterEnabledChange}
             text={this.state.text}
             textChange={this.textChange}
-            addDisabled={this.addDisabled}
             add={this.add} />
-          <UiTodoMessage hiddenCategory={this.hiddenCategory} />
         </div>
 
         <UiTodoList
           toggleDone={this.toggleDone}
           remove={this.remove}
-          editText={this.editText}
           todos={this.todosFiltered} />
 
         <div className={styles['bottom']}>

@@ -1,19 +1,24 @@
+import classNames from 'classnames';
 import React, { Component, Fragment } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { Todo } from '../../../domains';
-import UiTodoTextEditable from '../UiTodoTextEditable/UiTodoTextEditable';
 import styles from './UiTodoList.module.css';
 
 export interface IUiTodoListProps {
   todos: Todo[];
   toggleDone: (todo: Todo) => void;
-  editText: (todo: Todo, text: string) => void;
   remove: (todo: Todo) => void;
 }
 
 export class UiTodoList extends Component<IUiTodoListProps> {
+  className(todo: Todo) {
+    return classNames(styles['text'], {
+      [styles['text--done']]: todo.done
+    });
+  }
+
   render() {
     return (
       <Fragment>
@@ -25,7 +30,10 @@ export class UiTodoList extends Component<IUiTodoListProps> {
                   <FontAwesomeIcon icon={todo.done ? 'toggle-off' : 'toggle-on'} />
                 </button>
 
-                <UiTodoTextEditable todo={todo} change={this.props.editText} />
+                <span
+                  className={this.className(todo)}>
+                  {todo.text}
+                </span>
 
                 <button onClick={() => this.props.remove(todo)}>
                   <FontAwesomeIcon icon="trash" />
