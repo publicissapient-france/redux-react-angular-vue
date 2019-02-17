@@ -1,5 +1,5 @@
 import {
-    filterByCategoryAndText, hiddenCategory, isTextFree, Todo, TodoCategory
+  filterByCategory, Todo, TodoCategory
 } from 'App/domains';
 import { ApiService } from 'App/services/api.service';
 import { BehaviorSubject, combineLatest } from 'rxjs';
@@ -20,25 +20,8 @@ export class RxjsTodoService {
   private category: TodoCategory = 'all';
   category$ = new BehaviorSubject<TodoCategory>(this.category);
 
-  private filterEnabled = false;
-  filterEnabled$ = new BehaviorSubject<boolean>(this.filterEnabled);
-
-  filter$ = combineLatest(this.text$, this.filterEnabled$).pipe(
-    map(([text, filterEnabled]) => filterEnabled ? text : '')
-  );
-
-  todosFiltered$ = combineLatest(this.todos$, this.category$, this.filter$).pipe(
-    map(([todos, category, filter]) => filterByCategoryAndText(todos, category, filter))
-  );
-
-  isTextFree$ = combineLatest(this.todos$, this.text$).pipe(
-    map(([todos, text]) => isTextFree(todos, text))
-  );
-
-  hiddenCategory$ = combineLatest(this.todos$, this.text$, this.category$).pipe(
-    map(([todos, text, category]) => {
-      return hiddenCategory(todos, text, category);
-    })
+  todosFiltered$ = combineLatest(this.todos$, this.category$).pipe(
+    map(([todos, category]) => filterByCategory(todos, category))
   );
 
   constructor(private apiService: ApiService) { }
@@ -98,10 +81,5 @@ export class RxjsTodoService {
   setCategory(category: TodoCategory) {
     this.category = category;
     this.category$.next(category);
-  }
-
-  setFilterEnabled(filterEnabled: boolean) {
-    this.filterEnabled = filterEnabled;
-    this.filterEnabled$.next(filterEnabled);
   }
 }

@@ -13,10 +13,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 
         <span
           class="text"
-          [class.text--done]="todo.done"
-          [appContentEditable]="!todo.done"
-          appContentEditableClass="text--edit"
-          (appContentEditableChange)="emiEditText(todo, $event)">
+          [class.text--done]="todo.done">
           {{ todo.text }}
         </span>
 
@@ -39,15 +36,10 @@ export class UiTodoListComponent {
   @Input() todos: Todo[] = [];
 
   @Output() toggleDone = new EventEmitter<Todo>();
-  @Output() editText = new EventEmitter<{ todo: Todo; text: string; }>();
   @Output() remove = new EventEmitter<Todo>();
 
   emitToggleDone(todo: Todo) {
     this.toggleDone.emit(todo);
-  }
-
-  emiEditText(todo: Todo, text: string) {
-    this.editText.emit({ todo, text });
   }
 
   emitRemove(todo: Todo) {

@@ -1,4 +1,4 @@
-import { editText, Todo, toggleDone } from 'App/domains';
+import { Todo, toggleDone } from 'App/domains';
 import { AppState } from 'App/reducers';
 
 import { Component } from '@angular/core';
@@ -13,8 +13,7 @@ import { getTodosFiltered } from '../../reducers';
     <app-ui-todo-list
       [todos]="todosFiltered$ | async"
       (toggleDone)="toggleDone($event)"
-      (remove)="remove($event)"
-      (editText)="editText($event)">
+      (remove)="remove($event)">
     </app-ui-todo-list>
   `
 })
@@ -29,13 +28,5 @@ export class ReduxTodoListComponent {
 
   remove(todo: Todo) {
     this.store.dispatch(new todosActions.Remove(todo));
-  }
-
-  editText({ todo, text }: { todo: Todo; text: string; }) {
-    if (text) {
-      this.store.dispatch(new todosActions.Update(editText(todo, text)));
-    } else {
-      this.remove(todo);
-    }
   }
 }

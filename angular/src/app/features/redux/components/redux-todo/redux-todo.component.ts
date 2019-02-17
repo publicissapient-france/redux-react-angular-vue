@@ -10,7 +10,6 @@ import * as todosActions from '../../actions/todo.actions';
   template: `
     <div class="top">
       <app-redux-todo-add></app-redux-todo-add>
-      <app-redux-todo-message></app-redux-todo-message>
     </div>
 
     <app-redux-todo-list></app-redux-todo-list>

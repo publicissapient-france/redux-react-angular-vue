@@ -6,7 +6,6 @@ import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { ReduxTodoMessageComponent } from './components/redux-todo-message/redux-todo-message.component';
 import { ReduxTodoAddComponent } from './components/redux-todo-add/redux-todo-add.component';
 import { ReduxTodoListComponent } from './components/redux-todo-list/redux-todo-list.component';
 import { ReduxTodoStatusComponent } from './components/redux-todo-status/redux-todo-status.component';
@@ -19,7 +18,6 @@ import { FEATURE_NAME, reducers } from './reducers';
   declarations: [
     ReduxTodoComponent,
     ReduxTodoAddComponent,
-    ReduxTodoMessageComponent,
     ReduxTodoListComponent,
     ReduxTodoStatusComponent,
     ReduxTodoSwitchComponent

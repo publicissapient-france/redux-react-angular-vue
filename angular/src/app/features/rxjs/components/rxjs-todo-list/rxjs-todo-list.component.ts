@@ -1,4 +1,4 @@
-import { editText, Todo, toggleDone } from 'App/domains';
+import { Todo, toggleDone } from 'App/domains';
 
 import { Component } from '@angular/core';
 
@@ -10,8 +10,7 @@ import { RxjsTodoService } from '../../services/rxjs-todo.service';
     <app-ui-todo-list
       [todos]="todoService.todosFiltered$ | async"
       (toggleDone)="toggleDone($event)"
-      (remove)="remove($event)"
-      (editText)="editText($event)">
+      (remove)="remove($event)">
     </app-ui-todo-list>
   `
 })
@@ -24,13 +23,5 @@ export class RxjsTodoListComponent {
 
   remove(todo: Todo) {
     this.todoService.remove(todo);
-  }
-
-  editText({ todo, text }: { todo: Todo; text: string; }) {
-    if (text) {
-      this.todoService.update(editText(todo, text));
-    } else {
-      this.remove(todo);
-    }
   }
 }
