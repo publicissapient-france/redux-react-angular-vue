@@ -39,7 +39,8 @@ export class UiTodoStatus extends Component<IUiTodoStatusProps> {
   render() {
     return (
       <div className={styles['status']}>
-        {this.hasTotal ? (this.hasRemain ? this.status : this.empty) : null}
+        {this.hasTotal ? this.status : null}
+        {this.hasTotal && !this.hasRemain ? this.empty : null}
       </div>
     );
   }
