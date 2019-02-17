@@ -1,5 +1,4 @@
-import { Todo } from 'App/domains/todo.model';
-import { editText, toggleDone } from 'App/domains/todo.operators';
+import { editText, Todo, toggleDone } from 'App/domains';
 import { AppState } from 'App/reducers';
 
 import { Component } from '@angular/core';

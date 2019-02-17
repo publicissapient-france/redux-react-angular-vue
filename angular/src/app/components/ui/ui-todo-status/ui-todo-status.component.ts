@@ -1,4 +1,4 @@
-import { TodoStatus } from 'App/domains/todo.model';
+import { TodoStatus } from 'App/domains';
 
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 

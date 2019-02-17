@@ -1,4 +1,4 @@
-import { Todo, TodoCategory } from 'App/domains/todo.model';
+import { Todo, TodoCategory } from 'App/domains';
 
 import { Action } from '@ngrx/store';
 

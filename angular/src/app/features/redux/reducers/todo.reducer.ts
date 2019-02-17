@@ -1,5 +1,6 @@
-import { Todo, TodoCategory } from 'App/domains/todo.model';
-import { filterByCategoryAndText, hiddenCategory, isTextFree } from 'App/domains/todo.operators';
+import {
+    filterByCategoryAndText, hiddenCategory, isTextFree, Todo, TodoCategory
+} from 'App/domains';
 
 import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
 import { createSelector } from '@ngrx/store';

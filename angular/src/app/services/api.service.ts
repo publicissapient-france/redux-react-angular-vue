@@ -1,4 +1,4 @@
-import { Todo } from 'App/domains/todo.model';
+import { Todo } from 'App/domains';
 import { environment } from 'src/environments/environment';
 
 import { HttpClient } from '@angular/common/http';

@@ -1,7 +1,7 @@
-import { Todo, TodoCategory } from 'App/domains/todo.model';
 import {
-    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, todoBuilder, toggleDone
-} from 'App/domains/todo.operators';
+    editText, filterByCategoryAndText, getStatus, hiddenCategory, isTextFree, Todo, todoBuilder,
+    TodoCategory, toggleDone
+} from 'App/domains';
 import { ApiService } from 'App/services/api.service';
 
 import { Component, OnInit } from '@angular/core';

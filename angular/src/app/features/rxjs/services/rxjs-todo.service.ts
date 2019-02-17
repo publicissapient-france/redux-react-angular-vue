@@ -1,5 +1,6 @@
-import { Todo, TodoCategory } from 'App/domains/todo.model';
-import { filterByCategoryAndText, hiddenCategory, isTextFree } from 'App/domains/todo.operators';
+import {
+    filterByCategoryAndText, hiddenCategory, isTextFree, Todo, TodoCategory
+} from 'App/domains';
 import { ApiService } from 'App/services/api.service';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';

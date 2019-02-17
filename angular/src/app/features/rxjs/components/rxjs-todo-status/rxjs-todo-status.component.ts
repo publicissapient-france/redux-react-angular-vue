@@ -1,4 +1,4 @@
-import { getStatus } from 'App/domains/todo.operators';
+import { getStatus } from 'App/domains';
 
 import { Component } from '@angular/core';
 

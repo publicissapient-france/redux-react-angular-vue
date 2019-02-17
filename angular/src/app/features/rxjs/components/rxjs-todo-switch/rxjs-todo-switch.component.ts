@@ -1,4 +1,4 @@
-import { TodoCategory } from 'App/domains/todo.model';
+import { TodoCategory } from 'App/domains';
 
 import { Component } from '@angular/core';
 

@@ -1,4 +1,4 @@
-import { Todo } from 'App/domains/todo.model';
+import { Todo } from 'App/domains';
 
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 

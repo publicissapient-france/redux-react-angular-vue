@@ -1,4 +1,4 @@
-import { todoBuilder } from 'App/domains/todo.operators';
+import { todoBuilder } from 'App/domains';
 import { AppState } from 'App/reducers';
 
 import { Component } from '@angular/core';
