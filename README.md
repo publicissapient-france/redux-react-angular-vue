@@ -2,7 +2,7 @@
 
 Comparing the implementations of a "Todo List" with and without Redux, in React, Angular and Vue.
 
-## Try
+## Usage
 
 ```bash
 git clone https://github.com/xebia-france/redux-react-angular-vue.git

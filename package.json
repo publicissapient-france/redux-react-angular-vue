@@ -1,7 +1,7 @@
 {
   "name": "redux-react-angular-vue",
   "version": "1.0.0",
-  "description": "Comparing the implementations of a \"Todo List\" with and without Redux, in Angular and React",
+  "description": "Comparing the implementations of a \"Todo List\" with and without Redux, in React, Angular and Vue.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -25,7 +25,8 @@
   "keywords": [
     "redux",
     "angular",
-    "react"
+    "react",
+    "vue"
   ],
   "author": "Stéphane Francel <contact@avine.io>",
   "license": "MIT",
