@@ -13,10 +13,6 @@ export class RestService {
     return axios.get<Todo[]>(this.getUrl('todos'));
   }
 
-  static getTodo(todo: Todo) {
-    return axios.get<Todo>(this.getUrl(`todos/${todo.id}`));
-  }
-
   static addTodo(todo: Partial<Todo>) {
     return axios.post<Todo>(this.getUrl('todos'), todo);
   }
