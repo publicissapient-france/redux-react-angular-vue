@@ -1,19 +1,18 @@
-import React, { Component, Fragment } from 'react';
+import React from 'react';
+import {Provider} from "react-redux";
+import reducer from "./reducer"
 
 import styles from './ReduxTodo.module.css';
+import {createStore} from "redux";
 
-export interface IReduxTodoState {}
+const store = createStore(reducer);
 
-export class ReduxTodo extends Component<{}, IReduxTodoState> {
-  state: IReduxTodoState = {};
-
-  render() {
-    return (
-      <Fragment>
-        <p className={styles['center']}>ReduxTodo...</p>
-      </Fragment>
-    );
-  }
-}
+const ReduxTodo = () => {
+  return (
+    <Provider store={store}>
+      <p className={styles['center']}>ReduxTodo...</p>
+    </Provider>
+  );
+};
 
 export default ReduxTodo;
