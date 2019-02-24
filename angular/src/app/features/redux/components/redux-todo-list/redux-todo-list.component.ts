@@ -5,20 +5,20 @@ import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
 import * as todosActions from '../../actions/todo.actions';
-import { getTodosFiltered } from '../../reducers';
+import { getTodos } from '../../reducers';
 
 @Component({
   selector: 'app-redux-todo-list',
   template: `
     <app-ui-todo-list
-      [todos]="todosFiltered$ | async"
+      [todos]="todos$ | async"
       (toggleDone)="toggleDone($event)"
       (remove)="remove($event)">
     </app-ui-todo-list>
   `
 })
 export class ReduxTodoListComponent {
-  todosFiltered$ = this.store.pipe(select(getTodosFiltered));
+  todos$ = this.store.pipe(select(getTodos));
 
   constructor(private store: Store<AppState>) { }
 

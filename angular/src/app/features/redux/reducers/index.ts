@@ -24,5 +24,3 @@ export const getTodosState = createSelector(getReduxState, state => state.todo);
 
 export const getTodos           = createSelector(getTodosState, fromTodos._getTodos);
 export const getText            = createSelector(getTodosState, fromTodos._getText);
-export const getCategory        = createSelector(getTodosState, fromTodos._getCategory);
-export const getTodosFiltered   = createSelector(getTodosState, fromTodos._getTodosFiltered);
