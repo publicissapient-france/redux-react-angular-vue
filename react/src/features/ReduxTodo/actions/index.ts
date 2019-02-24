@@ -22,7 +22,7 @@ function fetchSuccess(todos: Todo[]) {
 export function fetchTodos() {
   return (dispatch: Dispatch) => {
     dispatch(startFetch());
-    API.getTodos()
+    return API.getTodos()
       .then(({data}) => dispatch(fetchSuccess(data)));
   }
 }
@@ -56,7 +56,7 @@ function updateTodo(todo: Todo) {
 
 export function patchTodo(todo: Todo) {
   return (dispatch: Dispatch) => {
-    API.updateTodo(todo)
+    return API.updateTodo(todo)
       .then(() => dispatch(updateTodo(todo))); // TODO : handle todo not found
   }
 }
@@ -72,7 +72,7 @@ function removeTodo(id: number) {
 
 export function deleteTodo(todo: Todo) {
   return (dispatch: Dispatch) => {
-    API.removeTodo(todo)
+    return API.removeTodo(todo)
       .then(() => dispatch(removeTodo(todo.id)))
   }
 }
