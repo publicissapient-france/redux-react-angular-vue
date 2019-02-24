@@ -9,8 +9,9 @@ const AddTodo = ({add}: AddTodoProps) => {
 
     return (
       <div>
-        <input type="text" onChange={(e) => setText(e.target.value)}>{text}</input>
+        <input type="text" onChange={(e) => setText(e.target.value)} value={text}/>
         <button onClick={() => add(text).finally(() => setText(""))}>
+          add
         </button>
       </div>
     )

@@ -21,7 +21,7 @@ function fetchSuccess(todos: Todo[]) {
 
 export function fetchTodos() {
   return (dispatch: Dispatch) => {
-    dispatch(startFetch());
+      dispatch(startFetch());
     return API.getTodos()
       .then(({data}) => dispatch(fetchSuccess(data)));
   }
@@ -53,10 +53,10 @@ function updateTodo(todo: Todo) {
   }
 }
 
-export function patchTodo(todo: Todo) {
+export function toggleTodo(todo: Todo) {
   return (dispatch: Dispatch) => {
     return API.updateTodo(todo)
-      .then(() => dispatch(updateTodo(todo))); // TODO : handle todo not found
+      .then(() => dispatch(updateTodo({...todo, done: !todo.done}))); // TODO : handle todo not found
   }
 }
 

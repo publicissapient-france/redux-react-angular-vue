@@ -1,16 +1,22 @@
 import React from "react";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Todo as TodoType} from "../../../types";
 
 type TodoProps = {
-  text: string,
-  done: boolean,
-  remove: () => void
+  todo: TodoType,
+  remove: () => void,
+  toggleDone: (todo: TodoType) => Promise<any>
 }
 
-const Todo = ({text, done, remove}: TodoProps) => (
+const Todo = ({todo, remove, toggleDone}: TodoProps) => (
   <div>
-    <span data-done={done}/>
-    <span>{text}</span>
-    <button onClick={() => remove()}/>
+    <button onClick={() => toggleDone(todo)}>
+      <FontAwesomeIcon icon={todo.done ? 'toggle-off' : 'toggle-on'}/>
+    </button>
+    <span>{todo.text}</span>
+    <button onClick={() => remove()}>
+      <FontAwesomeIcon icon="trash"/>
+    </button>
   </div>
 );
 

@@ -9,8 +9,8 @@ type TodoListProps = {
 const TodoList = ({todos}: TodoListProps) => (
   <ul>
     {todos.map((todo) => (
-      <li>
-        <Todo key={todo.id} id={todo.id}>{todo.text}</Todo>
+      <li key={todo.id} >
+        <Todo id={todo.id}>{todo.text}</Todo>
       </li>
     ))}
   </ul>
