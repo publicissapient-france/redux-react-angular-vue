@@ -29,9 +29,5 @@
   "bugs": {
     "url": "https://github.com/xebia-france/redux-react-angular-vue/issues"
   },
-  "homepage": "https://github.com/xebia-france/redux-react-angular-vue#readme",
-  "dependencies": {
-    "react-redux": "^6.0.1",
-    "redux": "^4.0.1"
-  }
+  "homepage": "https://github.com/xebia-france/redux-react-angular-vue#readme"
 }
