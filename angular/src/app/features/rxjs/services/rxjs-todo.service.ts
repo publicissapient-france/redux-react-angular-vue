@@ -1,7 +1,5 @@
-import {
-  filterByCategory, Todo, TodoCategory
-} from 'App/domains';
-import { ApiService } from 'App/services/api.service';
+import { filterByCategory, Todo, TodoCategory } from 'App/domains';
+import { RestService } from 'App/services/rest.service';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -24,17 +22,17 @@ export class RxjsTodoService {
     map(([todos, category]) => filterByCategory(todos, category))
   );
 
-  constructor(private apiService: ApiService) { }
+  constructor(private restService: RestService) { }
 
   load() {
-    this.apiService.getTodos().subscribe(todos => {
+    this.restService.getTodos().subscribe(todos => {
       this.todos = todos;
       this.todos$.next(this.todos);
     });
   }
 
   add(todo: Partial<Todo>) {
-    this.apiService
+    this.restService
       .addTodo(todo)
       .subscribe(t => {
         this.todos = [t, ...this.todos];
@@ -43,7 +41,7 @@ export class RxjsTodoService {
   }
 
   update(todo: Todo) {
-    this.apiService
+    this.restService
       .updateTodo(todo)
       .subscribe(() => {
         this.splice(todo, 'update');
@@ -52,7 +50,7 @@ export class RxjsTodoService {
   }
 
   remove(todo: Todo) {
-    this.apiService
+    this.restService
       .removeTodo(todo)
       .subscribe(() => {
         this.splice(todo, 'remove');

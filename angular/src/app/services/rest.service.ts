@@ -4,16 +4,14 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-// TODO: handle errors in both `api.servive.ts` and `todo.service.ts`
-
 @Injectable({
   providedIn: 'root'
 })
-export class ApiService {
+export class RestService {
   constructor(private httpClient: HttpClient) { }
 
   getUrl(url: string) {
-    return environment.apiBaseUrl + url;
+    return environment.restBaseUrl + url;
   }
 
   getTodos() {
