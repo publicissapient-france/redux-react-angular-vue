@@ -5,17 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-
     "install-server": "cd ./server && npm i && cd ..",
     "install-angular": "cd ./angular && npm i && cd ..",
     "install-react": "cd ./react && npm i && cd ..",
-
     "install-all": "npm run install-server && npm run install-angular && npm run install-react",
-
     "server": "npm start --prefix ./server",
     "angular": "npm start --prefix ./angular",
     "react": "npm start --prefix ./react",
-
     "start": "npm run server & npm run angular & npm run react"
   },
   "repository": {
@@ -33,5 +29,9 @@
   "bugs": {
     "url": "https://github.com/xebia-france/redux-react-angular-vue/issues"
   },
-  "homepage": "https://github.com/xebia-france/redux-react-angular-vue#readme"
+  "homepage": "https://github.com/xebia-france/redux-react-angular-vue#readme",
+  "dependencies": {
+    "react-redux": "^6.0.1",
+    "redux": "^4.0.1"
+  }
 }
