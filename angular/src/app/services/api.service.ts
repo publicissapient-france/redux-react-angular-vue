@@ -20,10 +20,6 @@ export class ApiService {
     return this.httpClient.get<Todo[]>(this.getUrl('todos'));
   }
 
-  getTodo(todo: Todo) {
-    return this.httpClient.get<Todo>(this.getUrl(`todos/${todo.id}`));
-  }
-
   addTodo(todo: Partial<Todo>) {
     return this.httpClient.post<Todo>(this.getUrl('todos'), todo);
   }
