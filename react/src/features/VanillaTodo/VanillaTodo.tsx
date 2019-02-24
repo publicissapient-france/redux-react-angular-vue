@@ -46,7 +46,7 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
   }
 
   remove = (todo: Todo) => {
-    RestService.removeTodo(todo).then(this.refresh);
+    RestService.removeTodo(todo.id).then(this.refresh);
   }
 
   textChange = (text: string) => this.setState({text});

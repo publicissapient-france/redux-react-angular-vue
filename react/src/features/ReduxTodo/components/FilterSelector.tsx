@@ -1,7 +1,12 @@
 import React from "react";
 import {FilterStatus} from "../../../types";
 
-const FilterSelector = (filter: FilterStatus, setFilter: (filter: FilterStatus) => void) => (
+type FilterSelectorProps = {
+  filter: FilterStatus,
+  setFilter: (filter: FilterStatus) => void
+}
+
+const FilterSelector = ({filter, setFilter}: FilterSelectorProps) => (
   <div>
     <button
       data-selected={filter === FilterStatus.ALL} onClick={() =>

@@ -20,6 +20,6 @@ export function updateTodo(todo: Todo) {
   return axios.put<boolean>(getUrl(`todos/${todo.id}`), todo);
 }
 
-export function removeTodo(todo: Todo) {
-  return axios.delete(getUrl(`todos/${todo.id}`));
+export function removeTodo(id: number) {
+  return axios.delete(getUrl(`todos/${id}`));
 }

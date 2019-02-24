@@ -37,11 +37,10 @@ function addTodo(todo: Todo) {
   }
 }
 
-export function createTodo(todo: Todo) {
+export function createTodo(text: string) {
   return (dispatch: Dispatch) => {
-    fetch("/create/todo")
-      .then((res) => res.json())
-      .then(() => dispatch(addTodo(todo)));
+    return API.addTodo({text})
+      .then(({data}) => dispatch(addTodo(data)));
   }
 }
 
@@ -70,10 +69,10 @@ function removeTodo(id: number) {
   }
 }
 
-export function deleteTodo(todo: Todo) {
+export function deleteTodo(id: number) {
   return (dispatch: Dispatch) => {
-    return API.removeTodo(todo)
-      .then(() => dispatch(removeTodo(todo.id)))
+    return API.removeTodo(id)
+      .then(() => dispatch(removeTodo(id)))
   }
 }
 

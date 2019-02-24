@@ -1,12 +1,19 @@
 import React from "react";
-import {Todo} from "../../../types";
+import {Todo as TodoType} from "../../../types";
+import {Todo} from "../containers/Todo";
 
-const TodoList = (todos: Todo[]) => (
+type TodoListProps = {
+  todos: TodoType[]
+};
+
+const TodoList = ({todos}: TodoListProps) => (
   <ul>
     {todos.map((todo) => (
       <li>
-        <div key={todo.id}>{todo.text}</div>
+        <Todo key={todo.id} id={todo.id}>{todo.text}</Todo>
       </li>
     ))}
   </ul>
 );
+
+export default TodoList;
