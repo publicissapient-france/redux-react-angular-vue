@@ -12,9 +12,6 @@ export enum ActionTypes {
   Update         = '[Redux:Todos] Update',
   UpdateSuccess  = '[Redux:Todos] UpdateSuccess',
 
-  Remove         = '[Redux:Todos] Remove',
-  RemoveSuccess  = '[Redux:Todos] RemoveSuccess',
-
   Text           = '[Redux:Todos] Text'
 }
 
@@ -44,15 +41,6 @@ export class UpdateSuccess implements Action {
   constructor(public payload: Todo) {}
 }
 
-export class Remove implements Action {
-  readonly type = ActionTypes.Remove;
-  constructor(public payload: Todo) {}
-}
-export class RemoveSuccess implements Action {
-  readonly type = ActionTypes.RemoveSuccess;
-  constructor(public payload: Todo) {}
-}
-
 export class Text implements Action {
   readonly type = ActionTypes.Text;
   constructor(public payload: string) {}
@@ -67,9 +55,6 @@ export type ActionsUnion =
 
   | Update
   | UpdateSuccess
-
-  | Remove
-  | RemoveSuccess
 
   | Text
 ;

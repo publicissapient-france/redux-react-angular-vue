@@ -12,8 +12,7 @@ import { getTodos } from '../../reducers';
   template: `
     <app-ui-todo-list
       [todos]="todos$ | async"
-      (toggleDone)="toggleDone($event)"
-      (remove)="remove($event)">
+      (toggleDone)="toggleDone($event)">
     </app-ui-todo-list>
   `
 })
@@ -24,9 +23,5 @@ export class ReduxTodoListComponent {
 
   toggleDone(todo: Todo) {
     this.store.dispatch(new todosActions.Update(toggleDone(todo)));
-  }
-
-  remove(todo: Todo) {
-    this.store.dispatch(new todosActions.Remove(todo));
   }
 }

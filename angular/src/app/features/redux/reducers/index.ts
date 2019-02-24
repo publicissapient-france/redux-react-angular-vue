@@ -22,5 +22,5 @@ export const getReduxState = createFeatureSelector<AppState, ReduxState>(FEATURE
 
 export const getTodosState = createSelector(getReduxState, state => state.todo);
 
-export const getTodos           = createSelector(getTodosState, fromTodos._getTodos);
-export const getText            = createSelector(getTodosState, fromTodos._getText);
+export const getTodos = createSelector(getTodosState, fromTodos._getTodos);
+export const getText  = createSelector(getTodosState, fromTodos._getText);

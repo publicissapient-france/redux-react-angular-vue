@@ -27,9 +27,6 @@ export function reducer(state = initialState, action: ActionsUnion): State {
     case ActionTypes.UpdateSuccess: {
       return adapter.upsertOne(action.payload, state);
     }
-    case ActionTypes.RemoveSuccess: {
-      return adapter.removeOne(action.payload.id, state);
-    }
     case ActionTypes.Text: {
       return { ...state, text: action.payload };
     }

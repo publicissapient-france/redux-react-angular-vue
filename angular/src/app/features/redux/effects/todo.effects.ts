@@ -28,14 +28,6 @@ export class TodosEffects {
     map(todo => new todosActions.UpdateSuccess(todo))
   );
 
-  @Effect() remove$ = this.actions$.pipe(
-    ofType<todosActions.Remove>(todosActions.ActionTypes.Remove),
-    switchMap(action => this.restService.removeTodo(action.payload).pipe(
-      map(success => action.payload)
-    )),
-    map(todo => new todosActions.RemoveSuccess(todo))
-  );
-
   constructor(
     private actions$: Actions,
     private restService: RestService
