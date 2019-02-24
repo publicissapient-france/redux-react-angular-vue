@@ -1,4 +1,4 @@
-import {FilterStatus, State} from "../types";
+import {FilterStatus, State} from "../../../types";
 import {Action, SET_VISIBILITY_FILTER} from "../actions";
 import {Reducer} from "redux";
 

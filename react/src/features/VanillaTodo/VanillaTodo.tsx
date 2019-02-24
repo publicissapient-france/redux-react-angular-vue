@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
+import React, {Component, Fragment} from 'react';
 
-import { UiTodoAdd, UiTodoCategory, UiTodoList, UiTodoStatus } from '../../components/ui';
+import {UiTodoAdd, UiTodoCategory, UiTodoList, UiTodoStatus} from '../../components/ui';
 import {
-    filterByCategory, getStatus, Todo, todoBuilder, TodoCategory, toggleDone
+  filterByCategory, getStatus, Todo, todoBuilder, TodoCategory, toggleDone
 } from '../../domains';
-import { RestService } from '../../shared/RestService';
+import * as  RestService from '../../shared/RestService';
 import styles from './VanillaTodo.module.css';
 
 export interface IVanillaTodoState {
@@ -33,12 +33,12 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
   }
 
   refresh = () => {
-    RestService.getTodos().then(({ data }) => this.setState({ todos: data }));
+    RestService.getTodos().then(({data}) => this.setState({todos: data}));
   }
 
   add = (text: string) => {
     RestService.addTodo(todoBuilder(text)).then(this.refresh);
-    this.setState({ text: '' });
+    this.setState({text: ''});
   }
 
   toggleDone = (todo: Todo) => {
@@ -49,9 +49,9 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
     RestService.removeTodo(todo).then(this.refresh);
   }
 
-  textChange = (text: string) => this.setState({ text });
+  textChange = (text: string) => this.setState({text});
 
-  selectCategory = (category: TodoCategory) => this.setState({ category });
+  selectCategory = (category: TodoCategory) => this.setState({category});
 
   render() {
     return (
@@ -60,17 +60,17 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
           <UiTodoAdd
             text={this.state.text}
             textChange={this.textChange}
-            add={this.add} />
+            add={this.add}/>
         </div>
 
         <UiTodoList
           toggleDone={this.toggleDone}
           remove={this.remove}
-          todos={this.todosFiltered} />
+          todos={this.todosFiltered}/>
 
         <div className={styles['bottom']}>
-          <UiTodoStatus status={this.status} />
-          <UiTodoCategory category={this.state.category} select={this.selectCategory} />
+          <UiTodoStatus status={this.status}/>
+          <UiTodoCategory category={this.state.category} select={this.selectCategory}/>
         </div>
       </Fragment>
     );

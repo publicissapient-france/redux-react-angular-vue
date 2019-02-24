@@ -1,5 +1,6 @@
-import {Todo, FilterStatus} from "../types";
+import {Todo, FilterStatus} from "../../../types";
 import {Dispatch} from "redux";
+import * as API from "../../../shared/RestService";
 
 export const START_FETCH = "START_FETCH";
 
@@ -21,9 +22,8 @@ function fetchSuccess(todos: Todo[]) {
 export function fetchTodos() {
   return (dispatch: Dispatch) => {
     dispatch(startFetch());
-    fetch('/some/url')
-      .then((res) => res.json())
-      .then((todos: Todo[]) => dispatch(fetchSuccess(todos)));
+    API.getTodos()
+      .then(({data}) => dispatch(fetchSuccess(data)));
   }
 }
 
@@ -56,9 +56,8 @@ function updateTodo(todo: Todo) {
 
 export function patchTodo(todo: Todo) {
   return (dispatch: Dispatch) => {
-    fetch("/patch/todo")
-      .then((res) => res.json())
-      .then(() => dispatch(updateTodo(todo)));
+    API.updateTodo(todo)
+      .then(() => dispatch(updateTodo(todo))); // TODO : handle todo not found
   }
 }
 
@@ -73,8 +72,7 @@ function removeTodo(id: number) {
 
 export function deleteTodo(todo: Todo) {
   return (dispatch: Dispatch) => {
-    fetch("/delete/todo")
-      .then((res) => res.json())
+    API.removeTodo(todo)
       .then(() => dispatch(removeTodo(todo.id)))
   }
 }

@@ -1,5 +1,5 @@
 import {Reducer} from 'redux';
-import {State} from "../types";
+import {State} from "../../../types";
 import filterReducer, {initialState as filterInitialState} from "./filter";
 import todosReducer, {initialState as todosInitialState} from "./todos";
 

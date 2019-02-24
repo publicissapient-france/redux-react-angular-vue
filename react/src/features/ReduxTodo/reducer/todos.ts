@@ -1,5 +1,5 @@
 import {Action, FETCH_SUCCESS, ADD_TODO, REMOVE_TODO, UPDATE_TODO} from "../actions"
-import {State, Todo} from "../types";
+import {State, Todo} from "../../../types";
 import {Reducer} from "redux";
 
 export const initialState = {};
