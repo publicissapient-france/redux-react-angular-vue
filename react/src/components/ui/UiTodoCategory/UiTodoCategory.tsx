@@ -2,14 +2,14 @@ import classNames from 'classnames';
 import React, { Component } from 'react';
 
 import { TodoCategory } from '../../../domains';
-import styles from './UiTodoSwitch.module.css';
+import styles from './UiTodoCategory.module.css';
 
-export interface IUiTodoSwitchProps {
+export interface IUiTodoCategoryProps {
   category: TodoCategory;
   select: (category: TodoCategory) => void;
 }
 
-export class UiTodoSwitch extends Component<IUiTodoSwitchProps> {
+export class UiTodoCategory extends Component<IUiTodoCategoryProps> {
   list: TodoCategory[] = ['all', 'active', 'completed'];
 
   className(item: TodoCategory) {
@@ -30,4 +30,4 @@ export class UiTodoSwitch extends Component<IUiTodoSwitchProps> {
   }
 }
 
-export default UiTodoSwitch;
+export default UiTodoCategory;

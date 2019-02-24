@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
-import { UiTodoAdd, UiTodoList, UiTodoStatus, UiTodoSwitch } from '../../components/ui';
+import { UiTodoAdd, UiTodoList, UiTodoStatus, UiTodoCategory } from '../../components/ui';
 import {
     filterByCategory, getStatus, Todo, todoBuilder, TodoCategory, toggleDone
 } from '../../domains';
@@ -70,7 +70,7 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
 
         <div className={styles['bottom']}>
           <UiTodoStatus status={this.status} />
-          <UiTodoSwitch category={this.state.category} select={this.selectCategory} />
+          <UiTodoCategory category={this.state.category} select={this.selectCategory} />
         </div>
       </Fragment>
     );
