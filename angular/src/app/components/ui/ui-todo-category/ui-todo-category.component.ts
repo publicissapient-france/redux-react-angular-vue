@@ -3,7 +3,7 @@ import { TodoCategory } from 'App/domains';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-ui-todo-switch',
+  selector: 'app-ui-todo-category',
   template: `
     <button
       *ngFor="let item of list"
@@ -13,10 +13,10 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
       {{ item }}
     </button>
   `,
-  styleUrls: ['./ui-todo-switch.component.css'],
+  styleUrls: ['./ui-todo-category.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class UiTodoSwitchComponent {
+export class UiTodoCategoryComponent {
   @Input() category: TodoCategory = 'all';
   @Output() categoryChange = new EventEmitter<TodoCategory>();
 

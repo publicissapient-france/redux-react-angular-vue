@@ -13,7 +13,7 @@ import { RxjsTodoService } from '../../services/rxjs-todo.service';
 
     <div class="bottom">
       <app-rxjs-todo-status></app-rxjs-todo-status>
-      <app-rxjs-todo-switch></app-rxjs-todo-switch>
+      <app-rxjs-todo-category></app-rxjs-todo-category>
     </div>
   `,
   styleUrls: ['./rxjs-todo.component.css']

@@ -16,7 +16,7 @@ import * as todosActions from '../../actions/todo.actions';
 
     <div class="bottom">
       <app-redux-todo-status></app-redux-todo-status>
-      <app-redux-todo-switch></app-redux-todo-switch>
+      <app-redux-todo-category></app-redux-todo-category>
     </div>
   `,
   styleUrls: ['./redux-todo.component.css']

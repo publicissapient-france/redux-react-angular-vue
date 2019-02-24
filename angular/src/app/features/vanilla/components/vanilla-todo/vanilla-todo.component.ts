@@ -23,7 +23,7 @@ import { Component, OnInit } from '@angular/core';
 
     <div class="bottom">
       <app-ui-todo-status [status]="status"></app-ui-todo-status>
-      <app-ui-todo-switch [(category)]="category"></app-ui-todo-switch>
+      <app-ui-todo-category [(category)]="category"></app-ui-todo-category>
     </div>
   `,
   styleUrls: ['./vanilla-todo.component.css']

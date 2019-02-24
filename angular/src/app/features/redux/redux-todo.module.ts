@@ -7,20 +7,20 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
 import { ReduxTodoAddComponent } from './components/redux-todo-add/redux-todo-add.component';
+import { ReduxTodoCategoryComponent } from './components/redux-todo-category/redux-todo-category.component';
 import { ReduxTodoListComponent } from './components/redux-todo-list/redux-todo-list.component';
 import { ReduxTodoStatusComponent } from './components/redux-todo-status/redux-todo-status.component';
-import { ReduxTodoSwitchComponent } from './components/redux-todo-switch/redux-todo-switch.component';
 import { ReduxTodoComponent } from './components/redux-todo/redux-todo.component';
 import { TodosEffects } from './effects/todo.effects';
 import { FEATURE_NAME, reducers } from './reducers';
 
 @NgModule({
   declarations: [
-    ReduxTodoComponent,
     ReduxTodoAddComponent,
+    ReduxTodoCategoryComponent,
     ReduxTodoListComponent,
     ReduxTodoStatusComponent,
-    ReduxTodoSwitchComponent
+    ReduxTodoComponent
   ],
   imports: [
     CommonModule,

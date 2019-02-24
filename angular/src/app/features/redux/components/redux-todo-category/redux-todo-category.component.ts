@@ -8,15 +8,15 @@ import * as todosActions from '../../actions/todo.actions';
 import { getCategory } from '../../reducers';
 
 @Component({
-  selector: 'app-redux-todo-switch',
+  selector: 'app-redux-todo-category',
   template: `
-    <app-ui-todo-switch
+    <app-ui-todo-category
       [category]="category$ | async"
       (categoryChange)="categoryChange($event)">
-    </app-ui-todo-switch>
+    </app-ui-todo-category>
   `
 })
-export class ReduxTodoSwitchComponent {
+export class ReduxTodoCategoryComponent {
   category$ = this.store.pipe(select(getCategory));
 
   constructor(private store: Store<AppState>) { }
