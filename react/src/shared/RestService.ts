@@ -2,11 +2,11 @@ import axios from 'axios';
 
 import { Todo } from '../domains';
 
-const apiBaseUrl = 'http://127.0.0.1:3100/';
+const restBaseUrl = 'http://127.0.0.1:3100/';
 
-export class ApiService {
+export class RestService {
   static getUrl(url: string) {
-    return apiBaseUrl + url;
+    return restBaseUrl + url;
   }
 
   static getTodos() {

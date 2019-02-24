@@ -1,10 +1,10 @@
 import React, { Component, Fragment } from 'react';
 
-import { UiTodoAdd, UiTodoList, UiTodoStatus, UiTodoCategory } from '../../components/ui';
+import { UiTodoAdd, UiTodoCategory, UiTodoList, UiTodoStatus } from '../../components/ui';
 import {
     filterByCategory, getStatus, Todo, todoBuilder, TodoCategory, toggleDone
 } from '../../domains';
-import { ApiService } from '../../shared/ApiService';
+import { RestService } from '../../shared/RestService';
 import styles from './VanillaTodo.module.css';
 
 export interface IVanillaTodoState {
@@ -33,20 +33,20 @@ export class VanillaTodo extends Component<{}, IVanillaTodoState> {
   }
 
   refresh = () => {
-    ApiService.getTodos().then(({ data }) => this.setState({ todos: data }));
+    RestService.getTodos().then(({ data }) => this.setState({ todos: data }));
   }
 
   add = (text: string) => {
-    ApiService.addTodo(todoBuilder(text)).then(this.refresh);
+    RestService.addTodo(todoBuilder(text)).then(this.refresh);
     this.setState({ text: '' });
   }
 
   toggleDone = (todo: Todo) => {
-    ApiService.updateTodo(toggleDone(todo)).then(this.refresh);
+    RestService.updateTodo(toggleDone(todo)).then(this.refresh);
   }
 
   remove = (todo: Todo) => {
-    ApiService.removeTodo(todo).then(this.refresh);
+    RestService.removeTodo(todo).then(this.refresh);
   }
 
   textChange = (text: string) => this.setState({ text });
