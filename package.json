@@ -5,14 +5,20 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+
     "install-server": "cd ./server && npm i && cd ..",
     "install-angular": "cd ./angular && npm i && cd ..",
     "install-react": "cd ./react && npm i && cd ..",
-    "install-all": "npm run install-server && npm run install-angular && npm run install-react",
+    "install-vue": "cd ./vue && npm i && cd ..",
+
+    "install-all": "npm run install-server && npm run install-angular && npm run install-react && npm run install-vue",
+
     "server": "npm start --prefix ./server",
     "angular": "npm start --prefix ./angular",
     "react": "npm start --prefix ./react",
-    "start": "npm run server & npm run angular & npm run react"
+    "vue": "npm run serve --prefix ./vue",
+
+    "start": "npm run server & npm run angular & npm run react & npm run vue"
   },
   "repository": {
     "type": "git",
