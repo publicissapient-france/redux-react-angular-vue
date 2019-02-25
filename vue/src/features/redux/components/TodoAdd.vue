@@ -8,17 +8,18 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
+  import { ADD_TASK } from '@/features/redux/store';
 
   @Component
   export default class TodoList extends Vue {
     text: string = '';
 
-    add() {
+    async add() {
       if (!this.text) {
         return;
       }
 
-      this.$emit('add', this.text);
+      this.$store.dispatch(ADD_TASK, this.text);
       this.text = '';
     }
   }

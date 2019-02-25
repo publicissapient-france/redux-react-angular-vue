@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="task in tasks" :key="task.id" class="item">
+    <div v-for="task in filtredTasks" :key="task.id" class="item">
       <el-checkbox @change="taskStatusChanged(task)" :value="task.done">
         <span :class="{'done': task.done}">{{ task.label }}</span>
       </el-checkbox>
@@ -8,26 +8,34 @@
         <i class="el-icon-delete"></i>
       </button>
     </div>
-    <div v-if="!tasks.length">
+    <div v-if="!filtredTasks.length">
       <p>No tasks.</p>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator';
+  import { Component, Vue } from 'vue-property-decorator';
   import { Todo } from '@/domains/models';
+  import { mapGetters } from 'vuex';
+  import { ADD_TASK, REMOVE_TASK, UPDATE_TASK } from '@/features/redux/store';
 
-  @Component
+  @Component({
+    computed: {
+      // ...mapState(['tasks']),
+      ...mapGetters(['filtredTasks'])
+    },
+  })
   export default class TodoList extends Vue {
-    @Prop() private tasks!: Todo[];
-
-    taskStatusChanged(task: Todo) {
-      this.$emit('taskStatusChanged', task);
+    async taskStatusChanged(doneTask: Todo) {
+      this.$store.dispatch(UPDATE_TASK, {
+        ...doneTask,
+        done: !doneTask.done
+      });
     }
 
-    removeTask(task: Todo) {
-      this.$emit('removeTask', task);
+    async removeTask(removedTask: Todo) {
+      this.$store.dispatch(REMOVE_TASK, removedTask);
     }
   }
 </script>

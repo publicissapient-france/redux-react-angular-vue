@@ -12,14 +12,19 @@
 
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
+  import { mapState } from 'vuex';
+  import { SET_CATEGORY } from '@/features/redux/store';
 
-  @Component
+  @Component({
+    computed: {
+      ...mapState(['category']),
+    }
+  })
   export default class TodoList extends Vue {
-    @Prop() category!: string;
     categories: string[] = ['all', 'active', 'completed'];
 
     select(category: string) {
-      this.$emit('selected', category);
+      this.$store.commit(SET_CATEGORY, category);
     }
   }
 </script>

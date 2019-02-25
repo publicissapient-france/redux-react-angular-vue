@@ -5,8 +5,8 @@
     </el-header>
 
     <el-main>
-      <TodoVanillaApp/>
-      <!--<TodoReduxApp/>-->
+      <!--<TodoVanillaApp/>-->
+      <TodoReduxApp/>
     </el-main>
   </el-container>
 </template>

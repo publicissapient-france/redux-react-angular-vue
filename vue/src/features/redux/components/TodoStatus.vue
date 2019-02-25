@@ -7,10 +7,17 @@
 <script lang="ts">
   import { Component, Prop, Vue } from 'vue-property-decorator';
   import { Todo } from '@/domains/models';
+  import { mapState } from 'vuex';
 
-  @Component
+  @Component({
+    computed: {
+      // ...mapState(['tasks']),
+    }
+  })
   export default class TodoStatus extends Vue {
-    @Prop() private tasks!: Todo[];
+    get tasks(): Todo[] {
+      return this.$store.getters.filtredTasks;
+    }
 
     get total() {
       return this.tasks.length;
