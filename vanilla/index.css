@@ -30,6 +30,10 @@ pre {
   background-color: inherit !important;
 }
 
+::selection {
+  background: #fff176 !important;
+}
+
 #layout { 
   display: flex;
   justify-content: space-between;
