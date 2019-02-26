@@ -1,0 +1,21 @@
+html { 
+  font-size: 48px; 
+  font-family: monospace; 
+  text-align: center; }
+
+body {
+  margin-top: 1rem; }
+
+h1 { 
+  font-size: 1.5rem; }
+
+button { 
+  font-family: inherit; 
+  font-size: inherit; 
+  border: 1px solid #aaa; 
+  border-radius: 3px;
+  outline: none;
+  transition: background-color ease 200ms; }
+
+button:active {
+  background-color: #ddd; }

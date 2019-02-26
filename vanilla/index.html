@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redux in a garage</title>
+
+  <link href="index.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <div>
+    <h1>Redux in a garage</h1>
+
+    <button onclick="increment()"> + </button>
+    <button onclick="decrement()"> - </button>
+
+    <p id="view"></p>
+  </div>
+
+  <script>
+    // Action Types
+    const INCREMENT = 'INCREMENT';
+    const DECREMENT = 'DECREMENT';
+
+    // Action Dispatchers
+    const increment = () => dispatch({ type: INCREMENT });
+    const decrement = () => dispatch({ type: DECREMENT });
+
+    // Store State
+    let state = 0;
+
+    // Store Reducer
+    const reducer = (currState, action) => {
+      switch (action.type) {
+        case INCREMENT: return currState + 1;
+        case DECREMENT: return currState - 1;
+        default: return currState;
+      }
+    };
+
+    // Dispatcher
+    function dispatch(action) {
+      state = reducer(state, action);
+      render();
+    }
+
+    // Renderer
+    function render() {
+      view.textContent = state;
+    }
+  </script>
+</body>
+</html>
