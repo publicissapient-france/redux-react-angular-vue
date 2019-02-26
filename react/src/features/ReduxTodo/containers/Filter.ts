@@ -10,6 +10,6 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToPropps = (dispatch: Dispatch) => ({
   setFilter: (filter: FilterStatus) => dispatch(setVisibilityFilter(filter))
-})
+});
 
 export default connect(mapStateToProps, mapDispatchToPropps)(DumbFilterSelector);
