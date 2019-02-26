@@ -1,0 +1,54 @@
+html { 
+  font-size: 36px; 
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: center; }
+
+body {
+  margin: 0; }
+
+html, body {
+  height: 100%;
+}
+
+h1 {
+  margin: 0 0 2rem 0;
+  font-size: 1.5rem; }
+
+button { 
+  font-family: inherit; 
+  font-size: inherit; 
+  border: 1px solid #aaa; 
+  border-radius: 3px;
+  outline: none;
+  transition: background-color ease 200ms; }
+
+button:active {
+  background-color: #ddd; }
+
+pre {
+  font-size: 16px;
+  background-color: inherit !important;
+}
+
+::selection {
+  background: #fff176 !important;
+}
+
+#layout { 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#layout > .layout-box {
+  flex-grow: 1;
+  margin: 0;
+  overflow: auto;
+  box-sizing: border-box;
+  max-height: 100%;
+}
+
+#view {
+  line-height: 1.5rem;
+  min-height: 1.5rem;
+}
