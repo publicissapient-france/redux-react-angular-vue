@@ -5,17 +5,19 @@ import styles from "./Todo.module.css";
 import classNames from 'classnames';
 
 type TodoProps = {
-  todo: TodoType,
+  done: boolean,
+  text: string,
+  id: number,
   remove: () => void,
   toggleDone: (todo: TodoType) => Promise<any>
 }
 
-const Todo = ({todo, remove, toggleDone}: TodoProps) => (
+const Todo = ({done, text, id, remove, toggleDone}: TodoProps) => (
   <>
-    <button onClick={() => toggleDone(todo)}>
-      <FontAwesomeIcon icon={todo.done ? 'toggle-off' : 'toggle-on'}/>
+    <button onClick={() => toggleDone({done, text, id})}>
+      <FontAwesomeIcon icon={done ? 'toggle-off' : 'toggle-on'}/>
     </button>
-    <span className={classNames(styles['text'], todo.done && styles['text--done'])}>{todo.text}</span>
+    <span className={classNames(styles['text'], done && styles['text--done'])}>{text}</span>
     <button onClick={() => remove()}>
       <FontAwesomeIcon icon="trash"/>
     </button>

@@ -1,12 +1,12 @@
 import {connect} from "react-redux";
-import {Action, createTodo, deleteTodo, fetchTodos, toggleTodo} from "../../../actions";
+import {Action, createTodo, deleteTodo, fetchTodos, toggleTodo} from "../actions";
 import {ThunkDispatch} from "redux-thunk";
-import {FilterStatus, State, Todo as TodoType} from "../../../../../types";
-import DumbAddTodo from "../../AddTodo/AddTodo";
-import DumbRemainingCount from "../../RemainingCount";
-import DumbTodo from "../../Todo/Todo";
-import DumbTodoList from "../../TodoList/TodoList";
-import DumbApp from "../../App/App";
+import {FilterStatus, State, Todo as TodoType} from "../../../types";
+import DumbAddTodo from "../components/AddTodo/AddTodo";
+import DumbRemainingCount from "../components/RemainingCount/RemainingCount";
+import DumbTodo from "../components/Todo/Todo";
+import DumbTodoList from "../components/TodoList/TodoList";
+import DumbApp from "../components/App/App";
 
 export const App = connect(
   null,
@@ -31,7 +31,7 @@ export const RemainingCount = connect(
 
 export const Todo = connect(
   (state: State, props: { id: number }) => ({
-    todo: state.todos[props.id]
+    ...state.todos[props.id]
   }),
   (dispatch: ThunkDispatch<State, undefined, Action>, props: { id: number }) => ({
     remove: () => dispatch(deleteTodo(props.id)),

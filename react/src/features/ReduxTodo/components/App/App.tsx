@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
-import {AddTodo, RemainingCount, TodoList} from "../RemainingCount/containers/Todo";
-import {FilterSelector} from "../RemainingCount/containers/Filter";
+import {AddTodo, RemainingCount, TodoList} from "../../containers/Todo";
+import {FilterSelector} from "../../containers/Filter";
 import styles from "./App.module.css";
 
 type AppProps = {

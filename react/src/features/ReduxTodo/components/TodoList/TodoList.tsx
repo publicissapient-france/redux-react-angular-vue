@@ -1,6 +1,6 @@
 import React from "react";
 import {Todo as TodoType} from "../../../../types";
-import {Todo} from "../RemainingCount/containers/Todo";
+import {Todo} from "../../containers/Todo";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import styles from "./TodoList.module.css";
 
