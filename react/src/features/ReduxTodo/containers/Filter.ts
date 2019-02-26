@@ -3,7 +3,7 @@ import {FilterStatus, State} from "../../../types";
 import {setVisibilityFilter} from "../actions";
 import DumbFilterSelector from "../components/FilterSelector/FilterSelector";
 
-export const FilterSelector = connect(
+export default connect(
   (state: State) => ({
     filter: state.filter
   }),
