@@ -2,51 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Redux in a garage</title>
+  <title>Redux in a nutshell</title>
 
-  <link href="index.css" rel="stylesheet" type="text/css">
+  <link href="node_modules/prismjs/themes/prism.css" rel="stylesheet">
+  <script src="node_modules/prismjs/prism.js"></script>
+
+  <link href="index.css" rel="stylesheet">
 </head>
-<body>
-  <div>
-    <h1>Redux in a garage</h1>
+<body id="layout">
 
-    <button onclick="increment()"> + </button>
-    <button onclick="decrement()"> - </button>
+<div class="layout-box">
+  <h1>Redux in a nutshell</h1>
 
-    <p id="view"></p>
-  </div>
+  <button onclick="increment()">increment</button>
+  <button onclick="decrement()">decrement</button>
 
-  <script>
-    // Action Types
-    const INCREMENT = 'INCREMENT';
-    const DECREMENT = 'DECREMENT';
+  <p>view: <span id="view">0</span></p>
 
-    // Action Dispatchers
-    const increment = () => dispatch({ type: INCREMENT });
-    const decrement = () => dispatch({ type: DECREMENT });
+  <img src="redux.png">
+</div>
 
-    // State
-    let state = 0;
+<script id="app">
+let state = 0;
 
-    // Reducer
-    const reducer = (currState, action) => {
-      switch (action.type) {
-        case INCREMENT: return currState + 1;
-        case DECREMENT: return currState - 1;
-        default: return currState;
-      }
-    };
+const INCREMENT = 'INCREMENT';
+const DECREMENT = 'DECREMENT';
 
-    // Dispatcher
-    function dispatch(action) {
-      state = reducer(state, action);
-      render();
-    }
+const increment = () => dispatch({ type: INCREMENT });
+const decrement = () => dispatch({ type: DECREMENT });
 
-    // Renderer
-    function render() {
-      view.textContent = state;
-    }
-  </script>
+function reducer(currState, action) {
+  switch (action.type) {
+    case INCREMENT: return currState + 1;
+    case DECREMENT: return currState - 1;
+    default:        return currState;
+  }
+}
+
+function dispatch(action) {
+  state = reducer(state, action);
+  render();
+}
+
+function render() {
+  document.getElementById('view').textContent = state;
+}
+</script>
+
+<script>
+const appCode = document.getElementById('app').innerText.trim();
+document.write(`<pre class="layout-box"><code class="language-js">${appCode}</code></pre>`);
+</script>
+
 </body>
 </html>

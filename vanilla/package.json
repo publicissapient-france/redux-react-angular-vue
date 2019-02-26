@@ -8,6 +8,7 @@
   },
   "private": true,
   "dependencies": {
+    "prismjs": "^1.15.0",
     "serve": "^10.1.2"
   }
 }
