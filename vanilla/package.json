@@ -1,0 +1,13 @@
+{
+  "name": "redux-in-a-garage",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "dependencies": {
+    "serve": "^10.1.2"
+  }
+}
