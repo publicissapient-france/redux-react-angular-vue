@@ -25,10 +25,10 @@
     const increment = () => dispatch({ type: INCREMENT });
     const decrement = () => dispatch({ type: DECREMENT });
 
-    // Store State
+    // State
     let state = 0;
 
-    // Store Reducer
+    // Reducer
     const reducer = (currState, action) => {
       switch (action.type) {
         case INCREMENT: return currState + 1;
