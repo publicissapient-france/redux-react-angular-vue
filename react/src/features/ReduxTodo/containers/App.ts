@@ -4,9 +4,8 @@ import {State} from "../../../types";
 import {Action, fetchTodos} from "../actions";
 import DumbApp from "../components/App/App";
 
-export default connect(
-  null,
-  (dispatch: ThunkDispatch<State, undefined, Action>) => ({
-    fetchTodos: () => dispatch(fetchTodos()),
-  })
-)(DumbApp);
+const mapDispatchToProps = (dispatch: ThunkDispatch<State, undefined, Action>) => ({
+  fetchTodos: () => dispatch(fetchTodos()),
+});
+
+export default connect(null, mapDispatchToProps)(DumbApp);
