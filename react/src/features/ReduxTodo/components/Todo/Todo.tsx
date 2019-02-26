@@ -1,6 +1,8 @@
 import React from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Todo as TodoType} from "../../../types";
+import {Todo as TodoType} from "../../../../types";
+import styles from "./Todo.module.css";
+import classNames from 'classnames';
 
 type TodoProps = {
   todo: TodoType,
@@ -9,15 +11,15 @@ type TodoProps = {
 }
 
 const Todo = ({todo, remove, toggleDone}: TodoProps) => (
-  <div>
+  <>
     <button onClick={() => toggleDone(todo)}>
       <FontAwesomeIcon icon={todo.done ? 'toggle-off' : 'toggle-on'}/>
     </button>
-    <span>{todo.text}</span>
+    <span className={classNames(styles['text'], todo.done && styles['text--done'])}>{todo.text}</span>
     <button onClick={() => remove()}>
       <FontAwesomeIcon icon="trash"/>
     </button>
-  </div>
+  </>
 );
 
 export default Todo;

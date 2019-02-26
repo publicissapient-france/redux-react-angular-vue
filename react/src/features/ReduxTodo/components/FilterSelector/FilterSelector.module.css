@@ -1,0 +1,8 @@
+.button {
+    text-transform: capitalize;
+}
+
+.button[data-selected="true"] {
+    border: 1px solid #ddd;
+}
+

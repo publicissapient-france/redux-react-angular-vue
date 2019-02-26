@@ -1,12 +1,12 @@
 import {connect} from "react-redux";
-import {Action, createTodo, deleteTodo, fetchTodos, toggleTodo} from "../actions";
+import {Action, createTodo, deleteTodo, fetchTodos, toggleTodo} from "../../../actions";
 import {ThunkDispatch} from "redux-thunk";
-import {FilterStatus, State, Todo as TodoType} from "../../../types";
-import DumbAddTodo from "../components/AddTodo";
-import DumbRemainingCount from "../components/RemainingCount";
-import DumbTodo from "../components/Todo";
-import DumbTodoList from "../components/TodoList";
-import DumbApp from "../components/App";
+import {FilterStatus, State, Todo as TodoType} from "../../../../../types";
+import DumbAddTodo from "../../AddTodo/AddTodo";
+import DumbRemainingCount from "../../RemainingCount";
+import DumbTodo from "../../Todo/Todo";
+import DumbTodoList from "../../TodoList/TodoList";
+import DumbApp from "../../App/App";
 
 export const App = connect(
   null,

@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
-import {FilterStatus, State} from "../../../types";
-import {setVisibilityFilter} from "../actions";
-import DumbFilterSelector from "../components/FilterSelector";
+import {FilterStatus, State} from "../../../../../types";
+import {setVisibilityFilter} from "../../../actions";
+import DumbFilterSelector from "../../FilterSelector/FilterSelector";
 
 export const FilterSelector = connect(
   (state: State) => ({

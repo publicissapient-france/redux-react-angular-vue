@@ -1,0 +1,16 @@
+.list {
+    padding: 0;
+    list-style: none;
+}
+
+.list-item {
+    display: flex;
+    border-bottom: 1px dashed #ddd;
+    padding: 0.5rem 0;
+}
+
+.empty {
+    margin: 2rem 0;
+    text-align: center;
+    opacity: 0.15;
+}

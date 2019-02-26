@@ -1,5 +1,6 @@
 import React from "react";
-import {FilterStatus} from "../../../types";
+import {FilterStatus} from "../../../../types";
+import styles from "./FilterSelector.module.css";
 
 type FilterSelectorProps = {
   filter: FilterStatus,
@@ -9,18 +10,22 @@ type FilterSelectorProps = {
 const FilterSelector = ({filter, setFilter}: FilterSelectorProps) => (
   <div>
     <button
-      data-selected={filter === FilterStatus.ALL} onClick={() =>
-      setFilter(FilterStatus.ALL)}
+      className={styles["button"]}
+      data-selected={filter === FilterStatus.ALL}
+      onClick={() => setFilter(FilterStatus.ALL)
+      }
     >
       All
     </button>
     <button
+      className={styles["button"]}
       data-selected={filter === FilterStatus.ACTIVE}
       onClick={() => setFilter(FilterStatus.ACTIVE)}
     >
       Active
     </button>
     <button
+      className={styles["button"]}
       data-selected={filter === FilterStatus.COMPLETED}
       onClick={() => setFilter(FilterStatus.COMPLETED)}
     >
