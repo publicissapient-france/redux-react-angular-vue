@@ -10,7 +10,7 @@ export default connect(
           state.filter === FilterStatus.ALL ||
           state.filter === FilterStatus.COMPLETED && todo.done ||
           state.filter === FilterStatus.ACTIVE && !todo.done
-        );
-      })
+        )
+      }).sort((todo1, todo2) => todo1.id - todo2.id)
   })
 )(DumbTodoList);
