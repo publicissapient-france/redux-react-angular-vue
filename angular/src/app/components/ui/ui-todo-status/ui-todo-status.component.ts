@@ -7,7 +7,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   template: `
     <div *ngIf="status!.totalCount" class="status">
       <span>{{ status.remainCount }}</span> / <span>{{ status.totalCount }}</span>
-      <fa-icon *ngIf="!status.remainCount" icon="smile-beam" class="happy"></fa-icon>
     </div>
   `,
   styleUrls: ['./ui-todo-status.component.css'],

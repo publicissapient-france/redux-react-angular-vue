@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faClipboardList, faPlus, faSmileBeam, faToggleOff, faToggleOn, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faClipboardList, faPlus, faToggleOff, faToggleOn, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import { AppComponent } from './app.component';
 import { components } from './components';
 import { AppStoreModule } from './store/app-store.module';
 
-library.add(faClipboardList, faPlus, faSmileBeam, faToggleOff, faToggleOn, faTrash);
+library.add(faClipboardList, faPlus, faToggleOff, faToggleOn, faTrash);
 
 @NgModule({
   declarations: [
