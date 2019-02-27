@@ -15,7 +15,6 @@ import * as todosActions from 'App/store/actions/todo.actions';
     <app-redux-todo-list></app-redux-todo-list>
 
     <div class="bottom">
-      <app-redux-todo-status></app-redux-todo-status>
       <app-redux-todo-category></app-redux-todo-category>
     </div>
   `,

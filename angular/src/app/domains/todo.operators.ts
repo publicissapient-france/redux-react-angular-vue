@@ -1,4 +1,4 @@
-import { Todo, TodoStatus, TodoCategory } from './todo.models';
+import { Todo, TodoCategory } from './todo.models';
 
 export const todoBuilder = (text: string, done = false): Partial<Todo> => ({
   text,
@@ -8,11 +8,6 @@ export const todoBuilder = (text: string, done = false): Partial<Todo> => ({
 export const toggleDone = (todo: Todo): Todo => ({
   ...todo,
   done: !todo.done
-});
-
-export const getStatus = (todos: Todo[]): TodoStatus => ({
-  remainCount: todos.filter(todo => !todo.done).length,
-  totalCount: todos.length
 });
 
 export const filterByCategory = (todos: Todo[], category: TodoCategory) => {

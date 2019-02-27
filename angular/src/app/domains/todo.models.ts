@@ -4,9 +4,4 @@ export interface Todo {
   done: boolean;
 }
 
-export interface TodoStatus {
-  remainCount: number;
-  totalCount: number;
-}
-
 export type TodoCategory = 'all' | 'active' | 'completed';

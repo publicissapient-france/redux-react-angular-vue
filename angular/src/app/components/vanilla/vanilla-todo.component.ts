@@ -1,5 +1,5 @@
 import {
-    filterByCategory, getStatus, Todo, todoBuilder, TodoCategory, toggleDone
+    filterByCategory, Todo, todoBuilder, TodoCategory, toggleDone
 } from 'App/domains';
 import { RestService } from 'App/services/rest.service';
 
@@ -22,8 +22,9 @@ import { Component, OnInit } from '@angular/core';
     </app-ui-todo-list>
 
     <div class="bottom">
-      <app-ui-todo-status [status]="status"></app-ui-todo-status>
-      <app-ui-todo-category [(category)]="category"></app-ui-todo-category>
+      <app-ui-todo-category
+        [(category)]="category">
+      </app-ui-todo-category>
     </div>
   `,
   styleUrls: ['./vanilla-todo.component.css']
@@ -35,10 +36,6 @@ export class VanillaTodoComponent implements OnInit {
 
   get todosFiltered() {
     return filterByCategory(this.todos, this.category);
-  }
-
-  get status() {
-    return getStatus(this.todos);
   }
 
   refresh = () => this.restService.getTodos().subscribe(todos => this.todos = todos);
