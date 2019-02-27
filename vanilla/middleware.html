@@ -16,7 +16,7 @@
 <div class="layout-box">
   <h1>Redux middleware</h1>
 
-  <button onclick="random()">random</button>
+  <button onclick="increment()">increment</button>
 
   <p>view: <span id="view">0</span></p>
 
@@ -26,23 +26,23 @@
 <script id="app">
 let state = 0;
 
-const RANDOM = 'RANDOM';
-const RANDOM_SUCCESS = 'RANDOM_SUCCESS';
+const INCREMENT = 'INCREMENT';
+const INCREMENT_SUCCESS = 'INCREMENT_SUCCESS';
 
-const random = () => dispatch({ type: RANDOM });
-const randomSuccess = (payload) => dispatch({ type: RANDOM_SUCCESS, payload });
+const increment = () => dispatch({ type: INCREMENT });
+const incrementSuccess = (payload) => dispatch({ type: INCREMENT_SUCCESS, payload });
 
 function middleware(action) {
   switch (action.type) {
-    case RANDOM:
-      setTimeout(() => randomSuccess(Math.round(Math.random() * 10)), 1000);
+    case INCREMENT:
+      setTimeout(() => incrementSuccess(Math.round(Math.random() * 10)), 1000);
       break;
   }
 }
 
 function reducer(currState, action) {
   switch (action.type) {
-    case RANDOM_SUCCESS: return currState + action.payload;
+    case INCREMENT_SUCCESS: return currState + action.payload;
     default: return currState;
   }
 }
