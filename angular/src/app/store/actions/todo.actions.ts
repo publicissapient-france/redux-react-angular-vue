@@ -6,7 +6,6 @@ export enum ActionTypes {
 
 export class Dummy implements Action {
   readonly type = ActionTypes.Dummy;
-  constructor(public payload: string) {}
 }
 
 export type ActionsUnion =
