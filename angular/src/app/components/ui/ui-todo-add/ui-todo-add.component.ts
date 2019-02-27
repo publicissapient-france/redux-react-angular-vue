@@ -29,6 +29,7 @@ export class UiTodoAddComponent {
   @Output() add = new EventEmitter<string>();
 
   emitText(text: string) {
+    this.text = text;
     this.textChange.emit(text);
   }
 
