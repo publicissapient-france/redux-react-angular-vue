@@ -1,12 +1,15 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faClipboardList, faPlus, faSmileBeam, faToggleOff, faToggleOn, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { AppIconsModule } from './app-icons.module';
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { components } from './components';
 import { AppStoreModule } from './store/app-store.module';
+
+library.add(faClipboardList, faPlus, faSmileBeam, faToggleOff, faToggleOn, faTrash);
 
 @NgModule({
   declarations: [
@@ -16,8 +19,7 @@ import { AppStoreModule } from './store/app-store.module';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule,
-    AppIconsModule,
+    FontAwesomeModule,
 
     AppStoreModule // <-- Redux Store
   ],
