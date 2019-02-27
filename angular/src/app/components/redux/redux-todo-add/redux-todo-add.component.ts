@@ -1,11 +1,6 @@
-import { todoBuilder } from 'App/domains';
-import { AppState } from 'App/store/reducers';
+import { of } from 'rxjs';
 
 import { Component } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-
-import * as todosActions from 'App/store/actions/todo.actions';
-import { getText } from 'App/store/reducers';
 
 @Component({
   selector: 'app-redux-todo-add',
@@ -18,15 +13,15 @@ import { getText } from 'App/store/reducers';
   `
 })
 export class ReduxTodoAddComponent {
-  text$ = this.store.pipe(select(getText));
+  text$ = of('');
 
-  constructor(private store: Store<AppState>) { }
+  constructor() { }
 
   textChange(text: string) {
-    this.store.dispatch(new todosActions.Text(text));
+
   }
 
   add(text: string) {
-    this.store.dispatch(new todosActions.Add(todoBuilder(text)));
+
   }
 }

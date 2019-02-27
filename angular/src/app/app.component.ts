@@ -6,8 +6,7 @@ import { Component } from '@angular/core';
     <div class="container">
       <h1 class="title">{{ title }}</h1>
 
-      <app-vanilla-todo></app-vanilla-todo>
-      <!--<app-redux-todo></app-redux-todo>-->
+      <app-redux-todo></app-redux-todo>
     </div>
   `,
   styleUrls: ['./app.component.css']

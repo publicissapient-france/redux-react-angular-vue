@@ -1,60 +1,14 @@
-import { Todo } from 'App/domains';
-
 import { Action } from '@ngrx/store';
 
 export enum ActionTypes {
-  Load           = '[Redux:Todos] Load',
-  LoadSuccess    = '[Redux:Todos] LoadSuccess',
-
-  Add            = '[Redux:Todos] Add',
-  AddSuccess     = '[Redux:Todos] AddSuccess',
-
-  Update         = '[Redux:Todos] Update',
-  UpdateSuccess  = '[Redux:Todos] UpdateSuccess',
-
-  Text           = '[Redux:Todos] Text'
+  Dummy = '[Redux:Todos] Dummy'
 }
 
-export class Load implements Action {
-  readonly type = ActionTypes.Load;
-}
-export class LoadSuccess implements Action {
-  readonly type = ActionTypes.LoadSuccess;
-  constructor(public payload: Todo[]) {}
-}
-
-export class Add implements Action {
-  readonly type = ActionTypes.Add;
-  constructor(public payload: Partial<Todo>) {}
-}
-export class AddSuccess implements Action {
-  readonly type = ActionTypes.AddSuccess;
-  constructor(public payload: Todo) {}
-}
-
-export class Update implements Action {
-  readonly type = ActionTypes.Update;
-  constructor(public payload: Todo) {}
-}
-export class UpdateSuccess implements Action {
-  readonly type = ActionTypes.UpdateSuccess;
-  constructor(public payload: Todo) {}
-}
-
-export class Text implements Action {
-  readonly type = ActionTypes.Text;
+export class Dummy implements Action {
+  readonly type = ActionTypes.Dummy;
   constructor(public payload: string) {}
 }
 
 export type ActionsUnion =
-  | Load
-  | LoadSuccess
-
-  | Add
-  | AddSuccess
-
-  | Update
-  | UpdateSuccess
-
-  | Text
+  | Dummy
 ;

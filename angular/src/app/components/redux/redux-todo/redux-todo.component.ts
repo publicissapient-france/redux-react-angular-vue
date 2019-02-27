@@ -1,9 +1,4 @@
-import { AppState } from 'App/store/reducers';
-
 import { Component, OnInit } from '@angular/core';
-import { Store } from '@ngrx/store';
-
-import * as todosActions from 'App/store/actions/todo.actions';
 
 @Component({
   selector: 'app-redux-todo',
@@ -22,9 +17,9 @@ import * as todosActions from 'App/store/actions/todo.actions';
 })
 export class ReduxTodoComponent implements OnInit {
 
-  constructor(private store: Store<AppState>) { }
+  constructor() { }
 
   ngOnInit() {
-    this.store.dispatch(new todosActions.Load());
+
   }
 }

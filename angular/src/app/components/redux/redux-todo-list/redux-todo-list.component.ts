@@ -1,11 +1,7 @@
-import { Todo, toggleDone } from 'App/domains';
-import { AppState } from 'App/store/reducers';
+import { Todo } from 'App/domains';
+import { of } from 'rxjs';
 
 import { Component } from '@angular/core';
-import { select, Store } from '@ngrx/store';
-
-import * as todosActions from 'App/store/actions/todo.actions';
-import { getTodos } from 'App/store/reducers';
 
 @Component({
   selector: 'app-redux-todo-list',
@@ -17,11 +13,11 @@ import { getTodos } from 'App/store/reducers';
   `
 })
 export class ReduxTodoListComponent {
-  todos$ = this.store.pipe(select(getTodos));
+  todos$ = of([]);
 
-  constructor(private store: Store<AppState>) { }
+  constructor() { }
 
   toggleDone(todo: Todo) {
-    this.store.dispatch(new todosActions.Update(toggleDone(todo)));
+
   }
 }
