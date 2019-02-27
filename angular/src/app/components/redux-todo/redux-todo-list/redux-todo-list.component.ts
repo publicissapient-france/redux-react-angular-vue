@@ -1,11 +1,11 @@
 import { Todo, toggleDone } from 'App/domains';
-import { AppState } from 'App/reducers';
+import { AppState } from 'App/store/reducers';
 
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
-import * as todosActions from '../../actions/todo.actions';
-import { getTodos } from '../../reducers';
+import * as todosActions from 'App/store/actions/todo.actions';
+import { getTodos } from 'App/store/reducers';
 
 @Component({
   selector: 'app-redux-todo-list',

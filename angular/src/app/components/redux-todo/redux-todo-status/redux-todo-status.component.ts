@@ -1,10 +1,10 @@
 import { getStatus } from 'App/domains';
-import { AppState } from 'App/reducers';
+import { AppState } from 'App/store/reducers';
 
 import { Component } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 
-import { getTodos } from '../../reducers';
+import { getTodos } from 'App/store/reducers';
 
 @Component({
   selector: 'app-redux-todo-status',

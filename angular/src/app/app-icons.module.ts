@@ -19,4 +19,4 @@ library.add(faClipboardList, faPlus, faSmileBeam, faToggleOff, faToggleOn, faTra
     FontAwesomeModule
   ]
 })
-export class AppFontAwesomeModule { }
+export class AppIconsModule { }

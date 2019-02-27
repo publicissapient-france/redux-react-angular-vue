@@ -2,23 +2,24 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { AppIconsModule } from './app-icons.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AppStoreModule } from './app-store.module';
 import { AppComponent } from './app.component';
-import { NavComponent } from './components/nav/nav.component';
-import { AppSharedModule } from './shared/app-shared.module';
+import { components } from './components';
+import { AppStoreModule } from './store/app-store.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavComponent
+    ...components
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    AppStoreModule,
-    AppSharedModule
+    AppIconsModule,
+
+    AppStoreModule // <-- Redux Store
   ],
   bootstrap: [AppComponent]
 })

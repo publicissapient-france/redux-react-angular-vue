@@ -1,9 +1,9 @@
-import { AppState } from 'App/reducers';
+import { AppState } from 'App/store/reducers';
 
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import * as todosActions from '../../actions/todo.actions';
+import * as todosActions from 'App/store/actions/todo.actions';
 
 @Component({
   selector: 'app-redux-todo',
