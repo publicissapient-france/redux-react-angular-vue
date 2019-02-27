@@ -30,9 +30,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VanillaTodoComponent implements OnInit {
   todos: Todo[] = [];
-
   text = '';
-
   category: TodoCategory = 'all';
 
   get todosFiltered() {

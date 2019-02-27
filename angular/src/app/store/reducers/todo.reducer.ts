@@ -1,43 +1,44 @@
 import { Todo } from 'App/domains';
 
-import { createEntityAdapter, EntityAdapter, EntityState } from '@ngrx/entity';
-
 import { ActionsUnion, ActionTypes } from '../actions/todo.actions';
 
-export interface State extends EntityState<Todo> {
+export interface State {
+  list: Todo[];
   text: string;
 }
 
-export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>({
-  sortComparer: (a, b) => a.id < b.id ? 1 : -1
-});
-
-export const initialState: State = adapter.getInitialState({
+export const initialState: State = {
+  list: [],
   text: ''
-} as State);
+};
 
 export function reducer(state = initialState, action: ActionsUnion): State {
   switch (action.type) {
     case ActionTypes.LoadSuccess: {
-      return adapter.addAll(action.payload, state);
+      return { ...state, list: action.payload };
     }
+
     case ActionTypes.AddSuccess: {
-      return adapter.addOne(action.payload, state);
+      return { ...state, list: [action.payload, ...state.list] };
     }
+
     case ActionTypes.UpdateSuccess: {
-      return adapter.upsertOne(action.payload, state);
+      const index = state.list.findIndex(todo => todo.id === action.payload.id);
+      const list = [...state.list];
+      list.splice(index, 1, action.payload);
+      return { ...state, list };
     }
+
     case ActionTypes.Text: {
       return { ...state, text: action.payload };
     }
+
     default: {
       return state;
     }
   }
 }
 
-const { selectAll } = adapter.getSelectors();
-
-export const _getTodos = selectAll;
+export const _getTodos = (state: State) => state.list;
 
 export const _getText = (state: State) => state.text;
