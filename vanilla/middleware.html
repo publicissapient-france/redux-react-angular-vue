@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Redux in a nutshell</title>
+  <title>Redux middleware</title>
 
   <link href="node_modules/prismjs/themes/prism.css" rel="stylesheet">
   <script src="node_modules/prismjs/prism.js"></script>
@@ -11,38 +11,45 @@
 </head>
 <body id="layout">
 
-<a href="middleware.html" id="nav">Middleware &xrarr;</a>
+<a href="index.html" id="nav">&xlarr; Basics</a>
 
 <div class="layout-box">
-  <h1>Redux in a nutshell</h1>
+  <h1>Redux middleware</h1>
 
   <button onclick="increment()">increment</button>
-  <button onclick="decrement()">decrement</button>
 
   <p>view: <span id="view">0</span></p>
 
-  <img src="images/redux.png">
+  <img src="images/redux-middleware.png">
 </div>
 
 <script id="app">
 let state = 0;
 
 const INCREMENT = 'INCREMENT';
-const DECREMENT = 'DECREMENT';
+const INCREMENT_SUCCESS = 'INCREMENT_SUCCESS';
 
 const increment = () => dispatch({ type: INCREMENT });
-const decrement = () => dispatch({ type: DECREMENT });
+const incrementSuccess = (payload) => dispatch({ type: INCREMENT_SUCCESS, payload });
+
+function middleware(action) {
+  switch (action.type) {
+    case INCREMENT:
+      setTimeout(() => incrementSuccess(Math.round(Math.random() * 10)), 1000);
+      break;
+  }
+}
 
 function reducer(currState, action) {
   switch (action.type) {
-    case INCREMENT: return currState + 1;
-    case DECREMENT: return currState - 1;
+    case INCREMENT_SUCCESS: return currState + action.payload;
     default: return currState;
   }
 }
 
 function dispatch(action) {
   state = reducer(state, action);
+  middleware(action);
   render();
 }
 

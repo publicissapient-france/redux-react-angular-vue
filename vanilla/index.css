@@ -1,5 +1,5 @@
-html { 
-  font-size: 36px; 
+html {
+  font-size: 36px;
   font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   text-align: center; }
 
@@ -14,11 +14,12 @@ h1 {
   margin: 0 0 2rem 0;
   font-size: 1.5rem; }
 
-button { 
-  font-family: inherit; 
-  font-size: inherit; 
-  border: 1px solid #aaa; 
+button {
+  font-family: inherit;
+  font-size: inherit;
   border-radius: 3px;
+  border: 1px solid #aaa;
+  background-color: #fafafa;
   outline: none;
   transition: background-color ease 200ms; }
 
@@ -34,7 +35,16 @@ pre {
   background: #fff176 !important;
 }
 
-#layout { 
+#nav {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  font-size: 16px;
+  text-decoration: none;
+  color: #999;
+}
+
+#layout {
   display: flex;
   justify-content: space-between;
   align-items: center;
