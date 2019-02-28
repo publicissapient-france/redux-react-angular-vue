@@ -7,7 +7,6 @@ import { Component, OnInit } from '@angular/core';
   selector: 'app-vanilla-todo',
   template: `
     <app-ui-todo-add
-      [(text)]="text"
       (add)="add($event)">
     </app-ui-todo-add>
 
@@ -24,7 +23,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VanillaTodoComponent implements OnInit {
   todos: Todo[] = [];
-  text = '';
   category: TodoCategory = 'all';
 
   get todosFiltered() {

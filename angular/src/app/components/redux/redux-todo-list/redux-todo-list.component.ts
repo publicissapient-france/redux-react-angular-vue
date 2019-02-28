@@ -8,7 +8,8 @@ import { Component } from '@angular/core';
   template: `
     <app-ui-todo-list
       [todos]="todos$ | async"
-      (toggleDone)="toggleDone($event)">
+      (toggleDone)="toggleDone($event)"
+      (remove)="remove($event)">
     </app-ui-todo-list>
   `
 })
@@ -18,6 +19,10 @@ export class ReduxTodoListComponent {
   constructor() { }
 
   toggleDone(todo: Todo) {
+
+  }
+
+  remove(todo: Todo) {
 
   }
 }
