@@ -1,5 +1,22 @@
 # Plan
 
+## V2
+
+- domains/todo.model
+
+- components/vanilla
+- components/ui
+- components/redux
+
+- store/app-store.module
+- store/reducers/todo.reducer
+- store/reducers/index
+
+- store/actions
+- store/effects
+
+## OLD
+
 - Partir du server qui retoune déjà avec une liste
 
 - Define State `list` property
