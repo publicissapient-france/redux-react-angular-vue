@@ -1,12 +1,16 @@
 # Angular in a nutshell
 
+__Au Sommaire:__
+
 - Decorators
 - Module
 - Component
   - String interpolation
   - Property binding and Event binding
   - Parent-Child communication
-- Providers
+- Providers and Dependency injection
+- Life cycle hooks
+- RxJS
 
 ## Decorators
 
@@ -109,23 +113,70 @@ export class FieldComponent {
 }
 ```
 
-## Providers
-
-Dependency injection
+## Providers and Dependency injection
 
 ```ts
-import { Injectable } from '@angular/core';
+import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Todo } from 'App/domains';
 
-@Injectable({
-  providedIn: 'root'
+@Component({
+  selector: 'app-list',
+  template: `...`
 })
-export class RestService {
+export class ListComponent {
   constructor(private httpClient: HttpClient) { } // <- Dependency injection
+}
+```
 
-  getTodos() {
-    return this.httpClient.get<Todo[]>('http://tasks.com/todos');
+## Life cycle hooks
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Component({
+  selector: 'app-list',
+  template: `
+    <ul>
+      <li *ngFor="let item of list">{{ item }}</li>
+    </ul>
+  `
+})
+export class ListComponent implements OnInit {
+  list: string[];
+
+  constructor(private httpClient: HttpClient) { }
+
+  ngOnInit() { // <- Life cycle hooks
+    this.httpClient.get<string[]>('http://todo.com/list').subscribe(
+      list => this.list = list
+    );
+  }
+}
+```
+
+## RxJS
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Component({
+  selector: 'app-list',
+  template: `
+    <ul *ngIf="list$ | async; let list">
+      <li *ngFor="let item of list">{{ item }}</li>
+    </ul>
+  `
+})
+export class ListComponent implements OnInit {
+  list$: Observable<string[]>; // <- RxJS
+
+  constructor(private httpClient: HttpClient) { }
+
+  ngOnInit() {
+    this.list$ = this.httpClient.get<string[]>('http://todo.com/list');
   }
 }
 ```
