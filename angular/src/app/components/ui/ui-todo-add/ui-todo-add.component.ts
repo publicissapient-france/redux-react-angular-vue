@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 @Component({
   selector: 'app-ui-todo-add',
   template: `
-    <div>
+    <div class="container">
       <input
         class="text"
         placeholder="What needs to be done?"

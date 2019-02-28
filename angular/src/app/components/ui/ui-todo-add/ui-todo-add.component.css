@@ -1,3 +1,8 @@
+.container {
+  padding-top: 1rem;
+  text-align: center;
+}
+
 .text {
   width: 60%;
   min-width: 240px;

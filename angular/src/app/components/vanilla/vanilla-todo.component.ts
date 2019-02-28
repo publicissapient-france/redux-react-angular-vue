@@ -1,6 +1,4 @@
-import {
-    filterByCategory, Todo, todoBuilder, TodoCategory, toggleDone
-} from 'App/domains';
+import { filterByCategory, Todo, todoBuilder, TodoCategory, toggleDone } from 'App/domains';
 import { RestService } from 'App/services/rest.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -8,12 +6,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-vanilla-todo',
   template: `
-    <div class="top">
-      <app-ui-todo-add
-        [(text)]="text"
-        (add)="add($event)">
-      </app-ui-todo-add>
-    </div>
+    <app-ui-todo-add
+      [(text)]="text"
+      (add)="add($event)">
+    </app-ui-todo-add>
 
     <app-ui-todo-list
       [todos]="todosFiltered"
@@ -21,13 +17,10 @@ import { Component, OnInit } from '@angular/core';
       (remove)="remove($event)">
     </app-ui-todo-list>
 
-    <div class="bottom">
-      <app-ui-todo-category
-        [(category)]="category">
-      </app-ui-todo-category>
-    </div>
-  `,
-  styleUrls: ['./vanilla-todo.component.css']
+    <app-ui-todo-category
+      [(category)]="category">
+    </app-ui-todo-category>
+  `
 })
 export class VanillaTodoComponent implements OnInit {
   todos: Todo[] = [];

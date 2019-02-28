@@ -5,13 +5,15 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 @Component({
   selector: 'app-ui-todo-category',
   template: `
-    <button
-      *ngFor="let item of list"
-      class="button"
-      [class.button--active]="category === item"
-      (click)="select(item)">
-      {{ item }}
-    </button>
+    <div class="container">
+      <button
+        *ngFor="let item of list"
+        class="button"
+        [class.button--active]="category === item"
+        (click)="select(item)">
+        {{ item }}
+      </button>
+    </div>
   `,
   styleUrls: ['./ui-todo-category.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
