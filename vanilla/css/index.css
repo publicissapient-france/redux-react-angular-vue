@@ -35,6 +35,19 @@ pre {
   background: #fff176 !important;
 }
 
+#logo {
+  position: fixed;
+  right: 15px;
+  top: 15px;
+  width: 80px;
+  /*animation: logo-anim 30s linear infinite;*/
+}
+
+@keyframes logo-anim {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 #nav {
   position: fixed;
   top: 1em;
@@ -62,4 +75,8 @@ pre {
 #view {
   line-height: 1.5rem;
   min-height: 1.5rem;
+}
+
+.line-highlight {
+  border-left: 2px solid #FF1744; /* Extend PrismJS line-highlight */
 }
