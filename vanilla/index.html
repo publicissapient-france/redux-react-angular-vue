@@ -7,7 +7,14 @@
   <link href="node_modules/prismjs/themes/prism.css" rel="stylesheet">
   <script src="node_modules/prismjs/prism.js"></script>
 
-  <link href="index.css" rel="stylesheet">
+  <script src="node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"></script>
+  <link href="node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css" rel="stylesheet">
+
+  <script src="node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js"></script>
+  <link href="node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet">
+
+  <link href="css/index.css" rel="stylesheet">
+  <link href="css/map.css" rel="stylesheet">
 </head>
 <body id="layout">
 
@@ -21,7 +28,20 @@
 
   <p>view: <span id="view">0</span></p>
 
-  <img src="images/redux.png">
+  <div class="map-container">
+    <a href="#source.3-7" class="map-o map-view">View</a>
+    <a href="#source.9-12" class="map-o map-action">Action</a>
+    <a href="#source.14-20" class="map-o map-reducer">Reducer</a>
+    <a href="#source.22-24" class="map-o map-store">Store</a>
+
+    <div class="map-o map-a map-action-reducer">&longrightarrow;</div>
+    <div class="map-o map-a map-reducer-store">&longrightarrow;</div>
+    <div class="map-o map-a map-store-view">&ldsh;</div>
+    <div class="map-o map-a map-view-action">&ldsh;</div>
+  </div>
+  <script>
+    document.querySelector('.map-container').addEventListener('click', () => document.location.hash = '');
+  </script>
 </div>
 
 <script id="app">
@@ -33,17 +53,17 @@ const DECREMENT = 'DECREMENT';
 const increment = () => dispatch({ type: INCREMENT });
 const decrement = () => dispatch({ type: DECREMENT });
 
+function dispatch(action) {
+  state = reducer(state, action);
+  render();
+}
+
 function reducer(currState, action) {
   switch (action.type) {
     case INCREMENT: return currState + 1;
     case DECREMENT: return currState - 1;
     default: return currState;
   }
-}
-
-function dispatch(action) {
-  state = reducer(state, action);
-  render();
 }
 
 function render() {
@@ -53,7 +73,7 @@ function render() {
 
 <script>
 const appCode = document.getElementById('app').innerText.trim();
-document.write(`<pre class="layout-box"><code class="language-js">${appCode}</code></pre>`);
+document.write(`<pre id="source" class="layout-box line-numbers"><code class="language-js">${appCode}</code></pre>`);
 </script>
 
 </body>

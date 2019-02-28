@@ -6,8 +6,15 @@
 
   <link href="node_modules/prismjs/themes/prism.css" rel="stylesheet">
   <script src="node_modules/prismjs/prism.js"></script>
+  
+  <script src="node_modules/prismjs/plugins/line-numbers/prism-line-numbers.js"></script>
+  <link href="node_modules/prismjs/plugins/line-numbers/prism-line-numbers.css" rel="stylesheet">
 
-  <link href="index.css" rel="stylesheet">
+  <script src="node_modules/prismjs/plugins/line-highlight/prism-line-highlight.js"></script>
+  <link href="node_modules/prismjs/plugins/line-highlight/prism-line-highlight.css" rel="stylesheet">
+
+  <link href="css/index.css" rel="stylesheet">
+  <link href="css/map.css" rel="stylesheet">
 </head>
 <body id="layout">
 
@@ -20,7 +27,22 @@
 
   <p>view: <span id="view">0</span></p>
 
-  <img src="images/redux-middleware.png">
+  <div class="map-container">
+    <a href="#source.3-7" class="map-o map-view">View</a>
+    <a href="#source.9-13" class="map-o map-action">Action</a>
+    <a href="#source.15-21" class="map-o map-middleware">Middleware</a>
+    <a href="#source.23-28" class="map-o map-reducer">Reducer</a>
+    <a href="#source.30-32" class="map-o map-store">Store</a>
+
+    <div class="map-o map-a map-action-reducer">&longrightarrow;</div>
+    <div class="map-o map-a map-reducer-store">&longrightarrow;</div>
+    <div class="map-o map-a map-store-view">&ldsh;</div>
+    <div class="map-o map-a map-view-action">&ldsh;</div>
+    <div class="map-o map-a map-action-middleware">&udarr;</div>
+  </div>
+  <script>
+    document.querySelector('.map-container').addEventListener('click', () => document.location.hash = '');
+  </script>  
 </div>
 
 <script id="app">
@@ -31,6 +53,12 @@ const INCREMENT_SUCCESS = 'INCREMENT_SUCCESS';
 
 const increment = () => dispatch({ type: INCREMENT });
 const incrementSuccess = (payload) => dispatch({ type: INCREMENT_SUCCESS, payload });
+
+function dispatch(action) {
+  state = reducer(state, action);
+  middleware(action);
+  render();
+}
 
 function middleware(action) {
   switch (action.type) {
@@ -47,12 +75,6 @@ function reducer(currState, action) {
   }
 }
 
-function dispatch(action) {
-  state = reducer(state, action);
-  middleware(action);
-  render();
-}
-
 function render() {
   document.getElementById('view').textContent = state;
 }
@@ -60,7 +82,7 @@ function render() {
 
 <script>
 const appCode = document.getElementById('app').innerText.trim();
-document.write(`<pre class="layout-box"><code class="language-js">${appCode}</code></pre>`);
+document.write(`<pre id="source" class="layout-box line-numbers"><code class="language-js">${appCode}</code></pre>`);
 </script>
 
 </body>

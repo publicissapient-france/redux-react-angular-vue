@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Redux in a nutshell</title>
+  <link href="index.css" rel="stylesheet">
+</head>
+<body>
+
+  <style>
+    .box {
+      position: absolute;
+      margin-left: -10%;
+      margin-top: -25px;
+      width: 20%;
+      height: 50px;
+      line-height: 50px;
+      font-size: 30px;
+      text-align: center;
+      background-color: dodgerblue;
+      color: white;
+    }
+
+    .middleware { left: 20%; top: 20%; }
+    .action { left: 20%; top: 50%; } 
+    .reducer { left: 50%; top: 50%; } 
+    .store { left: 80%; top: 50%; }
+    .view { left: 50%; top: 80%; }
+  </style>
+
+  <div style="margin:0;width:100%;height:100%;position: relative;">
+
+    <div class="box middleware">Middleware</div>
+
+    <div class="box action">Action</div>
+    <div class="box reducer">Reducer</div>
+    <div class="box store">Store</div>
+
+    <div class="box view">View</div>
+
+  </div>
+
+</body>
+</html>
