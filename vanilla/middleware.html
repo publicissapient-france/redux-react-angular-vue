@@ -64,7 +64,7 @@ function dispatch(action) {
 function middleware(action) {
   switch (action.type) {
     case INCREMENT:
-      setTimeout(() => incrementSuccess(Math.round(Math.random() * 10)), 1000);
+      setTimeout(() => incrementSuccess(5), 1000);
       break;
   }
 }
