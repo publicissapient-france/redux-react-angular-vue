@@ -1,32 +1,32 @@
 import { Todo } from '@/domains/models';
 
 let index = 0;
-let tasks: Todo[] = [
+let todos: Todo[] = [
   { id: index++, label: 'Todo 1', done: false },
   { id: index++, label: 'Todo 2', done: true },
 ];
 
-export function addTodo(task: Todo) {
-  tasks.push({
-    ...task,
+export function addTodo(todo: Todo) {
+  todos.push({
+    ...todo,
     id: index++
   });
 }
 
 export function getTodos() {
-  return [...tasks];
+  return [...todos];
 }
 
-export function updateTodo(updatedTask: Todo) {
-  const updatedIndex = tasks.findIndex(task => task.id === updatedTask.id);
+export function updateTodo(updatedTodo: Todo) {
+  const updatedIndex = todos.findIndex(todo => todo.id === updatedTodo.id);
 
   if (updatedIndex === -1) {
     return;
   }
 
-  tasks[updatedIndex] = updatedTask;
+  todos[updatedIndex] = updatedTodo;
 }
 
-export function removeTodo(removedTask: Todo) {
-  tasks = tasks.filter(task => task !== removedTask);
+export function removeTodo(removedTodo: Todo) {
+  todos = todos.filter(todo => todo !== removedTodo);
 }

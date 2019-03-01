@@ -5,26 +5,21 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator';
+  import { Component, Vue } from 'vue-property-decorator';
+  import { Getter } from 'vuex-class';
   import { Todo } from '@/domains/models';
-  import { mapState } from 'vuex';
+  import { FILTRED_TODOS } from '@/features/redux/store';
 
-  @Component({
-    computed: {
-      // ...mapState(['tasks']),
-    }
-  })
+  @Component
   export default class TodoStatus extends Vue {
-    get tasks(): Todo[] {
-      return this.$store.getters.filtredTasks;
-    }
+    @Getter(FILTRED_TODOS) todos!: Todo[];
 
     get total() {
-      return this.tasks.length;
+      return this.todos.length;
     }
 
     get remaining() {
-      return this.tasks.filter(task => !task.done).length;
+      return this.todos.filter(todo => !todo.done).length;
     }
 
     get label() {

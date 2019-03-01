@@ -3,3 +3,8 @@ export interface Todo {
   label: string;
   done: boolean;
 }
+
+export interface TodoStore {
+  todos: Todo[];
+  category: string;
+}

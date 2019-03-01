@@ -10,12 +10,12 @@
       <TodoCategory :category="category" @selected="selectCategory"/>
 
       <TodoList
-        :tasks="filtredTasks"
-        @taskStatusChanged="taskStatusChanged"
-        @removeTask="removeTask"
+        :todos="filtredTodos"
+        @todoStatusChanged="todoStatusChanged"
+        @removeTodo="removeTodo"
       />
 
-      <TodoStatus :tasks="tasks" />
+      <TodoStatus :todos="todos" />
     </el-card>
   </div>
 </template>
@@ -38,9 +38,7 @@
     },
   })
   export default class TodoVanillaApp extends Vue {
-    @Prop() private msg!: string;
-
-    private tasks: Todo[] = [];
+    private todos: Todo[] = [];
     private category: string = 'all';
 
     mounted() {
@@ -48,19 +46,19 @@
     }
 
     async refresh() {
-      this.tasks = await getTodos();
+      this.todos = await getTodos();
     }
 
-    get filtredTasks() {
+    get filtredTodos() {
       if (this.category === 'active') {
-        return this.tasks.filter(task => !task.done);
+        return this.todos.filter(todo => !todo.done);
       }
 
       if (this.category === 'completed') {
-        return this.tasks.filter(task => task.done);
+        return this.todos.filter(todo => todo.done);
       }
 
-      return this.tasks;
+      return this.todos;
     }
 
     async add(label: string) {
@@ -73,17 +71,17 @@
       this.refresh();
     }
 
-    async taskStatusChanged(doneTask: Todo) {
+    async todoStatusChanged(doneTodo: Todo) {
       await updateTodo({
-        ...doneTask,
-        done: !doneTask.done
+        ...doneTodo,
+        done: !doneTodo.done
       });
 
       this.refresh();
     }
 
-    async removeTask(removedTask: Todo) {
-      await removeTodo(removedTask);
+    async removeTodo(removedTodo: Todo) {
+      await removeTodo(removedTodo);
 
       this.refresh();
     }

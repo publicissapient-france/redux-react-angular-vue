@@ -18,12 +18,11 @@
 
 <script lang="ts">
   import { Component, Vue } from 'vue-property-decorator';
-  import { mapState } from 'vuex';
   import TodoAdd from './components/TodoAdd.vue';
   import TodoCategory from './components/TodoCategory.vue';
   import TodoList from './components/TodoList.vue';
   import TodoStatus from './components/TodoStatus.vue';
-  import { LOAD_TASKS, store } from '@/features/redux/store';
+  import { LOAD_TODOS, store } from '@/features/redux/store';
 
   @Component({
     components: {
@@ -33,13 +32,10 @@
       TodoAdd,
     },
     store,
-    computed: {
-      ...mapState(['tasks'])
-    }
   })
   export default class TodoReduxApp extends Vue {
     mounted() {
-      this.$store.dispatch(LOAD_TASKS);
+      this.$store.dispatch(LOAD_TODOS);
     }
   }
 </script>

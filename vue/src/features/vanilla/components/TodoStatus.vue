@@ -10,14 +10,14 @@
 
   @Component
   export default class TodoStatus extends Vue {
-    @Prop() private tasks!: Todo[];
+    @Prop() private todos!: Todo[];
 
     get total() {
-      return this.tasks.length;
+      return this.todos.length;
     }
 
     get remaining() {
-      return this.tasks.filter(task => !task.done).length;
+      return this.todos.filter(todo => !todo.done).length;
     }
 
     get label() {

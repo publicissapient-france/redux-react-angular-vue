@@ -1,15 +1,15 @@
 <template>
   <div>
-    <div v-for="task in tasks" :key="task.id" class="item">
-      <el-checkbox @change="taskStatusChanged(task)" :value="task.done">
-        <span :class="{'done': task.done}">{{ task.label }}</span>
+    <div v-for="todo in todos" :key="todo.id" class="item">
+      <el-checkbox @change="todoStatusChanged(todo)" :value="todo.done">
+        <span :class="{'done': todo.done}">{{ todo.label }}</span>
       </el-checkbox>
-      <button @click="removeTask(task)">
+      <button @click="removeTodo(todo)">
         <i class="el-icon-delete"></i>
       </button>
     </div>
-    <div v-if="!tasks.length">
-      <p>No tasks.</p>
+    <div v-if="!todos.length">
+      <p>No todos.</p>
     </div>
   </div>
 </template>
@@ -20,14 +20,14 @@
 
   @Component
   export default class TodoList extends Vue {
-    @Prop() private tasks!: Todo[];
+    @Prop() private todos!: Todo[];
 
-    taskStatusChanged(task: Todo) {
-      this.$emit('taskStatusChanged', task);
+    todoStatusChanged(todo: Todo) {
+      this.$emit('todoStatusChanged', todo);
     }
 
-    removeTask(task: Todo) {
-      this.$emit('removeTask', task);
+    removeTodo(todo: Todo) {
+      this.$emit('removeTodo', todo);
     }
   }
 </script>
