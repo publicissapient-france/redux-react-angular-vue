@@ -1,6 +1,14 @@
 # Plan
 
+Il faut dire qu'est qui va dans le state ?
+
+- ce qui doit être partagé.
+
 ## V2
+
+- montrer l'app (et binder avec le code vanilla)
+
+AJOUTER DES ITEMS ET LES LAISSER
 
 - domains/todo.model
 
