@@ -34,3 +34,11 @@ npm run react
 # Tab 4. Start Vue app
 npm run vue
 ```
+
+## Angular live coding
+
+The live coding is available on branch `live-coding`:
+
+```bash
+git checkout origin/live-coding
+```
