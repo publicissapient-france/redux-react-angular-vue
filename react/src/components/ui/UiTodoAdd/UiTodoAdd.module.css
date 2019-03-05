@@ -1,8 +1,0 @@
-.text {
-  width: 60%;
-  min-width: 240px;
-}
-
-.text::placeholder {
-  color: #bbb;
-}
